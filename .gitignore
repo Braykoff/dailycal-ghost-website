@@ -141,3 +141,22 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+## Ghost
+# Keep the seed database and uploaded media (images/files/media).
+# Ignore logs, cache, and anything Ghost regenerates at runtime.
+
+# Logs
+content/logs/
+
+# Regenerated/runtime files
+content/public/
+content/apps/
+
+# In-container mounted themes
+content/themes/
+
+# Transient SQLite journal/WAL files (the committed ghost.db is kept)
+content/data/*.db-journal
+content/data/*.db-shm
+content/data/*.db-wal
