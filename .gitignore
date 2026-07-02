@@ -1,6 +1,7 @@
 ## Editor
 .DS_Store
 .vscode/
+docs.pdf
 
 ## Node + npm
 logs
@@ -26,6 +27,7 @@ content/logs/
 content/public/
 content/apps/
 content/themes/
+content/images/size/
 
 content/data/*.db-journal
 content/data/*.db-shm
