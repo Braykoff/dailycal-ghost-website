@@ -7,6 +7,7 @@ services:
       url: http://localhost:2368
       database__client: sqlite3
       database__connection__filename: /var/lib/ghost/content/data/ghost.db
+      security__staffDeviceVerification: "false" # Disable login email verification code
     volumes:
       - ./content:/var/lib/ghost/content
       - ./theme:/var/lib/ghost/content/themes/dc-theme
