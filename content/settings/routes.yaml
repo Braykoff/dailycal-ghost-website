@@ -1,7 +1,12 @@
 routes:
+  /:
+    template: home
+  /archive/:
+    controller: channel
+    template: archive
 
 collections:
-  /:
+  /latest/:
     permalink: /{slug}/
     template: index
 
