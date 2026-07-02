@@ -43,31 +43,24 @@ jobs:
           fi
 
       - name: Install dependencies
+        if: steps.verify.outcome == 'success'
         working-directory: theme
         run: npm ci
 
       - name: Build theme assets
         id: build
-        continue-on-error: true
+        if: steps.verify.outcome == 'success'
         working-directory: theme
         run: |
           mkdir -p ../.release-status
-          if ! npm run build; then
-            printf '%s' "Theme asset build failed (see Actions log for Sass/JS errors)" > ../.release-status/build.error
-            exit 1
-          fi
+          npm run build
 
       - name: Validate theme with GScan
         id: gscan
-        continue-on-error: true
+        if: steps.verify.outcome == 'success' && steps.build.outcome == 'success'
         working-directory: theme
         run: |
           mkdir -p ../.release-status
-
-          if [ "${{ steps.build.outcome }}" != "success" ]; then
-            printf '%s' "Build step failed, so GScan was not run" > ../.release-status/gscan.error
-            exit 1
-          fi
 
           if ! npx gscan . 2> ../.release-status/gscan.log; then
             ERROR=$(tail -n 3 ../.release-status/gscan.log | tr '\n' ' ' | sed 's/  */ /g' | cut -c1-240)
@@ -80,15 +73,13 @@ jobs:
 
       - name: Create theme zip
         id: zip
-        continue-on-error: true
+        if: >-
+          steps.verify.outcome == 'success' &&
+          steps.build.outcome == 'success' &&
+          steps.gscan.outcome == 'success'
         working-directory: theme
         run: |
           mkdir -p ../.release-status
-
-          if [ "${{ steps.build.outcome }}" != "success" ]; then
-            printf '%s' "Build step failed, so the theme zip was not generated" > ../.release-status/zip.error
-            exit 1
-          fi
 
           if ! npx gulp zip; then
             printf '%s' "Gulp zip task failed (see Actions log)" > ../.release-status/zip.error
@@ -101,7 +92,11 @@ jobs:
           fi
 
       - name: Upload release asset
-        if: steps.zip.outcome == 'success'
+        if: >-
+          steps.verify.outcome == 'success' &&
+          steps.build.outcome == 'success' &&
+          steps.gscan.outcome == 'success' &&
+          steps.zip.outcome == 'success'
         uses: softprops/action-gh-release@v2
         with:
           files: dc-theme-*.zip
@@ -112,6 +107,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          BUILD_OUTCOME: ${{ steps.build.outcome }}
           GSCAN_OUTCOME: ${{ steps.gscan.outcome }}
           ZIP_OUTCOME: ${{ steps.zip.outcome }}
         run: |
@@ -124,36 +120,64 @@ jobs:
           marker = "<!-- theme-release-status -->"
           status_dir = Path(".release-status")
 
+          verify_outcome = os.environ["VERIFY_OUTCOME"]
+          build_outcome = os.environ["BUILD_OUTCOME"]
+          gscan_outcome = os.environ["GSCAN_OUTCOME"]
+          zip_outcome = os.environ["ZIP_OUTCOME"]
+
           def read_error(name: str) -> str:
               path = status_dir / f"{name}.error"
               return path.read_text(encoding="utf-8").strip() if path.exists() else ""
 
-          def line(passed: bool, label: str, detail: str = "") -> str:
-              icon = "✅" if passed else "❌"
-              if passed:
-                  return f"{icon} {label}"
-              suffix = f" — {detail}" if detail else ""
-              return f"{icon} {label}{suffix}"
+          def format_line(outcome: str, label: str, error_key: str, skip_reason: str) -> str:
+              if outcome == "success":
+                  return f"✅ {label}"
+              if outcome == "failure":
+                  detail = read_error(error_key)
+                  suffix = f" — {detail}" if detail else ""
+                  return f"❌ {label}{suffix}"
+              return f"⚪ {label} — {skip_reason}"
+
+          verify_failed = verify_outcome != "success"
+          build_failed = build_outcome != "success"
+          gscan_failed = gscan_outcome != "success"
+
+          gscan_skip = "Skipped because a previous step failed"
+          if verify_failed:
+              gscan_skip = "Skipped because release tag and package.json version did not match"
+          elif build_failed:
+              gscan_skip = "Skipped because theme build failed"
+
+          zip_skip = "Skipped because a previous step failed"
+          if verify_failed:
+              zip_skip = "Skipped because release tag and package.json version did not match"
+          elif build_failed:
+              zip_skip = "Skipped because theme build failed"
+          elif gscan_failed:
+              zip_skip = "Skipped because GScan did not pass"
 
           checks = [
-              (
-                  os.environ["VERIFY_OUTCOME"] == "success",
+              format_line(
+                  verify_outcome,
                   "Release tag and package.json version match",
-                  read_error("verify"),
+                  "verify",
+                  "Skipped because a previous step failed",
               ),
-              (
-                  os.environ["GSCAN_OUTCOME"] == "success",
+              format_line(
+                  gscan_outcome,
                   "GScan success",
-                  read_error("gscan"),
+                  "gscan",
+                  gscan_skip,
               ),
-              (
-                  os.environ["ZIP_OUTCOME"] == "success",
+              format_line(
+                  zip_outcome,
                   "Generated theme zip",
-                  read_error("zip"),
+                  "zip",
+                  zip_skip,
               ),
           ]
 
-          status_text = "\n".join(line(passed, label, detail) for passed, label, detail in checks)
+          status_text = "\n".join(checks)
           status_block = f"{marker}\n\n```\n{status_text}\n```"
 
           tag = os.environ["RELEASE_TAG"]
@@ -175,7 +199,9 @@ jobs:
 
       - name: Fail if packaging was incomplete
         if: >-
-          steps.verify.outcome != 'success' ||
-          steps.gscan.outcome != 'success' ||
-          steps.zip.outcome != 'success'
+          always() && (
+            steps.verify.outcome != 'success' ||
+            steps.gscan.outcome != 'success' ||
+            steps.zip.outcome != 'success'
+          )
         run: exit 1
