@@ -19,12 +19,14 @@ from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
-from PIL import Image
+from PIL import Image, ImageOps
 
 GHOST_URL = os.environ.get("GHOST_URL", "http://localhost:2368").rstrip("/")
 GHOST_ADMIN_EMAIL = os.environ.get("GHOST_ADMIN_EMAIL", "admin@example.com")
 GHOST_ADMIN_PASSWORD = os.environ.get("GHOST_ADMIN_PASSWORD", "bogusAdminP@ssw0rd")
 GHOST_API_VERSION = os.environ.get("GHOST_API_VERSION", "v6.46")
+FEATURE_IMAGE_MAX_DIMENSION = int(os.environ.get("FEATURE_IMAGE_MAX_DIMENSION", "1200"))
+FEATURE_IMAGE_QUALITY = int(os.environ.get("FEATURE_IMAGE_QUALITY", "75"))
 CONTENT_DIR = Path(__file__).resolve().parent.parent / "content"
 
 
@@ -326,33 +328,25 @@ def fetch_blox_article(url: str) -> BloxArticle:
     )
 
 
+def optimize_feature_image(raw_bytes: bytes) -> bytes:
+    """Resize and compress a feature image to keep local storage small."""
+    image = ImageOps.exif_transpose(Image.open(io.BytesIO(raw_bytes)))
+    if image.mode != "RGB":
+        image = image.convert("RGB")
+    image.thumbnail(
+        (FEATURE_IMAGE_MAX_DIMENSION, FEATURE_IMAGE_MAX_DIMENSION),
+        Image.Resampling.LANCZOS,
+    )
+    buffer = io.BytesIO()
+    image.save(buffer, format="JPEG", quality=FEATURE_IMAGE_QUALITY, optimize=True)
+    return buffer.getvalue()
+
+
 def download_feature_image(url: str) -> tuple[bytes, str]:
-    """Download a feature image and normalize it to JPEG bytes."""
+    """Download a feature image and return optimized JPEG bytes."""
     response = requests.get(url, timeout=60)
     response.raise_for_status()
-
-    content_type = response.headers.get("Content-Type", "")
-    raw_bytes = response.content
-
-    if "jpeg" in content_type or "jpg" in content_type or url.lower().endswith((".jpg", ".jpeg")):
-        return raw_bytes, "feature.jpg"
-
-    if "png" in content_type or url.lower().endswith(".png"):
-        image = Image.open(io.BytesIO(raw_bytes)).convert("RGB")
-        buffer = io.BytesIO()
-        image.save(buffer, format="JPEG", quality=90)
-        return buffer.getvalue(), "feature.jpg"
-
-    if "webp" in content_type or url.lower().endswith(".webp"):
-        image = Image.open(io.BytesIO(raw_bytes)).convert("RGB")
-        buffer = io.BytesIO()
-        image.save(buffer, format="JPEG", quality=90)
-        return buffer.getvalue(), "feature.jpg"
-
-    image = Image.open(io.BytesIO(raw_bytes)).convert("RGB")
-    buffer = io.BytesIO()
-    image.save(buffer, format="JPEG", quality=90)
-    return buffer.getvalue(), "feature.jpg"
+    return optimize_feature_image(response.content), "feature.jpg"
 
 
 def feature_image_stem(slug: str) -> str:
