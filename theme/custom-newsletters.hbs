@@ -1,0 +1,23 @@
+{{!< default}}
+
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+
+{{#post}}
+  {{> topper }}
+
+  <article class='c-post {{ post_class }}'>
+    <div class='c-content'>{{ content }}</div>
+
+    {{> newsletter-form showNewslettersList=true }}
+  </article>
+{{/post}}
+
+<script>
+  let newsletters_labels_inputs = document.querySelectorAll('.js-newsletters-label__input');
+
+  newsletters_labels_inputs.forEach(function(input) {
+    input.addEventListener('click', function() {
+      this.toggleAttribute('data-members-label');
+    })
+  });
+</script>

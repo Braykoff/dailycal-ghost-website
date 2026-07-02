@@ -1,0 +1,153 @@
+// ------------------------------------
+// Components > Archive Card
+// ------------------------------------
+
+@use "../vendor/mq";
+@use "../tools/mixins";
+
+.c-card-archive {
+  position: relative;
+  padding-top: var(--space-24);
+  margin-top: var(--space-24);
+
+  @include mq.mq($from: desktop) {
+    padding-top: var(--space-40);
+    margin-top: var(--space-40);
+  }
+
+  &:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    background-color: var(--color-border-secondary);
+  }
+
+  &:first-child {
+    margin-top: 0;
+    padding-top: 0;
+
+    &:before {
+      background-color: transparent;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: var(--space-32);
+  }
+
+  @include mq.mq($from: tablet) {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: var(--space-40);
+    grid-template-areas: 'meta meta content content content content content content';
+
+    &__meta {
+      grid-area: meta;
+    }
+
+    &__content {
+      grid-area: content;
+    }
+  }
+
+  &--date-1  + &--date-1,  &--date-١  + &--date-١,
+  &--date-2  + &--date-2,  &--date-٢  + &--date-٢,
+  &--date-3  + &--date-3,  &--date-٣  + &--date-٣,
+  &--date-4  + &--date-4,  &--date-٤  + &--date-٤,
+  &--date-5  + &--date-5,  &--date-٥  + &--date-٥,
+  &--date-6  + &--date-6,  &--date-٦  + &--date-٦,
+  &--date-7  + &--date-7,  &--date-٧  + &--date-٧,
+  &--date-8  + &--date-8,  &--date-٨  + &--date-٨,
+  &--date-9  + &--date-9,  &--date-٩  + &--date-٩,
+  &--date-10 + &--date-10, &--date-١٠ + &--date-١٠,
+  &--date-11 + &--date-11, &--date-١١ + &--date-١١,
+  &--date-12 + &--date-12, &--date-١٢ + &--date-١٢ {
+    padding-top: 0;
+    margin-top: 0;
+
+    &:before {
+      background-color: transparent;
+    }
+  }
+
+  &--date-1  + &--date-1  &__meta, &--date-١  + &--date-١  &__meta,
+  &--date-2  + &--date-2  &__meta, &--date-٢  + &--date-٢  &__meta,
+  &--date-3  + &--date-3  &__meta, &--date-٣  + &--date-٣  &__meta,
+  &--date-4  + &--date-4  &__meta, &--date-٤  + &--date-٤  &__meta,
+  &--date-5  + &--date-5  &__meta, &--date-٥  + &--date-٥  &__meta,
+  &--date-6  + &--date-6  &__meta, &--date-٦  + &--date-٦  &__meta,
+  &--date-7  + &--date-7  &__meta, &--date-٧  + &--date-٧  &__meta,
+  &--date-8  + &--date-8  &__meta, &--date-٨  + &--date-٨  &__meta,
+  &--date-9  + &--date-9  &__meta, &--date-٩  + &--date-٩  &__meta,
+  &--date-10 + &--date-10 &__meta, &--date-١٠ + &--date-١٠ &__meta,
+  &--date-11 + &--date-11 &__meta, &--date-١١ + &--date-١١ &__meta,
+  &--date-12 + &--date-12 &__meta, &--date-١٢ + &--date-١٢ &__meta {
+    display: none;
+  }
+
+  &--date-1  + &--date-1  &__content, &--date-١  + &--date-١  &__content,
+  &--date-2  + &--date-2  &__content, &--date-٢  + &--date-٢  &__content,
+  &--date-3  + &--date-3  &__content, &--date-٣  + &--date-٣  &__content,
+  &--date-4  + &--date-4  &__content, &--date-٤  + &--date-٤  &__content,
+  &--date-5  + &--date-5  &__content, &--date-٥  + &--date-٥  &__content,
+  &--date-6  + &--date-6  &__content, &--date-٦  + &--date-٦  &__content,
+  &--date-7  + &--date-7  &__content, &--date-٧  + &--date-٧  &__content,
+  &--date-8  + &--date-8  &__content, &--date-٨  + &--date-٨  &__content,
+  &--date-9  + &--date-9  &__content, &--date-٩  + &--date-٩  &__content,
+  &--date-10 + &--date-10 &__content, &--date-١٠ + &--date-١٠ &__content,
+  &--date-11 + &--date-11 &__content, &--date-١١ + &--date-١١ &__content,
+  &--date-12 + &--date-12 &__content, &--date-١٢ + &--date-١٢ &__content {
+    position: relative;
+    padding-top: var(--space-16);
+    margin-top: var(--space-16);
+
+    @include mq.mq($from: desktop) {
+      padding-top: var(--space-24);
+      margin-top: var(--space-24);
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      top: 0;
+      background-color: var(--color-border-secondary);
+    }
+  }
+
+  &__meta {
+    @include mq.mq($until: tablet) {
+      margin-bottom: var(--space-16);
+    }
+  }
+
+  &__content {
+    @include mq.mq($until: tablet) {
+      padding-left: var(--space-16);
+    }
+  }
+
+  &__date {
+    color: var(--color-text-secondary);
+  }
+
+  &__title {
+    @include mixins.font($family: sansSerif, $scale: 2, $line-height: 4, $weight: medium);
+  }
+
+  &__date-mini {
+    display: none;
+    @include mixins.font($weight: normal);
+    color: var(--color-text-secondary);
+  }
+
+  &__url {
+    @include mixins.link_underline_on_hover();
+  }
+}

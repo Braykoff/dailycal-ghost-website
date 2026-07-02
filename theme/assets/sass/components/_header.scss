@@ -1,0 +1,94 @@
+// ------------------------------------
+// Components > Header
+// ------------------------------------
+
+@use "../tools/mixins";
+@use "../vendor/mq";
+
+.c-header {
+  margin-bottom: var(--space-32);
+  box-shadow: rgba(0, 0, 0, .08) 0 0 var(--space-4) var(--space-2);
+
+  [data-user-color-scheme='dark'] & {
+    border-bottom: var(--border-width) var(--border-style) var(--color-border-secondary);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled & {
+      border-bottom: var(--border-width) var(--border-style) var(--color-border-secondary);
+    }
+  }
+
+  &__top {
+    padding: var(--space-20) 0;
+    border-bottom: var(--border-width) var(--border-style) var(--color-border-secondary);
+  }
+
+  &__top-block {
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+
+    @include mq.mq($from: desktop) {
+      gap: var(--space-16);
+    }
+  }
+
+  &__top-inner {
+    display: grid;
+    gap: var(--space-16);
+    align-items: center;
+    grid-template-columns: auto 2fr auto;
+
+    @include mq.mq($from: tablet) {
+      grid-template-columns: 1fr 2fr 1fr;
+    }
+  }
+
+  @include mq.mq($until: tablet) {
+    &__top-left {
+      order: 2;
+      margin-left: auto;
+    }
+
+    &__top-center {
+      order: 1;
+    }
+
+    &__top-right {
+      order: 3;
+    }
+  }
+
+  &__top-left {
+
+  }
+
+  &__top-center {
+
+  }
+
+  &__top-right {
+    justify-self: end;
+  }
+}
+
+.c-header__button {
+  @include mixins.font($scale: 0, $weight: medium, $uppercase: true, $letter-spacing: brevier);
+  @include mixins.link_underline_on_hover();
+
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: none;
+  color: var(--color-text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+
+  svg {
+    width: var(--space-16);
+    height: var(--space-16);
+    fill: var(--color-text-primary);
+  }
+}

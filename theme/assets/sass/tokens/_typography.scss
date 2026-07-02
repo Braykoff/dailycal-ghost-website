@@ -1,0 +1,54 @@
+// ------------------------------------
+// Tokens > Typography
+// ------------------------------------
+
+@use "sass:list";
+@use "../tools/mixins";
+
+$font-scale: (
+  0: (12, 16),
+  1: (14, 16),
+  2: (16, 20),
+  3: (18, 20),
+  4: (20, 24),
+  5: (24, 28),
+  6: (28, 32),
+  7: (32, 32),
+  8: (40, 40),
+  9: (48, 48),
+  10: (72, 72)
+);
+
+:root {
+  @each $scale, $value in $font-scale {
+    --font-size-scale-#{$scale}: #{mixins.convert-to-px(list.nth($value, 1))};
+    --line-height-scale-#{$scale}: #{mixins.convert-to-px(list.nth($value, 2))};
+  }
+
+  // Body Copy
+  --font-size-scale-body-copy: 20px;
+  --line-height-scale-body-copy: 32px;
+
+  --line-height-scale-tight: 1;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --font-letter-spacing-brevier: .7px;
+  --font-letter-spacing-long-primer: .25px;
+
+  --font-letter-spacing-tiny: .6px;
+  --font-letter-spacing-small: 1.2px;
+  --font-letter-spacing-base: 1.6px;
+  --font-letter-spacing-large: 2.8px;
+  --font-letter-spacing-negative: -.5px;
+
+  --font-family-serif: 'Source Serif 4', Charter, Georgia, serif;
+  --font-family-sansSerif: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+body[class*='gh-font-body'] {
+  --font-family-sansSerif: var(--gh-font-body);
+}

@@ -1,0 +1,42 @@
+// ------------------------------------
+//  Components > Share Icons
+// ------------------------------------
+
+@use "../vendor/mq";
+@use "../tools/mixins";
+
+.c-share {
+  display: flex;
+  gap: var(--space-16);
+
+  @include mq.mq($until: tablet) {
+    margin-top: var(--space-16);
+    justify-content: flex-start;
+  }
+
+  @include mq.mq($from: tablet) {
+    margin-left: auto;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-40);
+    height: var(--space-40);
+    border-radius: var(--border-radius-circle);
+    color: var(--color-text-secondary);
+    background-color: var(--color-background-secondary);
+    @include mixins.font($scale: 3, $weight: bold);
+
+    @include mixins.attention() {
+      .c-share__icon {
+        fill: var(--color-text-primary);
+      }
+    }
+  }
+
+  &__icon {
+    fill: var(--color-text-secondary);
+  }
+}

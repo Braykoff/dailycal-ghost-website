@@ -1,0 +1,42 @@
+// ------------------------------------
+// Elements > Typography
+// ------------------------------------
+
+@use "../tools/mixins";
+@use "../vendor/mq";
+
+:where(h1, h2, h3, strong) {
+  @include mixins.font($weight: semibold);
+}
+
+:where(h1) {
+  @include mixins.font($scale: 6);
+
+  @include mq.mq($from: desktop) {
+    @include mixins.font($scale: 7);
+  }
+
+  + h2, + h3 {
+    margin-top: var(--space-16);
+  }
+}
+
+:where(h2) {
+  @include mixins.font($scale: 5);
+
+  @include mq.mq($from: desktop) {
+    @include mixins.font($scale: 6);
+  }
+
+  + h3 {
+    margin-top: var(--space-16);
+  }
+}
+
+:where(h3) {
+  @include mixins.font($scale: 4);
+
+  @include mq.mq($from: desktop) {
+    @include mixins.font($scale: 5);
+  }
+}

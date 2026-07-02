@@ -1,0 +1,56 @@
+// ------------------------------------
+// Components > Card Toggle / Editor
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-content {
+  .kg-toggle-card {
+    padding: 0;
+    border-radius: var(--border-radius);
+    background-color: var(--color-background-secondary);
+    box-shadow: inset 0 0 0 var(--border-width) var(--color-border-secondary);
+
+    .kg-toggle-heading {
+      align-items: center;
+      padding: var(--space-32);
+    }
+
+    &[data-kg-toggle-state='open'] .kg-toggle-heading {
+      padding-bottom: var(--space-8);
+    }
+
+    h4.kg-toggle-heading-text {
+      @include mixins.font($scale: 4, $weight: bold);
+    }
+
+    .kg-toggle-card-icon {
+      width: auto;
+      margin-top: 0;
+      padding-right: 0;
+      cursor: pointer;
+    }
+
+    .kg-toggle-heading svg {
+      color: var(--color-text-primary);
+    }
+
+    &[data-kg-toggle-state='open'] .kg-toggle-content {
+      padding: 0 var(--space-32) var(--space-32) var(--space-32);
+    }
+
+    &[data-kg-toggle-state] .kg-toggle-content {
+      transition: none;
+
+      > * + * {
+        margin-top: var(--space-16) !important;
+      }
+
+      p, ul {
+        @include mixins.font($family: sansSerif, $scale: 3, $line-height: 5);
+
+        margin-top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+// ------------------------------------
+// Tokens > Border
+// ------------------------------------
+
+:root {
+  --border-width: .5px;
+  --border-style: solid;
+  --border-vertical-offset: calc(calc(var(--grid-gap) / 2) * -1);
+}

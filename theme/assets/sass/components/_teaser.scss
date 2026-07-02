@@ -1,0 +1,102 @@
+// ------------------------------------
+// Components > Teaser
+// ------------------------------------
+
+@use "../tools/mixins";
+@use "../vendor/mq";
+
+.c-teaser {
+  display: flex;
+
+  &--large {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: var(--grid-gap);
+  }
+
+  &__media {
+    width: var(--space-96);
+    height: var(--space-64);
+    flex-basis: var(--space-96);
+    margin-left: var(--space-16);
+    position: relative;
+    aspect-ratio: var(--ratio-3x2);
+    background-color: var(--color-background-secondary);
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, .1);
+      opacity: 0;
+      transition: ease opacity var(--motion-duration-fast);
+    }
+
+    @include mixins.hover() {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--large &__media {
+    @include mq.mq($from: desktop) {
+      width: auto;
+      height: auto;
+      flex-basis: auto;
+      margin: 0;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    flex: 1;
+
+    > * + * {
+      margin-top: var(--space-8);
+    }
+  }
+
+  &--large &__content {
+    order: 2;
+  }
+
+  &__headline {
+    @include mixins.font($scale: 2, $weight: semibold, $text-wrap: balance);
+    font-family: var(--gh-font-heading, var(--font-family-serif));
+
+    @include mixins.link_underline_on_hover();
+  }
+
+  &--large &__headline {
+    @include mq.mq($from: desktop) {
+      @include mixins.font($scale: 6, $weight: semibold);
+    }
+  }
+
+  &__standfirst {
+    @include mixins.font($scale: 3, $line-height: 4);
+    font-family: var(--gh-font-body, var(--font-family-serif));
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  &__byline { }
+
+  &__timestamp { white-space: nowrap; }
+}

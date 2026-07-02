@@ -1,0 +1,12 @@
+// ------------------------------------
+// Elements > Blockquote
+// ------------------------------------
+
+blockquote {
+  font-style: italic;
+
+  &:not(.kg-blockquote-alt) {
+    padding-left: var(--space-20);
+    border-left: var(--space-2) solid var(--color-accent);
+  }
+}

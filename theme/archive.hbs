@@ -1,0 +1,44 @@
+{{!< default}}
+
+{{#contentFor 'title'}}
+  {{#get "pages" filter="slug:archive" limit="1" as |archivePage|}}
+    {{#if archivePage}}
+      {{ archivePage.[0].title }}
+    {{else}}
+      {{t "Archive" }}
+    {{/if}}
+  {{/get}}
+{{/contentFor}}
+
+{{#get "pages" filter="slug:archive" limit="1" as |archivePage|}}
+  {{#if archivePage}}
+    {{#with archivePage.[0]}}
+      {{> topper }}
+    {{/with}}
+  {{else}}
+    <header class='c-page-header'>
+      <div class='o-grid o-grid--2-columns'>
+        <h1 class='c-topper__headline u-font-headline u-font-family-sansSerif'>{{t 'Archive' }}</h1>
+      </div>
+    </header>
+  {{/if}}
+{{/get}}
+
+<div class='c-post js-grid'>
+  {{#foreach posts}}
+    <div class='c-card-archive js-card c-card-archive--date-{{date format='M'}}'>
+      <div class='c-card-archive__meta'>
+        <div class='c-card-archive__date u-type-uppercase'>{{ date format='MMMM YYYY' }}</div>
+      </div>
+
+      <div class='c-card-archive__content'>
+        <h2 class='c-card-archive__title'>
+          <time class='c-card-archive__date-mini' datetime='{{ date format='YYYY-MM-DD' }}'>{{ date format='D' }}:</time>
+          <a href='{{ url }}' class='c-card-archive__url'>{{ title }}</a>
+        </h2>
+      </div>
+    </div>
+  {{/foreach}}
+</div>
+
+{{ pagination }}

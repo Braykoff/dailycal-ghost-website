@@ -1,0 +1,29 @@
+// ------------------------------------
+// Components > Card General Style / Editor
+// ------------------------------------
+
+@use "../vendor/mq";
+@use "../tools/mixins";
+
+.kg-card figcaption {
+  @include mixins.caption();
+}
+
+.kg-width-wide {
+  width: 100%;
+
+  @include mq.mq($from: tablet) {
+    width: calc(100vw - calc(var(--grid-margin) * 2));
+    max-width: calc(var(--grid-width) - calc(var(--grid-margin-large) * 2));
+  }
+}
+
+.kg-width-full {
+  figcaption {
+    padding-left: var(--space-16);
+  }
+
+  :is(video, .kg-image) {
+    max-width: 100vw;
+  }
+}

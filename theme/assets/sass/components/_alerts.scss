@@ -1,0 +1,30 @@
+// ------------------------------------
+// Components > Alert
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-alert {
+  @include mixins.font($scale: 1, $weight: medium);
+
+  margin-top: var(--space-16);
+
+  &:empty {
+    display: none;
+  }
+
+  &:before {
+    @include mixins.font($weight: bold);
+
+    margin-right: var(--space-8);
+  }
+
+  &--success:before {
+    content: var(--html-symbol-checkmark);
+  }
+
+  &--error:before,
+  &--invalid:before {
+    content: var(--html-symbol-multiplication);
+  }
+}

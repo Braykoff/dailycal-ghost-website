@@ -1,0 +1,9 @@
+// ------------------------------------
+// Trumbs > Links
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.u-link {
+  @include mixins.link_underline();
+}

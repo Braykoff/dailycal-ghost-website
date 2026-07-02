@@ -1,0 +1,76 @@
+// ------------------------------------
+// Components > Newsletters
+// ------------------------------------
+
+@use "../tools/mixins";
+@use "../trumps/typography";
+
+.c-newsletters-labels {
+  margin-bottom: var(--space-32);
+}
+
+.c-newsletters-label__input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+
+  + label {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    padding: var(--space-32);
+    background-color: var(--color-background-secondary);
+    border-bottom: var(--border-width) var(--border-style) var(--color-border-secondary);
+
+    .c-newsletters-label:first-child & {
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
+
+    .c-newsletters-label:last-child & {
+      border-bottom: none;
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+  }
+
+  + label .c-newsletters-label__checkbox {
+    --focus-outline-color: var(--color-accent);
+
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    width: var(--space-24);
+    height: var(--space-24);
+    min-width: var(--space-24);
+    margin-right: var(--space-12);
+    border-radius: var(--border-radius);
+    border: var(--space-2) var(--border-style) var(--color-border-primary);
+  }
+
+  &:checked + label .c-newsletters-label__checkbox {
+    @include mixins.font($scale: 3, $weight: bold);
+
+    border-color: var(--color-accent);
+
+    &:after {
+      color: var(--color-accent);
+      content: var(--html-symbol-checkmark);
+    }
+  }
+
+  &:focus-visible + label .c-newsletters-label__checkbox {
+    @include mixins.focus-outline();
+  }
+}
+
+.c-newsletters-label__title {
+  @include mixins.font($scale: 2, $line-height: 4, $weight: semibold);
+}
+
+.c-newsletters-label__description {
+  @include mixins.font($scale: 2, $line-height: 3);
+
+  margin-top: var(--space-4);
+}

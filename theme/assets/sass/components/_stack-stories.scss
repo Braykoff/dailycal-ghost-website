@@ -1,0 +1,18 @@
+// ------------------------------------
+// Components > Stack Stories
+// ------------------------------------
+
+.c-stack-stories {
+  > :not(:last-child) {
+    margin-bottom: var(--space-16);
+    padding-bottom: var(--space-16);
+    border-bottom: var(--border-width) var(--border-style) var(--color-border-secondary);
+  }
+
+  &--large {
+    > :not(:last-child) {
+      margin-bottom: var(--space-32);
+      padding-bottom: var(--space-32);
+    }
+  }
+}

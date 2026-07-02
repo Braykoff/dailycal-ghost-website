@@ -1,0 +1,11 @@
+// ------------------------------------
+// Components > Card Video / Editor
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-content {
+  .kg-video-player * {
+    @include mixins.font($scale: 2);
+  }
+}

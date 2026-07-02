@@ -1,0 +1,20 @@
+// ------------------------------------
+// Components > Card Tweet / Editor
+// ------------------------------------
+
+.twitter-tweet {
+  min-width: auto;
+  margin-bottom: 0 !important;
+
+  // When embeded using the HTML card
+  margin-top: var(--content-flow) !important;
+
+  // When embeded using the editor Twitter card
+  .kg-embed-card & {
+    margin-top: 0 !important;
+  }
+
+  iframe {
+    max-width: 100% !important;
+  }
+}

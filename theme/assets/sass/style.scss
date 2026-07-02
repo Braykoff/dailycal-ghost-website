@@ -1,0 +1,34 @@
+// ------------------------------------
+// Main Style
+// ------------------------------------
+
+// Tools
+@use 'tools/_all';
+
+
+// Tokens
+@use 'tokens/_all' as all2;
+
+
+// Vendor
+@use 'vendor/_all' as all3;
+
+
+// Generic
+@use 'generic/_all' as all4;
+
+
+// Objects
+@use 'objects/_all' as all5;
+
+
+// Trumps
+@use 'trumps/_all' as all6;
+
+
+// Elements
+@use 'elements/_all' as all7;
+
+
+// Components
+@use 'components/_all' as all8;

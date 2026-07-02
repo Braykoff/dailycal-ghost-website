@@ -1,0 +1,25 @@
+{{#match @custom.date_format "!=" "Hide Date"}}
+  <time class='c-timestamp c-{{component}}__timestamp' datetime='{{ date format='YYYY-MM-DD' }}'>
+    {{#match @custom.date_format "Month - Day - Year"}}
+      {{ date format='MMMM D, YYYY' }}
+    {{/match}}
+
+    {{#match @custom.date_format "Day - Month - Year"}}
+      {{ date format='D MMMM YYYY' }}
+    {{/match}}
+
+    {{#match @custom.date_format "Year - Month - Day"}}
+      {{ date format='YYYY MMMM D' }}
+    {{/match}}
+
+    {{#match @custom.date_format "TimeAgo"}}
+      {{date published_at timeago="true"}}
+    {{/match}}
+
+    {{#if showDetaildDate}}
+      {{#match @custom.date_format "!=" "TimeAgo"}}
+        <span class='c-timestamp__detail'> . {{ date published_at format='h:mm A' }}</span>
+      {{/match}}
+    {{/if}}
+  </time>
+{{/match}}

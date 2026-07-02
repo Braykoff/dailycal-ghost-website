@@ -1,0 +1,71 @@
+// ------------------------------------
+// Components > Topper
+// ------------------------------------
+
+@use "../tools/mixins";
+@use "../vendor/mq";
+
+.c-topper {
+  margin: 0 auto;
+  margin-top: var(--space-40);
+  padding: 0 var(--grid-margin);
+  max-width: var(--content-width);
+  margin-bottom: var(--space-32);
+
+  &__content {
+    padding-bottom: var(--space-32);
+    border-bottom: var(--border-width) var(--border-style) var(--color-border-secondary);
+
+    > * + * {
+      margin-top: var(--space-8);
+    }
+  }
+
+  &__tag {  }
+
+  &__headline {
+    @include mixins.font($scale: 6, $weight: bold, $text-wrap: balance);
+    font-family: var(--gh-font-heading, var(--font-family-serif));
+
+    @include mq.mq($from: desktop) {
+      @include mixins.font($scale: 8, $line-height: 9, $weight: semibold);
+    }
+  }
+
+  &__standfirst {
+    @include mixins.font($scale: 4, $line-height: 5);
+    font-family: var(--gh-font-body, var(--font-family-serif));
+
+    @include mq.mq($from: desktop) {
+      @include mixins.font($scale: 5, $line-height: 6);
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-16);
+
+    @include mq.mq($from: desktop) {
+      flex-direction: row;
+    }
+  }
+
+  &__byline {  }
+
+  &__timestamp {
+    display: inline-block;
+    margin-top: var(--space-8);
+
+    &:after {
+      @include mixins.font($scale: 0);
+
+      color: var(--color-text-secondary);
+      content: var(--html-symbol-em-dash);
+    }
+  }
+
+  &__reading-time {
+    display: inline;
+  }
+}

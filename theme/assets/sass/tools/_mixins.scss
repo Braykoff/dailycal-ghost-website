@@ -1,0 +1,111 @@
+// ------------------------------------
+// Tools > Mixins
+// ------------------------------------
+
+// Apply `attention` styles in one go.
+// https://goo.gl/LFx8on
+//
+// Example use:
+//
+// @include attention() {
+//   text-decoration: underline;
+// }
+
+@function convert-to-px($value) {
+  @return $value * 1px;
+}
+
+@mixin attention() {
+  &:is(:hover, :active, :focus) {
+    @content;
+  }
+}
+
+@mixin hover() {
+  &:hover {
+    @content;
+  }
+}
+
+@mixin focus-outline() {
+  outline: var(--focus-outline-size) var(--focus-outline-style) var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+}
+
+@mixin font(
+        $family: null,
+        $scale: null,
+        $line-height: null,
+        $weight: null,
+        $style: null,
+        $uppercase: null,
+        $text-wrap: null,
+        $letter-spacing: null
+) {
+  @if $family {
+    font-family: var(--font-family-#{$family});
+  }
+
+  @if $scale {
+    font-size: var(--font-size-scale-#{$scale});
+  }
+
+  @if $line-height {
+    line-height: var(--line-height-scale-#{$line-height});
+  } @else if $scale {
+    line-height: var(--line-height-scale-#{$scale});
+  }
+
+  @if $weight {
+    font-weight: var(--font-weight-#{$weight});
+  }
+
+  @if $style {
+    font-style: #{$style};
+  }
+
+  @if $uppercase {
+    text-transform: uppercase;
+  }
+
+  @if $text-wrap {
+    text-wrap: #{$text-wrap};
+  }
+
+  @if $letter-spacing {
+    letter-spacing: var(--font-letter-spacing-#{$letter-spacing});
+  }
+}
+
+// @include link_underline_on_hover();
+
+@mixin link_underline_on_hover() {
+  @include hover() {
+    text-decoration: underline;
+  }
+}
+
+@mixin link_underline() {
+  text-decoration: underline;
+
+  @include hover() {
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    text-decoration: none;
+  }
+}
+
+@mixin caption() {
+  width: 100%;
+  padding-top: var(--space-8);
+  color: var(--color-text-secondary);
+  background-color: var(--color-background-primary);
+
+  @include font($scale: 1, $letter-spacing: long-primer);
+
+  a {
+    @include link_underline();
+  }
+}

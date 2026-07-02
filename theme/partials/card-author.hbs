@@ -1,0 +1,33 @@
+<div class='c-card-author'>
+  <div class='c-card-author__content'>
+    <a href='{{ url }}' class='c-card-author__url'>
+      {{#if profile_image}}
+        <div class='c-card-author__media'>
+          <img
+            alt=''
+            loading='lazy'
+            decoding='async'
+            class='c-card-author__image'
+            width='96' height='96'
+            src='{{ img_url profile_image size='profile-image' format='webp' }}'
+          >
+        </div>
+      {{/if}}
+      <h2 class='c-card-author__name'>{{ name }}</h2>
+    </a>
+
+    <p class='c-card-author__bio'>{{ bio }}</p>
+  </div>
+
+  {{#get 'posts' filter='authors:{{slug}}' limit='2'}}
+    {{#if posts}}
+      <div class='c-card-author__posts'>
+        {{#foreach posts}}
+          <h3 class='c-card-author__posts-title'>
+            <a href='{{ url }}' class='c-teaser__link'>{{ title }}</a>
+          </h3>
+        {{/foreach}}
+      </div>
+    {{/if}}
+  {{/get}}
+</div>

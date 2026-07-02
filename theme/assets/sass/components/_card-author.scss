@@ -1,0 +1,76 @@
+// ------------------------------------
+// Components > Card Author
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-card-author {
+  width: 100%;
+  padding: var(--space-32);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background-secondary);
+
+  > * + * {
+    margin-top: var(--space-20);
+    padding-top: var(--space-20);
+    border-top: var(--border-width) var(--border-style) var(--color-border-secondary);
+  }
+
+  &__url {
+    @include mixins.link_underline_on_hover();
+
+    display: block;
+  }
+
+  &__media {
+    display: block;
+    margin-bottom: var(--space-16);
+    width: var(--space-96);
+    height: var(--space-96);
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-background-primary);
+  }
+
+  &__image {
+    object-fit: cover;
+    width: var(--space-96);
+    height: var(--space-96);
+    min-width: var(--space-96);
+    border-radius: var(--border-radius-circle);
+  }
+
+  &__name {
+    @include mixins.font($family: sansSerif, $scale: 4, $weight: bold);
+  }
+
+  &__bio {
+    @include mixins.font($family: sansSerif, $scale: 2, $line-height: 4);
+
+    margin-top: var(--space-8);
+    color: var(--color-text-secondary);
+  }
+
+  &__posts {
+    > * + * {
+      margin-top: var(--space-8);
+    }
+
+    a {
+      @include mixins.link_underline_on_hover();
+    }
+  }
+
+  &__posts-title {
+    @include mixins.font($family: sansSerif, $scale: 2, $line-height: 4, $weight: medium);
+
+    position: relative;
+    padding-left: var(--space-24);
+
+    &:before {
+      position: absolute;
+      left: 0;
+      content: var(--html-symbol-em-dash);
+      color: var(--color-text-secondary);
+    }
+  }
+}

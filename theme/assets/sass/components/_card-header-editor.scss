@@ -1,0 +1,164 @@
+// ------------------------------------
+// Components > Card Header / Editor
+// ------------------------------------
+
+@use "../vendor/mq";
+@use "../trumps/typography";
+@use '../components/button';
+
+.kg-header-card.kg-width-full {
+  width: 100vw;
+}
+
+.kg-content-wide {
+  .kg-header-card-content {
+    width: 100%;
+    margin: auto;
+    padding: 0 var(--space-16);
+  }
+
+  &:not(.kg-layout-split) .kg-header-card-content {
+    max-width: calc(var(--grid-width) - calc(var(--grid-margin-large) * 2));
+  }
+
+  &.kg-layout-split .kg-header-card-content {
+    @include mq.mq($from: desktop) {
+      max-width: calc(var(--grid-width) - calc(var(--grid-margin-large) * 2));
+    }
+  }
+}
+
+div.kg-header-card.kg-size-small h2.kg-header-card-header {
+  font-size: 3em;
+}
+
+div.kg-header-card h2.kg-header-card-header {
+  font-size: 4em;
+}
+
+div.kg-header-card.kg-size-large h2.kg-header-card-header {
+  font-size: 4em;
+}
+
+.kg-header-card-heading {
+  font-family: var(--gh-font-heading, var(--font-family-sansSerif));
+}
+
+.kg-header-card.kg-v2 .kg-header-card-button {
+  font-family: var(--gh-font-body, var(--font-family-sansSerif));
+}
+
+._kg-header-card {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  + .kg-header-card {
+    margin-top: 0;
+  }
+
+  > * {
+    max-width: var(--content-width);
+  }
+
+  &:not(.kg-style-light) a:not([class]) {
+    color: inherit;
+  }
+
+  :is(.kg-header-card-header, .kg-header-card-subheader) {
+    padding-left: var(--grid-margin);
+    padding-right: var(--grid-margin);
+  }
+
+  :is(.kg-header-card-button) {
+    margin-left: var(--grid-margin);
+    margin-right: var(--grid-margin);
+  }
+}
+
+.kg-header-card-header {
+  @extend .u-font-headline;
+}
+
+.kg-header-card-subheader {
+  @extend .u-font-standfirst;
+
+  margin-top: var(--space-16);
+}
+
+.kg-header-card-button {
+  @extend .c-btn;
+
+  margin-top: var(--space-32);
+}
+
+// Sizes
+.kg-size-small {
+  padding: var(--space-96) 0;
+}
+
+.kg-size-medium {
+  padding: var(--space-128) 0;
+}
+
+.kg-size-large {
+  padding: var(--space-160) 0;
+}
+
+// Styles
+.kg-style-light {
+  --color-text-button: var(--color-text-button-headerCardStyleLight);
+  --color-background-button: var(--color-background-button-headerCardStyleLight);
+  --color-text-button-hover: var(--color-text-button-hover-headerCardStyleLight);
+  --color-background-button-hover: var(--color-background-button-hover-headerCardStyleLight);
+
+  color: var(--color-text-headerCardStyleLight);
+  background-color: var(--color-background-headerCardStyleLight);
+}
+
+.kg-style-dark {
+  --color-text-button: var(--color-text-button-headerCardStyleDark);
+  --color-background-button: var(--color-background-button-headerCardStyleDark);
+  --color-text-button-hover: var(--color-text-button-hover-headerCardStyleDark);
+  --color-background-button-hover: var(--color-background-button-hover-headerCardStyleDark);
+
+  color: var(--color-text-headerCardStyleDark);
+  background-color: var(--color-background-headerCardStyleDark);
+}
+
+.kg-style-accent {
+  --color-text-button: var(--color-text-button-headerCardStyleAccent);
+  --color-background-button: var(--color-background-button-headerCardStyleAccent);
+  --color-text-button-hover: var(--color-text-button-hover-headerCardStyleAccent);
+  --color-background-button-hover: var(--color-background-button-hover-headerCardStyleAccent);
+
+  color: var(--color-text-headerCardStyleAccent);
+  background-color: var(--color-background-headerCardStyleAccent);
+}
+
+.kg-style-image {
+  --color-text-button: var(--color-text-button-headerCardStyleImage);
+  --color-background-button: var(--color-background-button-headerCardStyleImage);
+  --color-text-button-hover: var(--color-text-button-hover-headerCardStyleImage);
+  --color-background-button-hover: var(--color-background-button-hover-headerCardStyleImage);
+
+  color: var(--color-text-headerCardStyleImage);
+  background-color: var(--color-background-headerCardStyleImage);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  &:before {
+    position: absolute;
+    content: '';
+    inset: 0;
+    background: linear-gradient(0, transparent, rgba(0, 0, 0, .5));
+  }
+
+  * {
+    z-index: 1;
+  }
+}

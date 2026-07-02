@@ -1,0 +1,46 @@
+// ------------------------------------
+// Components > Table of Contents
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-table-of-contents {
+  padding: var(--space-32);
+  border-radius: var(--border-radius);
+  background-color: var(--color-background-secondary);
+
+  &__heading {
+    @include mixins.font($scale: 4, $weight: semibold);
+    font-family: var(--gh-font-heading, var(--font-family-sansSerif));
+
+    padding-bottom: var(--space-8);
+    margin-bottom: var(--space-24);
+    border-bottom: var(--border-width) var(--border-style) var(--color-border-primary);
+  }
+
+  &__list {
+    padding-left: var(--space-4);
+
+    &:first-child > .c-table-of-contents__list-item:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__list-item {
+    margin-top: var(--space-16);
+
+    &::marker {
+      color: var(--color-text-secondary);
+    }
+  }
+
+  &__list-link {
+    @include mixins.font($weight: medium);
+
+    text-decoration: underline;
+
+    @include mixins.attention() {
+      color: var(--color-accent);
+    }
+  }
+}

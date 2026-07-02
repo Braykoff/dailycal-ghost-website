@@ -1,0 +1,62 @@
+// ------------------------------------
+// Components > Navigation
+// ------------------------------------
+
+@use "../vendor/mq";
+@use "../tools/mixins";
+
+.c-nav-wrap {
+  min-width: 0;
+}
+
+.c-nav {
+  display: flex;
+  gap: var(--space-16);
+  padding: var(--space-16) 0;
+   overflow-x: scroll;
+  -ms-overflow-style: none;  // Edge
+  scrollbar-width: none;     // Firefox
+
+  &::-webkit-scrollbar { display: none; }
+
+  &--main {
+    @include mq.mq($from: desktop) {
+      justify-content: center;
+    }
+  }
+
+  &__item {
+    @include mixins.font($scale: 0, $weight: semibold, $uppercase: true, $letter-spacing: brevier);
+
+    white-space: nowrap;
+
+    &:not(:first-child) {
+      padding-left: var(--space-16);
+      position: relative;
+
+      &:before {
+        border-left: var(--border-width) var(--border-style) var(--color-accent);
+        content: '';
+        height: var(--space-16);
+        left: 0;
+        width: 1px;
+        overflow: hidden;
+        position: absolute;
+      }
+    }
+  }
+
+  &__link {
+    display: block;
+
+    &--current {
+      @include mixins.link_underline();
+
+      .home-template & {
+        text-decoration: none;
+      }
+    }
+
+    @include mixins.link_underline_on_hover();
+  }
+}

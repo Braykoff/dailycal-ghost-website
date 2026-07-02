@@ -1,0 +1,36 @@
+// ------------------------------------
+// Components > Subscribe Form
+// ------------------------------------
+
+@use 'button';
+
+.c-subscribe-form {
+  .c-alert {
+    display: none;
+  }
+
+  .c-btn {
+    @extend .c-btn--loading;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  &.loading .c-btn {
+    &:after {
+      display: block;
+    }
+  }
+
+  &.success .c-alert--success,
+  &.invalid .c-alert--invalid,
+  &.error   .c-alert--error  {
+    display: block;
+  }
+}
+
+.c-form-group {
+  display: flex;
+  gap: var(--space-16);
+}

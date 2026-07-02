@@ -1,0 +1,49 @@
+{{!--
+  Used in the post.hbs & page.hbs file
+--}}
+
+<div class='c-topper'>
+
+  <div class='c-topper__content'>
+    {{#if tags}}
+      <div class='c-topper__tag c-tag'>
+        {{ tags separator=' — ' limit='' }}
+      </div>
+    {{/if}}
+
+    <h1 class='c-topper__headline'>{{ title }}</h1>
+
+    {{#if custom_excerpt}}
+      <p class='c-topper__standfirst'>{{ custom_excerpt }}</p>
+    {{/if}}
+
+    {{#is 'post'}}
+      <div class='c-topper__meta'>
+        <div>
+          {{> byline component='topper' }}
+          {{> timestamp component='topper' showDetaildDate=true }}
+          {{> reading-time component='topper' }}
+        </div>
+
+        {{> share }}
+      </div>
+    {{/is}}
+  </div>
+
+  {{#if feature_image}}
+    <figure class='c-feature-image-figure'>
+      <div class='c-feature-image-wrap'>
+        <img
+          loading='lazy'
+          decoding='async'
+          class='c-feature-image'
+          alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{/if}}"
+          src='{{ img_url feature_image size='feature-image-large' format='webp' }}'
+        >
+      </div>
+      {{#if feature_image_caption}}
+        <figcaption class='c-feature-image-caption'>{{ feature_image_caption }}</figcaption>
+      {{/if}}
+    </figure>
+  {{/if}}
+</div>

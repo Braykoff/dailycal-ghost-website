@@ -1,0 +1,9 @@
+// ------------------------------------
+// Generic > Focus
+// ------------------------------------
+
+@use "../tools/mixins";
+
+:is(a, button, input, textarea, summary):focus-visible {
+  @include mixins.focus-outline();
+}

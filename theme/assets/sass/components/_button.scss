@@ -1,0 +1,86 @@
+// ------------------------------------
+// Components > Button
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-btn {
+  --focus-outline-offset: calc(var(--space-4) * -1);
+
+  @include mixins.font($family: sansSerif, $scale: 2, $weight: medium);
+
+  height: auto;
+  width: fit-content;
+  min-width: fit-content;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  padding: var(--space-16) var(--space-24);
+  border-radius: var(--space-4);
+  color: var(--color-text-button);
+  background-color: var(--color-background-button);
+
+  @include mixins.attention() {
+    color: var(--color-text-button-hover);
+    background-color: var(--color-background-button-hover);
+  }
+
+  &--disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+
+  &--full {
+    width: 100%;
+  }
+
+  &--small {
+    @include mixins.font($scale: 1, $weight: medium, $letter-spacing: brevier);
+
+    padding: var(--space-8) var(--space-16);
+  }
+
+  &--uppercase {
+    @include mixins.font($scale: 0, $uppercase: true, $letter-spacing: brevier);
+  }
+
+  &--fit-content {
+    width: fit-content;
+  }
+
+  &.loading,
+  &--loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @keyframes spin {
+      0%   { transform: rotate(0); }
+      100% { transform: rotate(360deg); }
+    }
+
+    &:after {
+      margin-left: var(--space-12);
+      content: '';
+      display: block;
+      height: var(--space-16);
+      width: var(--space-16);
+      border-width: 1px;
+      border-style: var(--border-style);
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: var(--color-text-button);
+      border-left-color: var(--color-text-button);
+      border-radius: var(--border-radius-circle);
+      animation: spin var(--motion-duration-slow) infinite linear;
+    }
+
+    @include mixins.attention() {
+      &:after {
+        border-bottom-color: var(--color-background-primary);
+        border-left-color: var(--color-background-primary);
+      }
+    }
+  }
+}

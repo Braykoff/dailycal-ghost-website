@@ -1,0 +1,8 @@
+<div class='c-byline c-{{component}}__byline'>
+  {{#foreach authors}}
+    <span class='{{#if @first}}u-hidden{{/if}} {{#if @last}}u-hidden{{/if}}'>,&nbsp;</span>
+    <span class='u-hidden {{#if @last}}{{#unless @first}}u-block{{/unless}}{{/if}}'>&nbsp;and&nbsp;</span>
+
+    <a href='{{ url }}'>{{ name }}</a>
+  {{/foreach}}
+</div>

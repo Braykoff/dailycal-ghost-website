@@ -1,0 +1,20 @@
+<div class='u-p-32 u-color-background-secondary u-align-center'>
+  {{#has visibility='members'}}
+    <h2 class='c-post-upgrade-cta__title'>{{t 'This post is for subscribers only'}}</h2>
+  {{/has}}
+
+  {{#has visibility='paid'}}
+    <h2 class='c-post-upgrade-cta__title'>{{t 'This post is for paying subscribers only'}}</h2>
+  {{/has}}
+
+  {{#has visibility='tiers'}}
+    <h2 class='c-post-upgrade-cta__title'>{{t 'This post is for subscribers on the '}}{{tiers}}</h2>
+  {{/has}}
+
+  {{#if @member}}
+    <a class='c-btn u-block u-align-auto u-mt-16' href='#/portal/account/plans'>{{t 'Upgrade your account'}}</a>
+  {{else}}
+    <a class='c-btn u-block u-align-auto u-mt-16' href='#/portal/signup'>{{t 'Subscribe'}}</a>
+    <p class='u-mt-16 u-font-size-scale-1'>{{t 'Already have an account?'}} <a href='#/portal/signin' class='u-link'>{{t 'Sign In'}}</a></p>
+  {{/if}}
+</div>

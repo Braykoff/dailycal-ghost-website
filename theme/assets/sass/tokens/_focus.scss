@@ -1,0 +1,10 @@
+// ------------------------------------
+// Tokens > Focus Outline
+// ------------------------------------
+
+:root {
+  --focus-outline-size: var(--space-2);
+  --focus-outline-style: solid;
+  --focus-outline-color: currentColor;
+  --focus-outline-offset: var(--space-2);
+}

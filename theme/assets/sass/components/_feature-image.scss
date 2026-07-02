@@ -1,0 +1,27 @@
+// ------------------------------------
+// Components > Feature Image
+// ------------------------------------
+
+@use '../tools/mixins';
+
+.c-feature-image-figure {
+  margin-top: var(--space-32);
+}
+
+.c-feature-image-wrap {
+  position: relative;
+  aspect-ratio: var(--ratio-3x2);
+  background-color: var(--color-background-secondary);
+}
+
+.c-feature-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.c-feature-image-caption {
+  @include mixins.caption();
+}

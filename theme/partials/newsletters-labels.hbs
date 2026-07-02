@@ -1,0 +1,66 @@
+{{!--
+  Newsletters Labels
+  Called in the theme newsletter-form.hbs file
+
+  ---
+
+  In every label block, do:
+  1. In the <input> element line, change the `value` attribute to the Lable you want to set, for example, value='Daily News'. This is the Label value you will see in the Ghost admin Members' profiles.
+  2. In the same <input> element line, change the `id` to the Label value, but this time, use lowercase value and underscore between words if you use multiple words for the Label. For example, id='daily_news'
+  3. In the <label> element line, use the same value you used in `id`.
+  4. Update the title and the description
+
+  <input> => value='Daily News' id='daily_news'
+  <label> => for='daily_news'
+
+  ---
+
+  — Duplicate a block for more labels or delete extra ones.
+--}}
+
+{{!-- Newsletter Label Block Start --}}
+<div class='c-newsletters-label'>
+  <input value='Daily News' id='daily_news' type='checkbox' class='c-newsletters-label__input js-newsletters-label__input' data-members-label checked>
+  <label for='daily_news'>
+    <span class='c-newsletters-label__checkbox'></span>
+    <div class='c-newsletters-label__text-container'>
+      <p class='c-newsletters-label__title'>Daily News</p>
+      <p class='c-newsletters-label__description'>
+        Receive email digest into your email each day.
+      </p>
+    </div>
+  </label>
+</div>
+{{!-- Newsletter Label Block End --}}
+
+
+{{!-- Newsletter Label Block Start --}}
+<div class='c-newsletters-label'>
+  <input value='Stories' id='stories' type='checkbox' class='c-newsletters-label__input js-newsletters-label__input' data-members-label checked>
+  <label for='stories'>
+    <span class='c-newsletters-label__checkbox'></span>
+    <div class='c-newsletters-label__text-container'>
+      <p class='c-newsletters-label__title'>Stories</p>
+      <p class='c-newsletters-label__description'>
+        Receive email digest about recent stories in your inbox.
+      </p>
+    </div>
+  </label>
+</div>
+{{!-- Newsletter Label Block End --}}
+
+
+{{!-- Newsletter Label Block Start --}}
+<div class='c-newsletters-label'>
+  <input value='Opinion' id='opinion' type='checkbox' class='c-newsletters-label__input js-newsletters-label__input' data-members-label checked>
+  <label for='opinion'>
+    <span class='c-newsletters-label__checkbox'></span>
+    <div class='c-newsletters-label__text-container'>
+      <p class='c-newsletters-label__title'>Opinion</p>
+      <p class='c-newsletters-label__description'>
+        An opinion is a judgment, viewpoint, or statement that is not conclusive.
+      </p>
+    </div>
+  </label>
+</div>
+{{!-- Newsletter Label Block End --}}

@@ -1,35 +1,33 @@
 {{!< default}}
 
-<main class="gh-main">
-    {{#post}}
-        <article class="gh-article {{post_class}}">
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
 
-            <header class="gh-article-header gh-canvas">
-                {{#if primary_tag}}
-                    <a class="gh-article-tag" href="{{primary_tag.url}}">{{primary_tag.name}}</a>
-                {{/if}}
+{{#post}}
+  {{> topper }}
 
-                <h1 class="gh-article-title">{{title}}</h1>
+  <article class='c-post {{ post_class }}'>
+    {{#if access}}
+      {{#if @custom.enable_table_of_contents}}
+        {{> table-of-contents }}
+      {{/if}}
 
-                {{#if custom_excerpt}}
-                    <p class="gh-article-excerpt">{{custom_excerpt}}</p>
-                {{/if}}
+      {{#has tag='#table-of-content'}}
+        {{> table-of-contents }}
+      {{/has}}
+    {{/if}}
 
-                {{> "post-meta"}}
+    <div class='c-content {{#unless access}} c-content--has-shadow {{/unless}}'>
+      {{ content }}
+    </div>
 
-                {{> "feature-image"}}
-            </header>
+    {{#unless access}}
+      {{> upgrade }}
+    {{/unless}}
 
-            <section class="gh-content gh-canvas">
-                {{content}}
-            </section>
+    {{> comments/ghost }}
+  </article>
+{{/post}}
 
-        </article>
-    {{/post}}
+{{> related }}
 
-    {{> "related-posts"}}
-
-    {{#post}}
-        {{> "comments"}}
-    {{/post}}
-</main>
+{{> latest }}

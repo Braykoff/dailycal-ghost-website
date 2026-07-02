@@ -1,0 +1,19 @@
+{{#get 'posts' filter='tags:[hash-editors-picks]' include='tags,authors' order='published_at desc' limit=@custom.number_of_editors_picks_posts as |posts|}}
+  {{#if posts}}
+
+    <div class='c-section c-section--editors-pick'>
+      <div class='o-grid'>
+        <div class='c-section-heading'>
+          <h2 class='c-section-heading__title'>{{t "Editors’ Picks" }}</h2>
+        </div>
+      </div>
+
+      <div class='o-grid o-grid--3-columns c-editors-picks-wrapper'>
+        {{#foreach posts}}
+          {{> card-editors-pick showExcerpt=true }}
+        {{/foreach}}
+      </div>
+    </div>
+
+  {{/if}}
+{{/get}}

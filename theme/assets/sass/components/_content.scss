@@ -1,0 +1,81 @@
+// ------------------------------------
+// Components > Content
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-post {
+  margin: 0 auto;
+  padding: 0 var(--grid-margin);
+  max-width: var(--content-width);
+
+  > * + * {
+    margin-top: var(--content-flow);
+  }
+}
+
+.c-content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  word-break: break-word;
+
+  &:empty {
+    display: none;
+  }
+
+  &--has-shadow {
+    mask-image: linear-gradient(to bottom, var(--color-text-primary) 30%, transparent 100%);
+  }
+
+  > * {
+    min-width: 100%;
+  }
+
+  > * + * {
+    margin-top: var(--content-flow);
+  }
+
+  // Remove space between full-width cards
+  > .kg-width-full + .kg-width-full:not(.kg-width-full.kg-card-hascaption + .kg-width-full) {
+    margin-top: 0;
+  }
+
+  :where(p, ol, ul, blockquote) {
+    @include mixins.font($scale: body-copy);
+    font-family: var(--gh-font-body, var(--font-family-serif));
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--gh-font-heading, var(--font-family-sansSerif));
+
+    + * {
+      margin-top: calc(var(--content-flow) / 2);
+    }
+  }
+
+  a:not([class]) {
+    @include mixins.link_underline();
+
+    color: var(--color-accent);
+  }
+
+  :where(hr) {
+    margin: var(--content-flow) 0;
+
+    + * {
+      margin-top: 0;
+    }
+  }
+
+  :is(dd, ol, ul) {
+    padding-left: var(--space-16);
+    padding-right: var(--space-16);
+  }
+
+  // Hide Ghost built-in upgrade call to action box
+  .gh-post-upgrade-cta {
+    display: none;
+    visibility: hidden
+  }
+}

@@ -1,0 +1,65 @@
+// ------------------------------------
+// Trumbs > Typography
+// ------------------------------------
+
+@use "../vendor/mq";
+@use "../tools/mixins";
+@use "../tokens/typography";
+
+// Scale
+
+@each $scale, $value in typography.$font-scale {
+  .u-font-size-scale-#{$scale} {
+    @include mixins.font($scale: $scale);
+  }
+}
+
+// Family
+
+.u-font-family-serif {
+  font-family: var(--font-family-serif) !important;
+}
+
+.u-font-family-sansSerif {
+  font-family: var(--font-family-sansSerif) !important;
+}
+
+// Weight
+
+.u-font-weight-normal {
+  font-weight: var(--font-weight-normal);
+}
+
+.u-font-weight-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.u-font-weight-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.u-font-weight-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+// Style
+
+.u-font-headline {
+  @include mixins.font($scale: 6, $weight: medium);
+
+  @include mq.mq($from: desktop) {
+    @include mixins.font($scale: 8, $letter-spacing: negative);
+  }
+}
+
+.u-font-standfirst {
+  @include mixins.font($scale: 5, $weight: normal);
+
+  @include mq.mq($from: desktop) {
+    @include mixins.font($scale: 5, $line-height: 6);
+  }
+}
+
+.u-font-uppercase {
+  text-transform: uppercase;
+}

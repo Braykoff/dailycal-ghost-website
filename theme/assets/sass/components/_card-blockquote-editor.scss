@@ -1,0 +1,13 @@
+// ------------------------------------
+// Components > Card Blockquote / Editor
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.kg-blockquote-alt {
+  @include mixins.font($scale: 5, $line-height: 8, $weight: medium);
+
+  text-align: center;
+  font-style: italic;
+  padding: 0 var(--space-20);
+}

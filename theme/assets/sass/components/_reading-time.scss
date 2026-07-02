@@ -1,0 +1,11 @@
+// ------------------------------------
+// Components > Reading Time
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-reading-time {
+  @include mixins.font($scale: 0, $weight: medium);
+
+  color: var(--color-text-secondary);
+}

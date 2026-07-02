@@ -1,0 +1,98 @@
+// ------------------------------------
+// Vendor > fslightbox
+// ------------------------------------
+
+@use "../tools/mixins";
+
+body {
+  // Content Image Card
+  .fslightbox-image-wrap {
+    display: block;
+  }
+
+  //
+  // Modal
+  //
+
+  // Main
+  .fslightbox-container {
+    @include mixins.font($family: sansSerif);
+
+    background: var(--color-background-primary);
+  }
+
+  .fslightbox-nav {
+    height: var(--space-48);
+  }
+
+  .fslightbox-toolbar {
+    right: var(--space-12);
+  }
+
+  // Change the cursor for the images
+  [data-fslightbox] img {
+    cursor: zoom-in;
+  }
+
+  // Invalid image source text
+  .fslightbox-invalid-file-wrapper {
+    color: var(--color-text-secondary);
+  }
+
+  // Top left slide numbers
+  .fslightbox-slide-number-container {
+    @include mixins.font($scale: 2);
+
+    left: var(--space-12);
+    color: var(--color-text-secondary);
+  }
+
+  // The slash between the top left numbers
+  .fslightbox-slash {
+    background: var(--color-text-secondary);
+  }
+
+  // Hide the full screen button
+  .fslightbox-toolbar > .fslightbox-toolbar-button:first-child {
+    display: none;
+  }
+
+  //
+  // Buttons
+  //
+
+  // Buttons icon color
+  .fslightbox-svg-path {
+    fill: var(--color-text-secondary);
+  }
+
+  // Close button
+  .fslightbox-toolbar {
+    background: var(--color-background-primary);
+
+    @include mixins.hover() {
+      .fslightbox-svg-path {
+        fill: var(--color-text-secondary);
+      }
+    }
+  }
+
+  // Left & Right buttons
+  .fslightbox-slide-btn {
+    background: var(--color-background-primary);
+  }
+
+  .fslightbox-slide-btn-container {
+    padding-left: var(--space-16);
+
+    @include mixins.hover() {
+      .fslightbox-svg-path {
+        fill: var(--color-text-secondary);
+      }
+    }
+  }
+
+  .fslightbox-slide-btn-container-next {
+    padding-right: var(--space-16);
+  }
+}

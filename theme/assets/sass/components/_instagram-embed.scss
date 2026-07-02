@@ -1,0 +1,12 @@
+// ------------------------------------
+// Components > Instagram Embed
+// ------------------------------------
+
+.instagram-media {
+  margin-top: var(--content-flow) !important;
+  margin-bottom: 0 !important;
+
+  &:before {
+    content: '';
+  }
+}

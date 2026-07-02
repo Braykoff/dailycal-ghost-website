@@ -1,0 +1,57 @@
+// ------------------------------------
+// Objects > Grid
+// ------------------------------------
+
+@use "../vendor/mq";
+
+.o-grid {
+  width: 100%;
+  margin: auto;
+  display: grid;
+  max-width: var(--grid-width);
+  padding: 0 var(--grid-margin);
+
+  @include mq.mq($from: desktop) {
+    padding: 0 var(--grid-margin-large);
+  }
+
+  &[class*='-columns'] {
+    grid-gap: var(--grid-gap);
+  }
+
+  &--2-columns {
+    @include mq.mq($from: tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  &--3-columns {
+    @include mq.mq($from: tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mq.mq($from: desktop) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &--4-columns {
+    @include mq.mq($from: tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mq.mq($from: desktop) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  &--2-1-columns {
+    @include mq.mq($from: tablet) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include mq.mq($from: desktop) {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+}

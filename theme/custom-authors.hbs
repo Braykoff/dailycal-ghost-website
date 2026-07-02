@@ -1,0 +1,21 @@
+{{!< default}}
+
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+
+{{#post}}
+  <header class='c-page-header'>
+    <div class='o-grid o-grid--2-columns'>
+      <div>
+        <h1 class='c-topper__headline u-font-headline u-font-family-sansSerif'>{{ title }}</h1>
+      </div>
+    </div>
+  </header>
+{{/post}}
+
+<div class='js-grid o-grid o-grid--3-columns'>
+  {{#get 'authors' limit='100'}}
+    {{#foreach authors}}
+      {{> card-author }}
+    {{/foreach}}
+  {{/get}}
+</div>

@@ -1,0 +1,11 @@
+// ------------------------------------
+// Tokens > Button
+// ------------------------------------
+
+:root {
+  --color-text-button: var(--color-background-primary);
+  --color-background-button: var(--color-accent);
+
+  --color-text-button-hover: var(--color-background-primary);
+  --color-background-button-hover: var(--color-text-primary);
+}

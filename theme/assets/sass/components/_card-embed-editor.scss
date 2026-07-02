@@ -1,0 +1,14 @@
+// ------------------------------------
+// Components > Card Embed / Editor
+// ------------------------------------
+
+.kg-embed-card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+iframe[src*='pinterest.com'] {
+  min-width: auto;
+  max-width: 100%;
+}

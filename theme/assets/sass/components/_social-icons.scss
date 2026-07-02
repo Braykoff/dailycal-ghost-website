@@ -1,0 +1,27 @@
+// ------------------------------------
+// Components > Social Icons
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--space-40);
+    height: var(--space-40);
+    border-radius: var(--border-radius-circle);
+    color: var(--color-text-secondary);
+    background-color: var(--color-background-primary);
+    @include mixins.font($scale: 3, $weight: bold);
+  }
+
+  &__icon {
+    fill: var(--color-text-secondary);
+  }
+}

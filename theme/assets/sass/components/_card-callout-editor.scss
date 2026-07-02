@@ -1,0 +1,30 @@
+// ------------------------------------
+// Components > Card Callout / Editor
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-content {
+  .kg-callout-card {
+    padding: var(--space-32);
+    border-radius: var(--border-radius);
+
+    + .kg-callout-card {
+      margin-top: var(--content-flow);
+    }
+
+    div.kg-callout-emoji {
+      @include mixins.font($scale: 4);
+
+      padding-right: var(--space-16);
+    }
+
+    .kg-callout-text {
+      @include mixins.font($scale: 3, $line-height: 5);
+    }
+  }
+
+  .kg-callout-card-white {
+    box-shadow: inset 0 0 0 var(--border-width) var(--color-border-secondary);
+  }
+}

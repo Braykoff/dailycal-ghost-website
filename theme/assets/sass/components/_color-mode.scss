@@ -1,0 +1,36 @@
+// ------------------------------------
+// Components > Color Mode
+// ------------------------------------
+
+@use "../vendor/mq";
+@use "../tools/mixins";
+
+.c-color-mode-btn {
+  &:before {
+    @include mixins.font($scale: 2);
+
+    @include mq.mq($until: tablet) {
+      @include mixins.font($scale: 3);
+    }
+  }
+
+  @include mixins.hover() {
+    text-decoration: none;
+
+    span {
+      text-decoration: underline;
+    }
+  }
+}
+
+[data-colormode='dark'] {
+  &:before {
+    content: var(--html-symbol-dark);
+  }
+}
+
+[data-colormode='light'] {
+  &:before {
+    content: var(--html-symbol-light);
+  }
+}

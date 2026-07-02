@@ -1,0 +1,47 @@
+<header class='c-header'>
+
+  <div class='c-header__top'>
+    <div class='o-grid c-header__top-inner'>
+
+      <div class='c-header__top-block c-header__top-left'>
+        {{#if @custom.enable_dark_mode}}
+          <button class='js-mode-toggle c-header__button c-header__button--colorMode c-color-mode-btn' data-colormode='dark' aria-label="{{t 'Dark' }}">
+          <span class='js-mode-toggle-text u-visible-on-desktop'>{{t 'Dark' }}</span>
+          </button>
+        {{/if}}
+        {{#if @custom.enable_search}}
+          <button data-ghost-search class='c-header__button c-header__button--search' aria-label="{{t 'Search' }}">{{> icons/search }}</button>
+        {{/if}}
+      </div>
+
+      <div class='c-header__top-block c-header__top-center'>
+        {{> logo }}
+      </div>
+
+      <div class='c-header__top-block c-header__top-right'>
+        {{#if @site.members_enabled}}
+          {{#if @member}}
+            <a href='#/portal/account' class='c-header__button'>{{t 'Account' }}</a>
+          {{else}}
+            <a href='#/portal/signin' class='c-header__button u-visible-on-desktop'>{{t 'Sign In' }}</a>
+            {{#unless @site.members_invite_only}}
+              <a href='#/portal/signup' class='c-btn c-btn--small'>{{t 'Subscribe' }}</a>
+            {{/unless}}
+          {{/if}}
+        {{/if}}
+      </div>
+
+    </div>
+  </div>
+
+  <div class='c-header__bottom'>
+    <div class='o-grid'>
+      <nav class='c-nav-wrap'>
+        <ul class='c-nav c-nav--main u-plain-list'>
+          {{ navigation }}
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+</header>

@@ -1,0 +1,40 @@
+// ------------------------------------
+// Trumbs > Drop Caps
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.u-drop-cap-small,
+.u-drop-cap-large {
+  &:first-letter {
+    float: left;
+    margin-top: var(--space-8);
+    color: var(--color-accent);
+    @include mixins.font($weight: semibold);
+
+    @supports (initial-letter: 1 1) {
+      float: none;
+      margin-top: 0;
+    }
+  }
+}
+
+.u-drop-cap-small::first-letter {
+  font-size: 70px;
+  line-height: 52px;
+  margin-right: var(--space-8);
+
+  @supports (initial-letter: 1 1) {
+    initial-letter: 2;
+  }
+}
+
+.u-drop-cap-large::first-letter {
+  font-size: 118px;
+  line-height: 86px;
+  margin-right: var(--space-12);
+
+  @supports (initial-letter: 1 1) {
+    initial-letter: 3;
+  }
+}

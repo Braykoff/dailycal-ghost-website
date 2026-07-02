@@ -1,0 +1,28 @@
+// ------------------------------------
+//  Settings > Colors Dark
+// ------------------------------------
+
+@mixin colors-dark {
+  --color-mode: 'dark';
+  --color-accent: var(--dark-mode-accent-color);
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B3B3B3;
+  --color-border-primary: #525252;
+  --color-border-secondary: #303030;
+  --color-background-primary: #000000;
+  --color-background-secondary: #1C1C1E;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root.is-darkModeAdminSetting-enabled {
+    --color-mode: 'dark';
+  }
+
+  :root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled {
+    @include colors-dark;
+  }
+}
+
+[data-user-color-scheme='dark'] {
+  @include colors-dark;
+}

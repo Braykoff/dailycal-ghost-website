@@ -1,0 +1,13 @@
+// ------------------------------------
+// Components > Section
+// ------------------------------------
+
+.c-section {
+  margin-top: var(--space-64);
+
+  &--editors-pick {
+    padding-top: var(--space-64);
+    padding-bottom: var(--space-64);
+    background: var(--color-background-secondary);
+  }
+}

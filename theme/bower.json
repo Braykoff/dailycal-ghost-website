@@ -1,0 +1,11 @@
+{
+  "name": "tripoli",
+  "description": "Premium Ghost Theme",
+  "authors": [
+    "Aspire Themes"
+  ],
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "fitvids": "jquery.fitvids#^1.2.0"
+  }
+}

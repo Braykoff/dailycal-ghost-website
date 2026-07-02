@@ -1,0 +1,22 @@
+{{!--
+  Related content
+  Change the limit value from '4' to whatever number you want to show, for example, to show eight posts, use limit='8'
+--}}
+
+{{#get 'posts' filter='tags:[{{post.primary_tag.slug}}]+id:-{{post.id}}' include='tags,authors' order='published_at desc' limit='4'}}
+  {{#if posts}}
+    <div class='c-section c-section--related'>
+      <div class='o-grid'>
+        <div class='c-section-heading'>
+          <h2 class='c-section-heading__title'>{{t 'Related' }}</h2>
+        </div>
+      </div>
+
+      <div class='o-grid o-grid--4-columns'>
+        {{#foreach posts}}
+          {{> card showExcerpt=true }}
+        {{/foreach}}
+      </div>
+    </div>
+  {{/if}}
+{{/get}}

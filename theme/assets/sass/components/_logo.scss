@@ -1,0 +1,54 @@
+// ------------------------------------
+// Components > Logo
+// ------------------------------------
+
+@use "../vendor/mq";
+@use "../tools/mixins";
+
+.c-logo {
+  @include mq.mq($from: tablet) {
+    margin: auto;
+  }
+
+  &__link {
+    @include mixins.font($scale: 6, $weight: medium);
+
+    @include mq.mq($from: tablet) {
+      @include mixins.font($scale: 8);
+    }
+  }
+
+  &__img {
+    max-height: var(--space-32);
+
+    @include mq.mq($from: tablet) {
+      max-height: var(--space-48);
+    }
+  }
+}
+
+.c-logo__dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled {
+    .c-logo__dark {
+      display: block;
+    }
+
+    .c-logo__light {
+      display: none;
+    }
+  }
+}
+
+[data-user-color-scheme='dark'] {
+  .c-logo__dark {
+    display: block;
+  }
+
+  .c-logo__light {
+    display: none;
+  }
+}

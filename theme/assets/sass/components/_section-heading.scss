@@ -1,0 +1,32 @@
+// ------------------------------------
+// Components > Section Heading
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--space-8);
+  margin-bottom: var(--space-24);
+  border-bottom: var(--border-width) var(--border-style) var(--color-border-primary);
+
+  &__title {
+    @include mixins.font($scale: 7, $line-height: 8, $weight: bold);
+    font-family: var(--gh-font-heading, var(--font-family-serif));
+
+    a {
+      @include mixins.link_underline_on_hover();
+    }
+  }
+
+  &__title--small {
+    @include mixins.font($scale: 3, $line-height: 4);
+  }
+
+  &__all {
+    @include mixins.link_underline_on_hover();
+    @include mixins.font($scale: 0, $weight: medium, $uppercase: true, $letter-spacing: brevier);
+  }
+}

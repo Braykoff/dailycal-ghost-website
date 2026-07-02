@@ -1,0 +1,39 @@
+<div class='o-grid'>
+  <div class='c-hero'>
+
+    <h2 class='u-screenreader'>{{t 'Featured' }}</h2>
+
+    {{#get 'posts' filter='featured:true' include='tags,authors' limit='3' }}
+      <div class='left c-stack-stories'>
+        {{#foreach posts}}
+          {{#unless @first}}
+            {{> card showExcerpt=false }}
+          {{/unless}}
+        {{/foreach}}
+      </div>
+
+      <div class='center'>
+        {{#foreach posts}}
+          {{#if @first}}
+            {{> card cardSize='large' cardAlign='center' showExcerpt=true }}
+          {{/if}}
+        {{/foreach}}
+      </div>
+
+      <div class='right c-stack-stories'>
+        {{#get 'posts' filter='id:-[{{posts[*].id}}]' include='tags,authors' limit=@custom.number_of_latest_posts}}
+          {{#if posts}}
+            <div class='c-section-heading'>
+              <h2 class='c-section-heading__title c-section-heading__title--small'><a href='{{ @site.url }}/latest'>{{t 'Latest' }}</a></h2>
+            </div>
+
+            {{#foreach posts}}
+              {{> teaser teaserSize='small' }}
+            {{/foreach}}
+          {{/if}}
+        {{/get}}
+      </div>
+    {{/get}}
+
+  </div>
+</div>

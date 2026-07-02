@@ -1,0 +1,59 @@
+// ------------------------------------
+// Components > Footer
+// ------------------------------------
+
+@use '../tools/mixins';
+
+.c-footer {
+  position: sticky;
+  top: 100vh;
+  padding: var(--space-64) 0;
+  margin-top: var(--space-64);
+  background-color: var(--color-background-secondary);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > * + * {
+      margin-top: var(--space-32);
+    }
+  }
+}
+
+.c-footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .c-nav__item {
+    @include mixins.font($scale: 1, $line-height: 4, $weight: normal);
+
+    text-transform: initial;
+    color: var(--color-text-secondary);
+  }
+
+  .c-nav__item:not(:first-child)::before {
+    display: none;
+  }
+
+  li:not(:last-child) {
+    margin: 0
+  }
+
+  a {
+    @include mixins.link_underline();
+  }
+}
+
+.c-footer-copy {
+  @include mixins.font($scale: 1, $line-height: 2);
+
+  text-align: center;
+  color: var(--color-text-secondary);
+
+  a {
+    @include mixins.link_underline();
+  }
+}

@@ -1,0 +1,7 @@
+{{#if @custom.tag_slugs_for_home_sections}}
+  {{#get 'tags' filter='slug:[{{@custom.tag_slugs_for_home_sections}}]' include='count.posts'}}
+    {{#foreach tags}}
+      {{> tag-section}}
+    {{/foreach}}
+  {{/get}}
+{{/if}}

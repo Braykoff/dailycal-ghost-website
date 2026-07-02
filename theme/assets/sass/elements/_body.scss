@@ -1,0 +1,21 @@
+// ------------------------------------
+// Elements > Page
+// ------------------------------------
+
+@use "../tools/mixins";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @include mixins.font($family: sansSerif, $scale: 2, $weight: normal);
+
+  direction: ltr;
+  color: var(--color-text-primary);
+  background-color: var(--color-background-primary);
+
+  -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}

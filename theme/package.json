@@ -1,109 +1,171 @@
 {
-    "name": "headline",
-    "description": "A Ghost theme",
-    "version": "1.0.0",
-    "private": true,
-    "engines": {
-        "ghost": ">=5.0.0"
+  "name": "tripoli",
+  "description": "Premium Ghost CMS Theme",
+  "demo": "https://tripoli.aspirethemes.com/",
+  "docs": "https://aspirethemes.com/docs/tripoli",
+  "version": "1.1.0",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "keywords": [
+    "ghost-theme"
+  ],
+  "type": "module",
+  "scripts": {
+    "postinstall": "bower install"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.5.0",
+    "bower": "^1.8.14",
+    "evil-icons": "^1.10.1",
+    "fslightbox": "^3.7.5",
+    "gulp-postcss": "^10.0.0",
+    "install": "^0.13.0",
+    "modern-normalize": "^3.0.1",
+    "postcss": "^8.5.13",
+    "prismjs": "^1.30.0",
+    "sass-mq": "^7.0.0",
+    "tocbot": "^4.36.6"
+  },
+  "devDependencies": {
+    "concat": "^3.0.0",
+    "fs": "^0.0.2",
+    "gulp": "^5.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-rename": "^2.1.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-rtlcss": "^2.0.0",
+    "gulp-sass": "^6.0.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-zip": "^6.1.0",
+    "jshint": "^2.13.6",
+    "jshint-stylish": "^2.2.1",
+    "run-sequence": "^2.2.1",
+    "sass": "^1.99.0"
+  },
+  "author": {
+    "name": "Aspire Themes",
+    "email": "ahmad@aspirethemes.com",
+    "url": "https://aspirethemes.com/"
+  },
+  "config": {
+    "custom": {
+      "enable_right_to_left_layout": {
+        "type": "boolean",
+        "default": false
+      },
+      "enable_search": {
+        "type": "boolean",
+        "default": true
+      },
+      "enable_post_access_label": {
+        "type": "boolean",
+        "default": true
+      },
+      "enable_post_card_excerpt": {
+        "type": "boolean",
+        "default": true
+      },
+      "enable_table_of_contents": {
+        "type": "boolean",
+        "default": true,
+        "group": "post"
+      },
+      "enable_dark_mode": {
+        "type": "boolean",
+        "default": true
+      },
+      "dark_mode_accent_color": {
+        "type": "color",
+        "default": "#F0A45C"
+      },
+      "dark_mode_publication_logo": {
+        "type": "image"
+      },
+      "date_format": {
+        "type": "select",
+        "options": [
+          "Month - Day - Year",
+          "Day - Month - Year",
+          "Year - Month - Day",
+          "TimeAgo",
+          "Hide Date"
+        ],
+        "default": "Month - Day - Year"
+      },
+      "linkedin_page": {
+        "type": "text",
+        "default": ""
+      },
+      "bluesky_page": {
+        "type": "text",
+        "default": ""
+      },
+      "mastodon_page": {
+        "type": "text",
+        "default": ""
+      },
+      "youtube_page": {
+        "type": "text",
+        "default": ""
+      },
+      "instagram_page": {
+        "type": "text",
+        "default": ""
+      },
+      "pinterest_page": {
+        "type": "text",
+        "default": ""
+      },
+      "discord_page": {
+        "type": "text",
+        "default": ""
+      },
+      "number_of_latest_posts": {
+        "type": "text",
+        "default": "6",
+        "group": "homepage"
+      },
+      "tag_slugs_for_home_sections": {
+        "type": "text",
+        "group": "homepage"
+      },
+      "number_of_posts_for_tags_home_sections": {
+        "type": "text",
+        "default": "4",
+        "group": "homepage"
+      },
+      "number_of_editors_picks_posts": {
+        "type": "text",
+        "default": "3",
+        "group": "homepage"
+      }
     },
-    "license": "MIT",
-    "author": {
-        "name": "Ghost Foundation",
-        "email": "hello@ghost.org",
-        "url": "https://ghost.org"
+    "card_assets": {
+      "exclude": [
+        "button",
+        "blockquote",
+        "bookmark",
+        "image",
+        "gallery"
+      ]
     },
-    "keywords": [
-        "ghost",
-        "theme",
-        "ghost-theme"
-    ],
-    "docs": "https://headline.ghost.io/about/",
-    "config": {
-        "posts_per_page": 7,
-        "image_sizes": {
-            "xs": {
-                "width": 150
-            },
-            "s": {
-                "width": 300
-            },
-            "m": {
-                "width": 720
-            },
-            "l": {
-                "width": 960
-            },
-            "xl": {
-                "width": 1200
-            },
-            "xxl": {
-                "width": 2000
-            }
-        },
-        "card_assets": true,
-        "custom": {
-            "navigation_layout": {
-                "type": "select",
-                "options": ["Logo on the left", "Logo in the middle", "Stacked"],
-                "default": "Stacked"
-            },
-            "header_style": {
-                "type": "select",
-                "options": ["Light", "Accent color", "Dark"],
-                "default": "Light"
-            },
-            "title_font": {
-                "type": "select",
-                "options": ["Modern sans-serif", "Elegant serif"],
-                "default": "Modern sans-serif"
-            },
-            "body_font": {
-                "type": "select",
-                "options": ["Modern sans-serif", "Elegant serif"],
-                "default": "Elegant serif"
-            },
-            "white_publication_logo_for_transparent_header": {
-                "type": "image"
-            },
-            "email_signup_text": {
-                "type": "text",
-                "default": "Don't miss out on the latest news. Sign up now to get access to the library of members-only articles."
-            },
-            "footer_text": {
-                "type": "text"
-            },
-            "enter_tag_slugs_for_primary_sections": {
-                "type": "text",
-                "group": "homepage"
-            },
-            "enter_tag_slugs_for_secondary_sections": {
-                "type": "text",
-                "group": "homepage"
-            }
-        }
-    },
-    "scripts": {
-        "dev": "gulp",
-        "test": "gscan .",
-        "zip": "gulp zip"
-    },
-    "packageManager": "pnpm@11.8.0",
-    "devDependencies": {
-        "@tryghost/shared-theme-assets": "2.7.1",
-        "@tryghost/theme-translations": "^0.0.9",
-        "autoprefixer": "10.5.0",
-        "beeper": "2.1.0",
-        "cssnano": "8.0.2",
-        "gscan": "6.3.0",
-        "gulp": "5.0.1",
-        "gulp-concat": "2.6.1",
-        "gulp-livereload": "4.0.2",
-        "gulp-postcss": "10.0.0",
-        "gulp-uglify": "3.0.2",
-        "gulp-zip": "5.1.0",
-        "ordered-read-streams": "2.0.0",
-        "postcss": "8.5.15",
-        "postcss-easy-import": "4.0.0",
-        "pump": "3.0.4"
+    "posts_per_page": 16,
+    "image_sizes": {
+      "profile-image": {
+        "width": 384
+      },
+      "feature-image": {
+        "width": 652
+      },
+      "feature-image-large": {
+        "width": 1304
+      }
     }
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.3"
+  }
 }

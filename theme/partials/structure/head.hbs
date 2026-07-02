@@ -1,0 +1,30 @@
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>{{{ block 'title' }}}</title>
+
+  <script>
+    var pagination_next_page_number       = '{{ pagination.next }}',
+        pagination_available_pages_number = '{{ pagination.pages }}',
+        pagination_loading_text           = '{{t "Loading" }}',
+        pagination_more_posts_text        = '{{t "Load More" }}',
+        dark_mode_label_text              = '{{t "Dark" }}',
+        light_mode_label_text             = '{{t "Light" }}';
+
+    document.documentElement.classList.add('js-on');
+  </script>
+
+  {{#if @custom.enable_right_to_left_layout}}
+    {{> css/dist/style-rtl }}
+  {{else}}
+    {{> css/dist/style }}
+  {{/if}}
+
+  {{#if @custom.enable_dark_mode}}
+    {{> dark-mode-accent-color }}
+    {{> dark-mode-js }}
+  {{/if}}
+
+  {{> preload }}
+  {{ ghost_head }}
+</head>

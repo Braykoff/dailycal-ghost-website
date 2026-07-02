@@ -1,0 +1,40 @@
+// ------------------------------------
+// Elements > Table
+// ------------------------------------
+
+@use "../tools/mixins";
+
+table {
+  @include mixins.font($scale: 2);
+
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--color-background-secondary);
+
+  caption {
+    padding: var(--space-16);
+    border-style: var(--border-style);
+    border-width: var(--border-width) var(--border-width) 0 var(--border-width);
+    border-color: var(--color-border-secondary);
+    background-color: var(--color-background-secondary);
+  }
+
+  th,
+  td {
+    text-align: left;
+    padding: var(--space-16);
+    white-space: nowrap;
+    border: var(--border-width) var(--border-style) var(--color-border-secondary);
+  }
+
+  tbody + tbody {
+    border-top: var(--border-width) var(--border-style) var(--color-border-secondary);
+  }
+}
+
+.responsive-table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  word-break: initial;
+}

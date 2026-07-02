@@ -1,0 +1,39 @@
+// ------------------------------------
+// Components > Visibility Label
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-visibility-label {
+  @include mixins.font($scale: 0, $uppercase: true, $letter-spacing: brevier);
+
+  border-radius: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  color: var(--color-text-secondary);
+  background-color: var(--color-background-secondary);
+  border: var(--border-width) var(--border-style) var(--color-border-secondary);
+
+  &--editors-pick {
+    background-color: var(--color-background-primary);
+  }
+
+  span {
+    display: none;
+  }
+
+  &--paid .paid,
+  &--tiers .paid,
+  &--members .members,
+  &--public .public {
+    display: block;
+  }
+
+  &--is-member.c-visibility-label--public,
+  &--is-member.c-visibility-label--members {
+    display: none;
+  }
+
+  &--is-paid-member {
+    display: none;
+  }
+}

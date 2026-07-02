@@ -1,0 +1,16 @@
+{{#if @site.members_enabled}}
+  {{#if @custom.enable_post_access_label}}
+    <div class='c-visibility-label
+                c-visibility-label--{{ visibility }}
+                {{#if @member.paid}}
+                  c-visibility-label--is-paid-member
+                {{else if @member}}
+                  c-visibility-label--is-member
+                {{/if}}
+                c-visibility-label--{{component}}'>
+      <span class='paid'>{{t 'Paid' }}</span>
+      <span class='members'>{{t 'Members' }}</span>
+      <span class='public'>{{t 'Public' }}</span>
+    </div>
+  {{/if}}
+{{/if}}

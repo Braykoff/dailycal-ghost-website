@@ -1,0 +1,75 @@
+// ------------------------------------
+// Components > Home Hero
+// ------------------------------------
+
+@use "../vendor/mq";
+
+.c-hero {
+  display: grid;
+
+  @include mq.mq($until: desktop) {
+    > * {
+      margin-top: var(--content-flow);
+    }
+
+    .center {
+      margin-top: 0;
+    }
+
+    // Order in small screens
+    .left {
+      order: 2;
+    }
+
+    .center {
+      order: 1;
+    }
+
+    .right {
+      order: 3;
+    }
+  }
+
+  @include mq.mq($from: desktop) {
+    column-gap: var(--grid-gap);
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: minmax(2rem, auto) repeat(2, 1fr);
+
+    .left {
+      grid-column: 1 / span 3;
+      grid-row-start: 1;
+
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: auto;
+        right: var(--border-vertical-offset);
+        border-right: var(--border-width) var(--border-style) var(--color-border-secondary);
+      }
+    }
+
+    .center {
+      grid-column: 4 / span 6;
+    }
+
+    .right {
+      grid-column: 10 / span 3;
+
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: auto;
+        left: var(--border-vertical-offset);
+        border-right: var(--border-width) var(--border-style) var(--color-border-secondary);
+      }
+    }
+  }
+}

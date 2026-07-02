@@ -1,0 +1,23 @@
+// ------------------------------------
+// Components > Byline
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-byline {
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--color-text-secondary);
+
+  a {
+    @include mixins.font($scale: 0, $weight: medium, $uppercase: true, $letter-spacing: brevier);
+
+    @include mixins.hover() {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    @include mixins.font($scale: 0, $weight: medium);
+  }
+}

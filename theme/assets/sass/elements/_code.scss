@@ -1,0 +1,45 @@
+// ------------------------------------
+// Elements > code & pre
+// ------------------------------------
+
+@use "../tools/mixins";
+
+p code,
+li code {
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--border-radius);
+  border: var(--border-width) var(--border-style) var(--color-border-secondary);
+  background-color: var(--color-background-secondary);
+}
+
+code,
+code[class*='language-'] {
+  @include mixins.font($scale: 1);
+
+  text-shadow: none;
+  color: var(--color-text-primary);
+}
+
+pre,
+pre[class*='language-'],
+.kg-code-card {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--border-radius);
+}
+
+pre,
+pre[class*='language-'] {
+  margin-bottom: 0;
+  margin-top: var(--content-flow);
+  padding: var(--space-32);
+  background-color: var(--color-background-secondary);
+}
+
+.kg-code-card pre {
+  margin-top: 0;
+}
+
+.token.operator {
+  background-color: transparent;
+}

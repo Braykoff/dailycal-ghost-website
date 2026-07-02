@@ -1,0 +1,36 @@
+// ------------------------------------
+// Elements > Inputs
+// ------------------------------------
+
+@use "../tools/mixins";
+
+input[type='text'],
+input[type='password'],
+input[type='date'],
+input[type='month'],
+input[type='week'],
+input[type='email'],
+input[type='number'],
+input[type='search'],
+input[type='tel'],
+input[type='time'],
+input[type='url'],
+input[type='color'],
+input[type='datetime'],
+input[type='datetime-local'],
+select,
+textarea {
+  @include mixins.font($family: sansSerif, $scale: 2, $weight: medium);
+
+  width: 100%;
+  display: block;
+  color: var(--color-text-primary);
+  padding: var(--space-12) var(--space-20);
+  background: transparent;
+  border: var(--border-width) var(--border-style) var(--color-border-secondary);
+
+  &::placeholder {
+    opacity: 1;
+    color: var(--color-text-secondary);
+  }
+}

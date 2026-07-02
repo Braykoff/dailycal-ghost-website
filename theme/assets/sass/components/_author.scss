@@ -1,0 +1,20 @@
+// ------------------------------------
+// Components > Author
+// ------------------------------------
+
+.c-author {
+  &__media {
+    width: var(--space-96);
+    height: var(--space-96);
+    border-radius: var(--border-radius-circle);
+    background-color: var(--color-background-secondary);
+  }
+
+  &__image {
+    object-fit: cover;
+    width: var(--space-96);
+    height: var(--space-96);
+    min-width: var(--space-96);
+    border-radius: var(--border-radius-circle);
+  }
+}

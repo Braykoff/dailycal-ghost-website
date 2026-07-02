@@ -1,0 +1,10 @@
+{{!-- Preload the post featured image --}}
+
+{{!-- If I'm on a single post/page  --}}
+{{#is "post, page"}}
+  {{#post}}
+    {{#if feature_image}}
+      <link rel='preload' fetchpriority='high' as='image' href="{{ img_url feature_image size='feature-image-large' format='webp' }}" type='image/webp'>
+    {{/if}}
+  {{/post}}
+{{/is}}

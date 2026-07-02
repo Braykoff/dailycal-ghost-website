@@ -1,0 +1,17 @@
+// ------------------------------------
+// Components > Tag
+// ------------------------------------
+
+@use "../tools/mixins";
+
+.c-tag {
+  @include mixins.font($scale: 0, $weight: medium, $uppercase: true, $letter-spacing: brevier);
+
+  color: var(--color-text-secondary);
+
+  a {
+    @include mixins.link_underline_on_hover();
+
+    color: var(--color-accent);
+  }
+}

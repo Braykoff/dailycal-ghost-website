@@ -1,67 +1,78 @@
 {{!< default}}
 
-<main class="gh-main gh-outer">
-    <div class="gh-inner">
-        {{#author}}
-            <section class="gh-pagehead">
-                <figure class="gh-author-image">
-                    {{#if profile_image}}
-                        <img src="{{profile_image}}" alt="{{name}}">
-                    {{else}}
-                        <div class="gh-author-icon">{{> icons/avatar}}</div>
-                    {{/if}}
-                </figure>
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
 
-                <div class="gh-pagehead-content">
-                    <h1 class="gh-pagehead-title">{{name}}</h1>
-                    {{#if location}}
-                        <div class="gh-author-location">{{location}}</div>
-                    {{/if}}
-                    {{#if bio}}
-                        <div class="gh-author-bio gh-pagehead-description">{{bio}}</div>
-                    {{/if}}
-                    <div class="gh-author-social">
-                        {{#if twitter}}
-                            <a class="gh-author-social-link" href="{{social_url type="twitter"}}" target="_blank" rel="noopener">{{> "icons/x"}}</a>
-                        {{/if}}
-                        {{#if facebook}}
-                            <a class="gh-author-social-link" href="{{social_url type="facebook"}}" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
-                        {{/if}}
-                        {{#if linkedin}}
-                            <a class="gh-author-social-link" href="{{social_url type="linkedin"}}" target="_blank" rel="noopener">{{> "icons/linkedin"}}</a>
-                        {{/if}}
-                        {{#if bluesky}}
-                            <a class="gh-author-social-link" href="{{social_url type="bluesky"}}" target="_blank" rel="noopener">{{> "icons/bluesky"}}</a>
-                        {{/if}}
-                        {{#if threads}}
-                            <a class="gh-author-social-link" href="{{social_url type="threads"}}" target="_blank" rel="noopener">{{> "icons/threads"}}</a>
-                        {{/if}}
-                        {{#if mastodon}}
-                            <a class="gh-author-social-link" href="{{social_url type="mastodon"}}" target="_blank" rel="noopener">{{> "icons/mastodon"}}</a>
-                        {{/if}}
-                        {{#if tiktok}}
-                            <a class="gh-author-social-link" href="{{social_url type="tiktok"}}" target="_blank" rel="noopener">{{> "icons/tiktok"}}</a>
-                        {{/if}}
-                        {{#if youtube}}
-                            <a class="gh-author-social-link" href="{{social_url type="youtube"}}" target="_blank" rel="noopener">{{> "icons/youtube"}}</a>
-                        {{/if}}
-                        {{#if instagram}}
-                            <a class="gh-author-social-link" href="{{social_url type="instagram"}}" target="_blank" rel="noopener">{{> "icons/instagram"}}</a>
-                        {{/if}}
-                        {{#if website}}
-                            <a class="gh-author-social-link" href="{{website}}" target="_blank" rel="noopener">{{> "icons/website"}}</a>
-                        {{/if}}
-                    </div>
-                </div>
-            </section>
-        {{/author}}
+{{#author}}
+  <header class='c-page-header'>
+    <div class='o-grid o-grid--2-columns'>
+      <div>
+        {{#if profile_image}}
+          <figure class='c-author__media u-mb-16'>
+            <img
+              alt=''
+              loading='lazy'
+              decoding='async'
+              class='c-author__image'
+              width='96' height='96'
+              src='{{ img_url profile_image size='profile-image' format='webp' }}'
+            >
+          </figure>
+        {{/if}}
 
-        <div class="gh-topic gh-topic-grid">
-            <div class="gh-topic-content gh-feed">
-                {{#foreach posts}}
-                    {{> "loop-grid"}}
-                {{/foreach}}
-            </div>
+        <h1 class='u-font-headline'>{{ name }}</h1>
+
+        {{#if bio}}
+          <p class='c-page-header__excerpt u-font-standfirst u-mt-8'>{{ bio }}</p>
+        {{/if}}
+
+        <div class='u-color-text-secondary u-mt-16'>
+          {{#if website}}
+            <a href='{{ website }}' class='u-link u-mr-8'>Website</a>
+          {{/if}}
+
+          {{#if twitter}}
+            <a href='{{social_url type="twitter"}}' class='u-link u-mr-8'>𝕏</a>
+          {{/if}}
+
+          {{#if facebook}}
+            <a href='{{social_url type="facebook"}}' class='u-link u-mr-8'>Facebook</a>
+          {{/if}}
+
+          {{#if linkedin}}
+            <a href='{{social_url type="linkedin"}}' class='u-link u-mr-8'>LinkedIn</a>
+          {{/if}}
+          
+          {{#if bluesky}}
+            <a href='{{social_url type="bluesky"}}' class='u-link u-mr-8'>Bluesky</a>
+          {{/if}}
+
+          {{#if threads}}
+            <a href='{{social_url type="threads"}}' class='u-link u-mr-8'>Threads</a>
+          {{/if}}
+
+          {{#if mastodon}}
+            <a href='{{social_url type="mastodon"}}' class='u-link u-mr-8'>Mastodon</a>
+          {{/if}}
+
+          {{#if tiktok}}
+            <a href='{{social_url type="tiktok"}}' class='u-link u-mr-8'>TikTok</a>
+          {{/if}}
+
+          {{#if youtube}}
+            <a href='{{social_url type="youtube"}}' class='u-link u-mr-8'>YouTube</a>
+          {{/if}}
+
+          {{#if instagram}}
+            <a href='{{social_url type="instagram"}}' class='u-link u-mr-8'>Instagram</a>
+          {{/if}}
+
+          {{#if location}}{{ location }}{{/if}}
         </div>
+      </div>
     </div>
-</main>
+  </header>
+{{/author}}
+
+{{> loop }}
+
+{{ pagination }}
