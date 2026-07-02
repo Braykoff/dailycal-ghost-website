@@ -24,18 +24,21 @@ jobs:
           cache-dependency-path: theme/package-lock.json
 
       - name: Verify release tag matches package.json version
+        id: verify
+        continue-on-error: true
         run: |
+          mkdir -p .release-status
           PKG_VERSION=$(node -p "require('./theme/package.json').version")
           TAG="${{ github.event.release.tag_name }}"
           EXPECTED_TAG="v${PKG_VERSION}"
 
           if ! echo "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
-            echo "::error::Release tag must match format vMAJOR.MINOR.PATCH (e.g. v1.0.0). Got: ${TAG}"
+            printf '%s' "Release tag must match format vMAJOR.MINOR.PATCH (e.g. v1.0.0). Got: ${TAG}" > .release-status/verify.error
             exit 1
           fi
 
           if [ "$TAG" != "$EXPECTED_TAG" ]; then
-            echo "::error::Version mismatch: release tag is ${TAG}, but theme/package.json version is ${PKG_VERSION} (expected tag ${EXPECTED_TAG})"
+            printf '%s' "Version mismatch: tag is ${TAG}, package.json is ${PKG_VERSION} (expected ${EXPECTED_TAG})" > .release-status/verify.error
             exit 1
           fi
 
@@ -44,18 +47,135 @@ jobs:
         run: npm ci
 
       - name: Build theme assets
+        id: build
+        continue-on-error: true
         working-directory: theme
-        run: npm run build
+        run: |
+          mkdir -p ../.release-status
+          if ! npm run build; then
+            printf '%s' "Theme asset build failed (see Actions log for Sass/JS errors)" > ../.release-status/build.error
+            exit 1
+          fi
 
       - name: Validate theme with GScan
+        id: gscan
+        continue-on-error: true
         working-directory: theme
-        run: npx gscan .
+        run: |
+          mkdir -p ../.release-status
+
+          if [ "${{ steps.build.outcome }}" != "success" ]; then
+            printf '%s' "Build step failed, so GScan was not run" > ../.release-status/gscan.error
+            exit 1
+          fi
+
+          if ! npx gscan . 2> ../.release-status/gscan.log; then
+            ERROR=$(tail -n 3 ../.release-status/gscan.log | tr '\n' ' ' | sed 's/  */ /g' | cut -c1-240)
+            if [ -z "$ERROR" ]; then
+              ERROR="GScan reported theme compatibility errors"
+            fi
+            printf '%s' "$ERROR" > ../.release-status/gscan.error
+            exit 1
+          fi
 
       - name: Create theme zip
+        id: zip
+        continue-on-error: true
         working-directory: theme
-        run: npx gulp zip
+        run: |
+          mkdir -p ../.release-status
+
+          if [ "${{ steps.build.outcome }}" != "success" ]; then
+            printf '%s' "Build step failed, so the theme zip was not generated" > ../.release-status/zip.error
+            exit 1
+          fi
+
+          if ! npx gulp zip; then
+            printf '%s' "Gulp zip task failed (see Actions log)" > ../.release-status/zip.error
+            exit 1
+          fi
+
+          if ! compgen -G "../dc-theme-*.zip" > /dev/null; then
+            printf '%s' "Gulp finished but no dc-theme-*.zip file was found" > ../.release-status/zip.error
+            exit 1
+          fi
 
       - name: Upload release asset
+        if: steps.zip.outcome == 'success'
         uses: softprops/action-gh-release@v2
         with:
           files: dc-theme-*.zip
+
+      - name: Append packaging status to release notes
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          VERIFY_OUTCOME: ${{ steps.verify.outcome }}
+          GSCAN_OUTCOME: ${{ steps.gscan.outcome }}
+          ZIP_OUTCOME: ${{ steps.zip.outcome }}
+        run: |
+          python3 <<'PY'
+          import os
+          import re
+          import subprocess
+          from pathlib import Path
+
+          marker = "<!-- theme-release-status -->"
+          status_dir = Path(".release-status")
+
+          def read_error(name: str) -> str:
+              path = status_dir / f"{name}.error"
+              return path.read_text(encoding="utf-8").strip() if path.exists() else ""
+
+          def line(passed: bool, label: str, detail: str = "") -> str:
+              icon = "✅" if passed else "❌"
+              if passed:
+                  return f"{icon} {label}"
+              suffix = f" — {detail}" if detail else ""
+              return f"{icon} {label}{suffix}"
+
+          checks = [
+              (
+                  os.environ["VERIFY_OUTCOME"] == "success",
+                  "Release tag and package.json version match",
+                  read_error("verify"),
+              ),
+              (
+                  os.environ["GSCAN_OUTCOME"] == "success",
+                  "GScan success",
+                  read_error("gscan"),
+              ),
+              (
+                  os.environ["ZIP_OUTCOME"] == "success",
+                  "Generated theme zip",
+                  read_error("zip"),
+              ),
+          ]
+
+          status_text = "\n".join(line(passed, label, detail) for passed, label, detail in checks)
+          status_block = f"{marker}\n\n```\n{status_text}\n```"
+
+          tag = os.environ["RELEASE_TAG"]
+          result = subprocess.run(
+              ["gh", "release", "view", tag, "--json", "body", "-q", ".body"],
+              capture_output=True,
+              text=True,
+              check=True,
+          )
+          body = result.stdout.rstrip()
+          body = re.sub(re.escape(marker) + r".*?```", "", body, flags=re.DOTALL).rstrip()
+          new_body = f"{body}\n\n{status_block}" if body else status_block
+
+          subprocess.run(
+              ["gh", "release", "edit", tag, "--notes", new_body],
+              check=True,
+          )
+          PY
+
+      - name: Fail if packaging was incomplete
+        if: >-
+          steps.verify.outcome != 'success' ||
+          steps.gscan.outcome != 'success' ||
+          steps.zip.outcome != 'success'
+        run: exit 1
