@@ -23,6 +23,22 @@ jobs:
           cache: npm
           cache-dependency-path: theme/package-lock.json
 
+      - name: Verify release tag matches package.json version
+        run: |
+          PKG_VERSION=$(node -p "require('./theme/package.json').version")
+          TAG="${{ github.event.release.tag_name }}"
+          EXPECTED_TAG="v${PKG_VERSION}"
+
+          if ! echo "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::Release tag must match format vMAJOR.MINOR.PATCH (e.g. v1.0.0). Got: ${TAG}"
+            exit 1
+          fi
+
+          if [ "$TAG" != "$EXPECTED_TAG" ]; then
+            echo "::error::Version mismatch: release tag is ${TAG}, but theme/package.json version is ${PKG_VERSION} (expected tag ${EXPECTED_TAG})"
+            exit 1
+          fi
+
       - name: Install dependencies
         working-directory: theme
         run: npm ci

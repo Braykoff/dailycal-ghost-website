@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import { execSync } from 'child_process';
 import gulp from 'gulp';
+import pkg from './package.json' with { type: 'json' };
 import postcss from 'gulp-postcss';
 import zip from 'gulp-zip';
 import concat from 'gulp-concat';
@@ -67,19 +68,24 @@ function watchTask() {
   gulp.watch('./assets/js/app.js', gulp.series(jsTask));
 }
 
-// Generate the zip file name from git version and date
+// Generate zip file name from date, version, and git hash
 function zipFilename() {
+
+  const date = new Date().toISOString().slice(0, 10);
+  const versionTag = `v${pkg.version}`;
+
   try {
     const sha = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
-    const date = new Date().toISOString().slice(0, 10);
-    return `dc-theme-${date}-${sha}.zip`;
+    return `dc-theme-${date}-${versionTag}-${sha}.zip`;
   } catch {
-    return 'dc-theme-local.zip';
+    return `dc-theme-${date}-${versionTag}-local.zip`;
   }
 }
 
 // Zip Task
 function zipTask() {
+  const filename = zipFilename();
+
   return gulp.src([
     './**',
     '!node_modules/**',
@@ -89,7 +95,7 @@ function zipTask() {
     '!bun.lockb',
     '!package-lock.json'
   ], { dot: true, encoding: false })
-    .pipe(zip(zipFilename()))
+    .pipe(zip(filename))
     .pipe(gulp.dest('../'));
 }
 
