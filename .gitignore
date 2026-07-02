@@ -17,6 +17,8 @@ bower_components
 
 dist
 
+*.zip
+
 .pnpm-store
 
 ## Ghost Instance

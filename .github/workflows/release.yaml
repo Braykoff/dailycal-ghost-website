@@ -1,0 +1,45 @@
+name: Package Ghost Theme
+
+on:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: theme/package-lock.json
+
+      - name: Install dependencies
+        working-directory: theme
+        run: npm ci
+
+      - name: Build theme assets
+        working-directory: theme
+        run: npm run build
+
+      - name: Validate theme with GScan
+        working-directory: theme
+        run: npx gscan .
+
+      - name: Create theme zip
+        working-directory: theme
+        run: npx gulp zip
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dc-theme-*.zip
