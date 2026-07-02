@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import { execSync } from 'child_process';
 import gulp from 'gulp';
 import postcss from 'gulp-postcss';
 import zip from 'gulp-zip';
@@ -66,6 +67,17 @@ function watchTask() {
   gulp.watch('./assets/js/app.js', gulp.series(jsTask));
 }
 
+// Generate the zip file name from git version and date
+function zipFilename() {
+  try {
+    const sha = execSync('git rev-parse --short HEAD', { encoding: 'utf8' }).trim();
+    const date = new Date().toISOString().slice(0, 10);
+    return `dc-theme-${date}-${sha}.zip`;
+  } catch {
+    return 'dc-theme-local.zip';
+  }
+}
+
 // Zip Task
 function zipTask() {
   return gulp.src([
@@ -77,13 +89,13 @@ function zipTask() {
     '!bun.lockb',
     '!package-lock.json'
   ], { dot: true, encoding: false })
-    .pipe(zip('tripoli.zip'))
+    .pipe(zip(zipFilename()))
     .pipe(gulp.dest('../'));
 }
 
 // Composite Tasks
 const buildCSSTask = gulp.series(sassTask, inlineCSSTask, inlineCSSRTLTask);
-const buildTask = gulp.series(buildCSSTask, jsTask, zipTask);
+const buildTask = gulp.series(buildCSSTask, jsTask);
 const defaultTask = gulp.series(buildTask, watchTask);
 
 // Export Tasks
