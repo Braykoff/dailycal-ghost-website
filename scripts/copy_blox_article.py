@@ -27,6 +27,7 @@ GHOST_ADMIN_PASSWORD = os.environ.get("GHOST_ADMIN_PASSWORD", "bogusAdminP@ssw0r
 GHOST_API_VERSION = os.environ.get("GHOST_API_VERSION", "v6.46")
 FEATURE_IMAGE_MAX_DIMENSION = int(os.environ.get("FEATURE_IMAGE_MAX_DIMENSION", "1200"))
 FEATURE_IMAGE_QUALITY = int(os.environ.get("FEATURE_IMAGE_QUALITY", "75"))
+FEATURE_IMAGE_ALT_MAX_LENGTH = 191
 CONTENT_DIR = Path(__file__).resolve().parent.parent / "content"
 
 
@@ -39,7 +40,8 @@ class BloxArticle:
     html_body: str
     authors: list[str]
     published_at: str
-    tags: list[str]
+    category_tags: list[tuple[str, str]]
+    keyword_tags: list[str]
     excerpt: str
     feature_image_url: str | None
     feature_image_alt: str | None
@@ -203,6 +205,56 @@ def extract_slug(url: str) -> str:
     return filename.removesuffix(".html")
 
 
+def format_category_name(segment: str) -> str:
+    """Convert a URL path segment into a display name (city-government -> City Government)."""
+    segment = html.unescape(segment.strip())
+    return " ".join(word.capitalize() for word in segment.split("-") if word)
+
+
+def parse_category_tags_from_url(url: str) -> list[tuple[str, str]]:
+    """Return (slug, name) pairs for nested BLOX categories in the article URL."""
+    path = urlparse(url).path.strip("/")
+    parts = [part for part in path.split("/") if part]
+    if not parts:
+        return []
+
+    filename = parts[-1]
+    if filename.startswith("article_") and len(parts) >= 3:
+        segments = parts[:-2]
+    else:
+        segments = parts[:-1]
+
+    return [(segment, format_category_name(segment)) for segment in segments]
+
+
+def build_post_tags(
+    category_tags: list[tuple[str, str]],
+    keyword_tags: list[str],
+) -> list[dict[str, str]]:
+    """Build Ghost tag payloads with the leaf URL category as the primary tag."""
+    tags: list[dict[str, str]] = []
+    seen_slugs: set[str] = set()
+
+    if category_tags:
+        leaf_slug, leaf_name = category_tags[-1]
+        tags.append({"name": leaf_name, "slug": leaf_slug})
+        seen_slugs.add(leaf_slug)
+
+        for slug, name in category_tags[:-1]:
+            if slug not in seen_slugs:
+                tags.append({"name": name, "slug": slug})
+                seen_slugs.add(slug)
+
+    for keyword in keyword_tags:
+        slug = slugify(keyword)
+        if slug in seen_slugs:
+            continue
+        tags.append({"name": keyword})
+        seen_slugs.add(slug)
+
+    return tags
+
+
 def parse_author_label(raw: str) -> str:
     """Strip role suffixes like '| Staff' from a byline label."""
     return html.unescape(raw.split("|", 1)[0].strip())
@@ -240,7 +292,7 @@ def parse_published_at(soup: BeautifulSoup) -> str:
 
 
 def parse_tags(soup: BeautifulSoup) -> list[str]:
-    """Extract tags from the meta keywords field."""
+    """Extract supplemental keyword tags from the meta keywords field."""
     keywords = soup.find("meta", attrs={"name": "keywords"})
     if not keywords or not keywords.get("content"):
         return []
@@ -302,6 +354,16 @@ def parse_feature_image(soup: BeautifulSoup) -> tuple[str | None, str | None]:
     return image_url, alt
 
 
+def clamp_feature_image_alt(alt: str | None) -> str | None:
+    """Return alt text trimmed to Ghost's feature_image_alt column limit."""
+    if not alt:
+        return None
+    alt = alt.strip()
+    if len(alt) <= FEATURE_IMAGE_ALT_MAX_LENGTH:
+        return alt
+    return alt[:FEATURE_IMAGE_ALT_MAX_LENGTH].rstrip()
+
+
 def fetch_blox_article(url: str) -> BloxArticle:
     """Download and parse a BLOX article into structured fields."""
     response = requests.get(url, timeout=60)
@@ -321,10 +383,11 @@ def fetch_blox_article(url: str) -> BloxArticle:
         html_body=parse_body_html(soup),
         authors=parse_authors(soup),
         published_at=parse_published_at(soup),
-        tags=parse_tags(soup),
+        category_tags=parse_category_tags_from_url(url),
+        keyword_tags=parse_tags(soup),
         excerpt=parse_excerpt(soup),
         feature_image_url=feature_image_url,
-        feature_image_alt=feature_image_alt,
+        feature_image_alt=clamp_feature_image_alt(feature_image_alt),
     )
 
 
@@ -437,6 +500,8 @@ def migrate(url: str) -> dict[str, Any]:
             ghost,
         )
 
+    post_tags = build_post_tags(article.category_tags, article.keyword_tags)
+
     payload: dict[str, Any] = {
         "title": article.title,
         "slug": article.slug,
@@ -445,7 +510,7 @@ def migrate(url: str) -> dict[str, Any]:
         "published_at": article.published_at,
         "custom_excerpt": article.excerpt,
         "authors": [{"id": author["id"]} for author in author_records],
-        "tags": [{"name": tag} for tag in article.tags],
+        "tags": post_tags,
     }
     if feature_image:
         payload["feature_image"] = feature_image
@@ -468,6 +533,8 @@ def migrate(url: str) -> dict[str, Any]:
         "url": post["url"],
         "title": post["title"],
         "authors": [author["name"] for author in author_records],
+        "primary_tag": article.category_tags[-1][1] if article.category_tags else None,
+        "tags": [tag["name"] for tag in post_tags],
     }
 
 
