@@ -93,7 +93,12 @@ function zipTask() {
     '!.git/**',
     '!.DS_Store',
     '!bun.lockb',
-    '!package-lock.json'
+    '!package-lock.json',
+
+    // Dev-only, un-compiled sources
+    '!assets/sass/**',
+    '!assets/js/app.js',
+    '!assets/css/**'
   ], { dot: true, encoding: false })
     .pipe(zip(filename))
     .pipe(gulp.dest('../'));
