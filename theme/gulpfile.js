@@ -91,14 +91,17 @@ function zipTask() {
     '!node_modules/**',
     '!bower_components/**',
     '!.git/**',
-    '!.DS_Store',
+    '!**/.DS_Store',
     '!bun.lockb',
     '!package-lock.json',
 
-    // Dev-only, un-compiled sources
+    // Dev-only, un-compiled sources, etc
     '!assets/sass/**',
     '!assets/js/app.js',
-    '!assets/css/**'
+    '!assets/css/**',
+    '!gulpfile.js',
+    '!**/*.map',
+    '!**/*.md',
   ], { dot: true, encoding: false })
     .pipe(zip(filename))
     .pipe(gulp.dest('../'));
