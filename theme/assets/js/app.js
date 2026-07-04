@@ -326,6 +326,46 @@ $(document).ready(function() {
   init_nested_navigation();
 
   // =====================
+  // Sticky Navigation
+  // =====================
+
+  function init_sticky_navigation() {
+    var nav = document.querySelector('.js-sticky-nav'),
+      placeholder,
+      nav_top = 0;
+
+    if (!nav) {
+      return;
+    }
+
+    placeholder = nav.parentNode;
+
+    function set_placeholder_height() {
+      placeholder.style.height = nav.classList.contains('is-fixed') ? nav.offsetHeight + 'px' : '';
+    }
+
+    function update_sticky_navigation() {
+      var should_fix = window.pageYOffset >= nav_top;
+
+      nav.classList.toggle('is-fixed', should_fix);
+      set_placeholder_height();
+    }
+
+    function measure_sticky_navigation() {
+      nav.classList.remove('is-fixed');
+      placeholder.style.height = '';
+      nav_top = placeholder.getBoundingClientRect().top + window.pageYOffset;
+      update_sticky_navigation();
+    }
+
+    measure_sticky_navigation();
+    window.addEventListener('scroll', update_sticky_navigation, { passive: true });
+    window.addEventListener('resize', measure_sticky_navigation);
+  }
+
+  init_sticky_navigation();
+
+  // =====================
   // Images Lightbox
   // https://fslightbox.com/
   // https://forum.ghost.org/t/how-to-add-lightbox-to-ghost-blog/12647/7
