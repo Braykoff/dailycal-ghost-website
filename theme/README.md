@@ -34,4 +34,6 @@ No values are required for these parameters, only keys. The order of navigation 
 | Entry 2D | `/entry-2d?nav-child` |
 | Entry 3 | `/entry-3?nav-has-children` |
 
+The navigation bar has also been made sticky to the top.
+
 ---
