@@ -2,40 +2,86 @@
 // Tokens > Fonts
 // ------------------------------------
 
-// Inter
-// https://rsms.me/inter/
+// Benton Sans
 
 @font-face {
-  font-family: Inter;
+  font-family: 'Benton Sans';
   font-style: normal;
+  font-weight: 400;
   font-display: swap;
-  font-weight: 100 900;
-  src: url("/assets/fonts/Inter/InterVariable.woff2") format("woff2");
+  src: url('/assets/fonts/benton-sans/BentonSans-Book.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: Inter;
+  font-family: 'Benton Sans';
   font-style: italic;
+  font-weight: 400;
   font-display: swap;
-  font-weight: 100 900;
-  src: url("/assets/fonts/Inter/InterVariable-Italic.woff2") format("woff2");
+  src: url('/assets/fonts/benton-sans/BentonSans-BookItalic.woff2') format('woff2');
 }
 
-// Source Serif 4
-// https://fonts.google.com/specimen/Source+Serif+4
-
 @font-face {
-  font-family: 'Source Serif 4';
+  font-family: 'Benton Sans';
   font-style: normal;
+  font-weight: 500;
   font-display: swap;
-  font-weight: 200 999;
-  src: url('/assets/fonts/source-serif-4/SourceSerif4-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  src: url('/assets/fonts/benton-sans/BentonSans-Medium.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Source Serif 4';
-  font-style: italic;
+  font-family: 'Benton Sans';
+  font-style: normal;
+  font-weight: 600;
   font-display: swap;
-  font-weight: 200 999;
-  src: url('/assets/fonts/source-serif-4/SourceSerif4-Italic-VariableFont_opsz,wght.ttf') format('truetype-variations');
+  src: url('/assets/fonts/benton-sans/BentonSans-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Benton Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/benton-sans/BentonSans-Black.woff2') format('woff2');
+}
+
+// Plantin MT Pro
+
+@font-face {
+  font-family: 'Plantin MT Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/plantin-mt-pro/PlantinMTPro-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plantin MT Pro';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/plantin-mt-pro/PlantinMTPro-Italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plantin MT Pro';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/plantin-mt-pro/PlantinMTPro-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plantin MT Pro';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/assets/fonts/plantin-mt-pro/PlantinMTPro-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plantin MT Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/assets/fonts/plantin-mt-pro/PlantinMTPro-Bold.woff2') format('woff2');
 }
