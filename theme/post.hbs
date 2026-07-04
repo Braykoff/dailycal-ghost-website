@@ -24,6 +24,12 @@
       {{> upgrade }}
     {{/unless}}
 
+    {{#if tags}}
+      <div class='c-post__tags c-tag'>
+        {{ tags separator=' — ' limit='' }}
+      </div>
+    {{/if}}
+
     {{> comments/ghost }}
   </article>
 {{/post}}

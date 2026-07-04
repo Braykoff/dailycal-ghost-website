@@ -5,11 +5,14 @@
 <div class='c-topper'>
 
   <div class='c-topper__content'>
-    {{#if tags}}
-      <div class='c-topper__tag c-tag'>
-        {{ tags separator=' — ' limit='' }}
-      </div>
-    {{/if}}
+    {{#is 'post'}}
+    {{else}}
+      {{#if tags}}
+        <div class='c-topper__tag c-tag'>
+          {{ tags separator=' — ' limit='' }}
+        </div>
+      {{/if}}
+    {{/is}}
 
     <h1 class='c-topper__headline'>{{ title }}</h1>
 

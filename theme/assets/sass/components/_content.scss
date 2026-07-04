@@ -12,6 +12,11 @@
   > * + * {
     margin-top: var(--content-flow);
   }
+
+  &__tags {
+    padding-top: var(--space-16);
+    border-top: var(--border-width) var(--border-style) var(--color-border-secondary);
+  }
 }
 
 .c-content {
