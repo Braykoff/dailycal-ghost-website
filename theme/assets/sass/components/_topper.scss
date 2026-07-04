@@ -24,7 +24,7 @@
   &__tag {  }
 
   &__headline {
-    @include mixins.font($scale: 6, $weight: bold, $text-wrap: balance);
+    @include mixins.font($scale: 6, $weight: bold);
     font-family: var(--gh-font-heading, var(--font-family-serif));
 
     @include mq.mq($from: desktop) {

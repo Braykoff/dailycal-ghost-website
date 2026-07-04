@@ -54,14 +54,8 @@
     }
   }
 
-  &--center &__content {
-    @include mq.mq($from: desktop) {
-      padding: 0 var(--space-32);
-    }
-  }
-
   &__headline {
-    @include mixins.font($scale: 5, $weight: semibold, $text-wrap: balance);
+    @include mixins.font($scale: 5, $weight: semibold);
     font-family: var(--gh-font-heading, var(--font-family-serif));
 
     @include mixins.link_underline_on_hover();
