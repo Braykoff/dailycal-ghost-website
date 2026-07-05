@@ -1,7 +1,10 @@
 ## Editor
 .DS_Store
 .vscode/
+
 docs.pdf
+*.zip
+files.md
 
 ## Node + npm
 logs
@@ -15,12 +18,12 @@ bower_components
 .env.*
 !.env.example
 
-dist
-
-*.zip
-files.md
-
 .pnpm-store
+
+## Generated Files
+dist
+theme/assets/css/
+theme/assets/js/app.min.js
 
 ## Ghost Instance
 # Keep the seed database and uploaded media (images/files/media).
