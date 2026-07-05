@@ -13,7 +13,8 @@
   "type": "module",
   "scripts": {
     "postinstall": "bower install",
-    "build": "gulp build"
+    "build": "gulp build",
+    "lint": "eslint ."
   },
   "dependencies": {
     "autoprefixer": "^10.5.0",
@@ -29,8 +30,11 @@
     "tocbot": "^4.36.6"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "concat": "^3.0.0",
+    "eslint": "^9.39.2",
     "fs": "^0.0.2",
+    "globals": "^16.5.0",
     "gulp": "^5.0.1",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",

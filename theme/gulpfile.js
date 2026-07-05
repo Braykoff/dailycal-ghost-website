@@ -19,7 +19,7 @@ import { renderPrimaryNavigation } from './navigation/build.js';
 const sassCompiler = gulpSass(sass);
 
 // SASS Task
-function sassTask(done) {
+function sassTask() {
   return gulp.src('./assets/sass/*.scss')
     .pipe(sassCompiler().on('error', sassCompiler.logError))
     .pipe(postcss([autoprefixer()]))
@@ -32,14 +32,14 @@ function sassTask(done) {
 }
 
 // Inline CSS Task
-function inlineCSSTask(done) {
+function inlineCSSTask() {
   return gulp.src(['partials/css/style.hbs'])
     .pipe(replace('@@compiled_css', fs.readFileSync('assets/css/style-min.css', 'utf8')))
     .pipe(gulp.dest('partials/css/dist'));
 }
 
 // Inline CSS RTL Task
-function inlineCSSRTLTask(done) {
+function inlineCSSRTLTask() {
   return gulp.src(['partials/css/style-rtl.hbs'])
     .pipe(replace('@@compiled_css_rtl', fs.readFileSync('assets/css/style-min-rtl.css', 'utf8')))
     .pipe(gulp.dest('partials/css/dist'));
@@ -56,7 +56,7 @@ function navTask(done) {
 }
 
 // JavaScript Task
-function jsTask(done) {
+function jsTask() {
   return gulp.src([
     './bower_components/jquery/dist/jquery.js',
     './bower_components/fitvids/jquery.fitvids.js',

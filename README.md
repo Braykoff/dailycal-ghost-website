@@ -17,13 +17,13 @@ npm run build
 cd ..
 ```
 
-1. Start Ghost (`-d` will run as a daemon):
+2. Start Ghost (`-d` will run as a daemon):
 
 ```bash
 docker compose up -d
 ```
 
-1. Open the site at [http://localhost:2368](http://localhost:2368) and the admin at [http://localhost:2368/ghost](http://localhost:2368/ghost)
+3. Open the site at [http://localhost:2368](http://localhost:2368) and the admin at [http://localhost:2368/ghost](http://localhost:2368/ghost)
 
 ## Refreshing after theme changes
 
@@ -35,13 +35,13 @@ npm run build
 cd ..
 ```
 
-1. Restart the ghost instance:
+2. Restart the ghost instance:
 
 ```bash
 docker compose restart ghost
 ```
 
-1. Hard refresh in the browser (`Cmd+Shift+R` or `Ctrl+Shift+R`) to forget cached assets.
+3. Hard refresh in the browser (`Cmd+Shift+R` or `Ctrl+Shift+R`) to forget cached assets.
 
 ## Stopping Ghost
 
