@@ -1,4 +1,5 @@
 # Daily Cal Ghost Theme
+
 This repo is a self-contained sandbox for building and previewing the Daily Cal's custom Ghost theme. The theme itself exists in the `./theme` directory; the surrounding setup exists to run it locally so changes can be tested in a Ghost instance before shipping them to the [actual site](https://dailycal.org).
 
 Docker is configured to run the official `ghost:6` image. The `theme/` folder is bind-mounted into the container at `content/themes/dc-theme`, which Ghost renders. Site data, mainly the SQLite database containing some example articles, exists in `content/`.
@@ -8,6 +9,7 @@ The theme's styles (Sass) and scripts (JS) are generated from source files, so t
 ## Running locally
 
 1. Install node packages and compile source files:
+
 ```bash
 cd theme
 npm install
@@ -15,29 +17,31 @@ npm run build
 cd ..
 ```
 
-2. Start Ghost (`-d` will run as a daemon):
+1. Start Ghost (`-d` will run as a daemon):
+
 ```bash
 docker compose up -d
 ```
 
-3. Open the site at http://localhost:2368 and the admin at http://localhost:2368/ghost
+1. Open the site at [http://localhost:2368](http://localhost:2368) and the admin at [http://localhost:2368/ghost](http://localhost:2368/ghost)
 
 ## Refreshing after theme changes
 
 1. If you've edited any of the source SCSS/JS files, you need to recompile the theme before restarting ghost:
+
 ```bash
 cd theme
 npm run build
 cd ..
 ```
 
-2. Restart the ghost instance:
+1. Restart the ghost instance:
 
 ```bash
 docker compose restart ghost
 ```
 
-3. Hard refresh in the browser (`Cmd+Shift+R` or `Ctrl+Shift+R`) to forget cached assets.
+1. Hard refresh in the browser (`Cmd+Shift+R` or `Ctrl+Shift+R`) to forget cached assets.
 
 ## Stopping Ghost
 
@@ -65,4 +69,4 @@ This is a shared local-only account baked into the committed database. These cre
 
 ## Documentation
 
-For documentation relating to the stock Tripoli theme are available [here](https://aspirethemes.com/docs/tripoli). For documentation on the DC-specific modifications (which may supersede the Tripoli documentation), see the [README in the theme/ directory](./theme/README.md).
+Documentation relating to the stock Tripoli theme is available [here](https://aspirethemes.com/docs/tripoli). For documentation on the DC-specific modifications (which may supersede the Tripoli documentation), see the [README in the theme/ directory](./theme/README.md).

@@ -7,7 +7,6 @@ import zip from 'gulp-zip';
 import concat from 'gulp-concat';
 import rename from 'gulp-rename';
 import uglify from 'gulp-uglify';
-import jshint from 'gulp-jshint';
 import rtlcss from 'gulp-rtlcss';
 import replace from 'gulp-replace';
 import cleanCSS from 'gulp-clean-css';
@@ -66,8 +65,6 @@ function jsTask(done) {
     './node_modules/prismjs/prism.js',
     './node_modules/fslightbox/index.js',
     './assets/js/app.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(concat('app.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
