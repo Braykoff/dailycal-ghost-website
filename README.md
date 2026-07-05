@@ -1,35 +1,43 @@
 # Daily Cal Ghost Theme
-This repo is a self-contained sandbox for building and previewing the Daily Cal's custom Ghost theme. The theme itself exists in the [theme](./theme/) directory; the surrounding setup exists to run it locally so changes can be tested in a Ghost instance before shipping them to the [actual site](https://dailycal.org).
+This repo is a self-contained sandbox for building and previewing the Daily Cal's custom Ghost theme. The theme itself exists in the `./theme` directory; the surrounding setup exists to run it locally so changes can be tested in a Ghost instance before shipping them to the [actual site](https://dailycal.org).
 
 Docker is configured to run the official `ghost:6` image. The `theme/` folder is bind-mounted into the container at `content/themes/dc-theme`, which Ghost renders. Site data, mainly the SQLite database containing some example articles, exists in `content/`.
 
-Ghost renders bundles in `theme/assets/built/`, which are compiled from raw CSS/JS in the theme. `TODO` more information on compiling these with pnpm, and steps below for installing npm and building changes.
+The theme's styles (Sass) and scripts (JS) are generated from source files, so they need to be compiled before Ghost can render the site correctly. After cloning or editing those sources, run a build so the theme has the finished assets it expects.
 
 ## Running locally
 
-1. Start Ghost:
-   ```bash
-   docker compose up -d
-   ```
-2. Open the site at http://localhost:2368 and the admin at http://localhost:2368/ghost
+1. Install node packages and compile source files:
+```bash
+cd theme
+npm install
+npm run build
+cd ..
+```
+
+2. Start Ghost (`-d` will run as a daemon):
+```bash
+docker compose up -d
+```
+
+3. Open the site at http://localhost:2368 and the admin at http://localhost:2368/ghost
 
 ## Refreshing after theme changes
 
-1. Ghost compiles the theme at boot and serves the compiled assets in `theme/assets/built/`. If you've edited source CSS/JS files, these bundles must be recompiled before restarting Ghost, which requires Node and pnpm:
-
+1. If you've edited any of the source SCSS/JS files, you need to recompile the theme before restarting ghost:
 ```bash
 cd theme
-pnpm install
-pnpm build
+npm run build
+cd ..
 ```
 
-2. Restart the ghost instace by running:
+2. Restart the ghost instance:
 
 ```bash
 docker compose restart ghost
 ```
 
-3. Hard refresh in the browser (Cmd+Shift+R) to forget cached assets.
+3. Hard refresh in the browser (`Cmd+Shift+R` or `Ctrl+Shift+R`) to forget cached assets.
 
 ## Stopping Ghost
 
@@ -49,8 +57,12 @@ Either way, site data is stored in the `content/` directory, so it will still ex
 
 ## Admin login (local, throwaway)
 
-This is a shared local-only account baked into the committed database. They can be used to log into the local admin panel. Do not reuse these credentials anywhere real.
+This is a shared local-only account baked into the committed database. These credentials can be used to log into the local admin panel. Do not reuse them anywhere real.
 
 - **Full name:** `Admin`
 - **Email address:** `admin@example.com`
 - **Password:** `bogusAdminP@ssw0rd`
+
+## Documentation
+
+For documentation relating to the stock Tripoli theme are available [here](https://aspirethemes.com/docs/tripoli). For documentation on the DC-specific modifications (which may supersede the Tripoli documentation), see the [README in the theme/ directory](./theme/README.md).
