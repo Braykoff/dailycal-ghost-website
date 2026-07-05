@@ -14,6 +14,8 @@ import cleanCSS from 'gulp-clean-css';
 import autoprefixer from 'autoprefixer';
 import * as sass from 'sass';
 import gulpSass from 'gulp-sass';
+import headerNavigation from './navigation/data/header.js';
+import { renderPrimaryNavigation } from './navigation/build.js';
 
 const sassCompiler = gulpSass(sass);
 
@@ -44,6 +46,16 @@ function inlineCSSRTLTask(done) {
     .pipe(gulp.dest('partials/css/dist'));
 }
 
+// Navigation Task
+function navTask(done) {
+  fs.mkdirSync('partials/navigation/dist', { recursive: true });
+  fs.writeFileSync(
+    'partials/navigation/dist/primary.hbs',
+    renderPrimaryNavigation(headerNavigation)
+  );
+  done();
+}
+
 // JavaScript Task
 function jsTask(done) {
   return gulp.src([
@@ -66,6 +78,7 @@ function jsTask(done) {
 function watchTask() {
   gulp.watch('assets/sass/**/*.scss', gulp.series(buildCSSTask));
   gulp.watch('./assets/js/app.js', gulp.series(jsTask));
+  gulp.watch('navigation/**/*.js', gulp.series(navTask));
 }
 
 // Generate zip file name from date, version, and git hash
@@ -100,6 +113,7 @@ function zipTask() {
     '!assets/js/app.js',
     '!assets/css/**',
     '!gulpfile.js',
+    '!navigation/**',
     '!**/*.map',
     '!**/*.md',
   ], { dot: true, encoding: false })
@@ -109,7 +123,7 @@ function zipTask() {
 
 // Composite Tasks
 const buildCSSTask = gulp.series(sassTask, inlineCSSTask, inlineCSSRTLTask);
-const buildTask = gulp.series(buildCSSTask, jsTask);
+const buildTask = gulp.series(navTask, buildCSSTask, jsTask);
 const defaultTask = gulp.series(buildTask, watchTask);
 
 // Export Tasks
@@ -117,6 +131,7 @@ export {
   sassTask as sass,
   inlineCSSTask as inlinecss,
   inlineCSSRTLTask as inlinecss_rtl,
+  navTask as navigation,
   jsTask as js,
   zipTask as zip,
   buildCSSTask as build_css,

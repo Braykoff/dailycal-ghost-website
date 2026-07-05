@@ -224,6 +224,12 @@
   }
 
   @include mq.mq($until: desktop) {
+    &--main > &__item--has-children > &__toggle {
+      flex: 0 0 var(--space-32);
+      width: var(--space-32);
+      height: var(--space-32);
+    }
+
     &__submenu .c-nav__item {
       gap: 0;
     }
