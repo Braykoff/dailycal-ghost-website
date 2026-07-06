@@ -93,26 +93,6 @@
         ],
         "default": "Month - Day - Year"
       },
-      "linkedin_page": {
-        "type": "text",
-        "default": "https://www.linkedin.com/company/the-daily-californian"
-      },
-      "bluesky_page": {
-        "type": "text",
-        "default": ""
-      },
-      "mastodon_page": {
-        "type": "text",
-        "default": ""
-      },
-      "youtube_page": {
-        "type": "text",
-        "default": "https://www.youtube.com/thedailycal"
-      },
-      "instagram_page": {
-        "type": "text",
-        "default": "https://www.instagram.com/dailycal/"
-      },
       "pinterest_page": {
         "type": "text",
         "default": ""
