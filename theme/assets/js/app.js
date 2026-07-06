@@ -205,7 +205,6 @@ $(document).ready(function() {
 
   images.forEach(function (image) {
     var wrapper = document.createElement('a');
-    wrapper.setAttribute('data-no-swup', '');
     wrapper.setAttribute('data-fslightbox', '');
     wrapper.setAttribute('href', image.src);
     wrapper.setAttribute('class', 'fslightbox-image-wrap');

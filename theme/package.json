@@ -22,7 +22,6 @@
     "evil-icons": "^1.10.1",
     "fslightbox": "^3.7.5",
     "gulp-postcss": "^10.0.0",
-    "install": "^0.13.0",
     "modern-normalize": "^3.0.1",
     "postcss": "^8.5.13",
     "prismjs": "^1.30.0",
@@ -31,9 +30,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",
-    "concat": "^3.0.0",
     "eslint": "^9.39.2",
-    "fs": "^0.0.2",
     "globals": "^16.5.0",
     "gulp": "^5.0.1",
     "gulp-clean-css": "^4.3.0",
@@ -44,7 +41,6 @@
     "gulp-sass": "^6.0.1",
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^6.1.0",
-    "run-sequence": "^2.2.1",
     "sass": "^1.99.0"
   },
   "author": {

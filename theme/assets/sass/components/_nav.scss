@@ -28,11 +28,6 @@
       justify-content: center;
       overflow: visible;
     }
-
-    > .c-nav__item--pending-child,
-    > .c-nav__item--pending-grandchild {
-      display: none;
-    }
   }
 
   &__item {

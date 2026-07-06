@@ -1,6 +1,6 @@
-# Tripoli Ghost Theme
+# Daily Cal Ghost Theme
 
-[Theme Documentation](https://aspirethemes.com/docs/tripoli)
+Built from the Tripoli theme ([Tripoli documentation](https://aspirethemes.com/docs/tripoli)). Major modifications listed below may supersede Tripoli documentation.
 
 ---
 
