@@ -4,11 +4,7 @@
 
     {{> social-icons }}
 
-    {{#if @site.secondary_navigation}}
-      <ul class='u-plain-list c-footer-nav'>
-        {{ navigation type='secondary' }}
-      </ul>
-    {{/if}}
+    {{> navigation/dist/footer }}
 
     <div class='c-footer-copy'>
       &copy; {{ date format='YYYY' }} {{ @site.title }}

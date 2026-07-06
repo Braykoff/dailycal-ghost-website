@@ -61,7 +61,7 @@ Either way, site data is stored in the `content/` directory, so it will still ex
 
 ## Exporting
 
-Ghost accepts the theme as a zip file. Upload it in the production admin panel under **Settings → Design** (Change theme → Upload theme).
+Ghost accepts the theme as a zip file. Upload it in the production admin panel under **Settings > Design** (Change theme > Upload theme).
 
 ### Generate a zip locally
 

@@ -8,9 +8,18 @@
 
 ### 1. Navigation (header)
 
-Header navigation is defined in `navigation/data/header.js` and compiled to `partials/navigation/dist/primary.hbs` at build time (`gulp navigation` or `gulp build`).
+Header navigation is defined in `navigation/data/header.js` and compiled to `partials/navigation/dist/header.hbs` at build time (`gulp navigation` or `gulp build`).
 
-Edit `navigation/data/header.js` to change labels, URLs, or hierarchy (supports children and grandchildren). Rebuild the theme after changes.
+Edit `navigation/data/header.js` to change labels, URLs, or hierarchy (supports children, grandchildren, etc). Rebuild the theme after changes.
 
+In the Ghost admin panel, you can usually specify the header navigation in Settings > Navigation (Customize > Primary). Due to the complexity and quantity of navigation elements used, this setting is ignored now.
 
----
+### 2. Navigation (footer)
+
+Footer navigation is defined in `navigation/data/footer.js` (`siteNavigation`, `utilityNavigation`, and `siteSectionsPerRow`) and compiled to `partials/navigation/dist/footer.hbs` at build time (`gulp navigation` or `gulp build`).
+
+Site sections render left-to-right in `siteNavigation` order, wrapping every `siteSectionsPerRow` items. Utility links (Advertise, Classifieds, Legals, About) remain visible on all screen sizes, while site sections are hidden on mobile.
+
+Edit `navigation/data/footer.js` to change labels, URLs, or hierarchy (only supports children). Rebuild the theme after changes.
+
+In the Ghost admin panel, you can usually specify the header navigation in Settings > Navigation (Customize > Secondary). Due to the complexity and quantity of navigation elements used, this setting is ignored now.

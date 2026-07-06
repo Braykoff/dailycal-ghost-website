@@ -14,7 +14,8 @@ import autoprefixer from 'autoprefixer';
 import * as sass from 'sass';
 import gulpSass from 'gulp-sass';
 import headerNavigation from './navigation/data/header.js';
-import { renderPrimaryNavigation } from './navigation/build.js';
+import { siteNavigation, utilityNavigation, siteSectionsPerRow } from './navigation/data/footer.js';
+import { renderHeaderNavigation, renderFooterNavigation } from './navigation/build.js';
 
 const sassCompiler = gulpSass(sass);
 
@@ -45,12 +46,16 @@ function inlineCSSRTLTask() {
     .pipe(gulp.dest('partials/css/dist'));
 }
 
-// Navigation Task
+// Header and footer navigation task
 function navTask(done) {
   fs.mkdirSync('partials/navigation/dist', { recursive: true });
   fs.writeFileSync(
-    'partials/navigation/dist/primary.hbs',
-    renderPrimaryNavigation(headerNavigation)
+    'partials/navigation/dist/header.hbs',
+    renderHeaderNavigation(headerNavigation)
+  );
+  fs.writeFileSync(
+    'partials/navigation/dist/footer.hbs',
+    renderFooterNavigation(siteNavigation, utilityNavigation, siteSectionsPerRow)
   );
   done();
 }

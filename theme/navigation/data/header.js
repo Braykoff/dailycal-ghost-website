@@ -1,5 +1,5 @@
 // Header navigation source of truth.
-// Compiled to partials/navigation/dist/primary.hbs at build time.
+// Compiled to partials/navigation/dist/header.hbs at build time.
 
 export default [
   // Featured
