@@ -7,8 +7,18 @@
     {{> navigation/dist/footer }}
 
     <div class='c-footer-copy'>
-      &copy; {{ date format='YYYY' }} {{ @site.title }}
-      <span> – {{{t 'Published with {ghostLink} & {themeLink}' ghostLink='<a href=\'https://ghost.org\'>Ghost</a>' themeLink='<a href=\'https://aspirethemes.com/themes/tripoli\'>Tripoli</a>' }}}</span>
+      <p class='c-footer-copy__line'>
+        &copy; {{ date format='YYYY' }}
+        <a href='{{ @site.url }}'>{{ @site.title }}</a>,
+        2483 Hearst Avenue, Berkeley, CA
+        <span class='c-footer-copy__sep' aria-hidden='true'> | </span>
+        <a href='/terms-of-use/'>Terms of Use</a>
+        <span class='c-footer-copy__sep' aria-hidden='true'> | </span>
+        <a href='/privacy-policy/'>Privacy Policy</a>
+      </p>
+      <p class='c-footer-copy__line'>
+        Powered by <a href='https://ghost.org/'>Ghost</a>
+      </p>
     </div>
   </div>
 </footer>

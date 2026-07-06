@@ -23,3 +23,7 @@ Site sections render left-to-right in `siteNavigation` order, wrapping every `si
 Edit `navigation/data/footer.js` to change labels, URLs, or hierarchy (only supports children). Rebuild the theme after changes.
 
 In the Ghost admin panel, you can usually specify the header navigation in Settings > Navigation (Customize > Secondary). Due to the complexity and quantity of navigation elements used, this setting is ignored now.
+
+### 3. Footer copyright
+
+The footer copyright is in `partials/structure/footer.hbs`. The address is hardcoded in and the Tripoli link has been removed.
