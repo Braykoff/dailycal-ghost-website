@@ -27,3 +27,19 @@ In the Ghost admin panel, you can usually specify the header navigation in Setti
 ### 3. Footer copyright
 
 The footer copyright is in `partials/structure/footer.hbs`. The address is hardcoded in and the Tripoli link has been removed.
+
+### 4. Social links
+
+This theme has two separate social features:
+
+**1. Footer profile links** (`partials/social-icons.hbs`): icons in the footer that link to social accounts. Edit this file to change which platforms appear and in what order.
+
+| Config source | Ghost Admin location | Platforms |
+|---------------|---------------------|-----------|
+| Site settings | Settings > Social accounts | X, Facebook, LinkedIn, Bluesky, Mastodon, YouTube, Instagram, TikTok, Threads |
+| Theme settings | Settings > Design & Branding > Theme | Pinterest, Discord |
+| Hardcoded in theme | `partials/social-icons.hbs` | RSS |
+
+**2. Post share buttons** (`partials/share.hbs`): per-post share actions. These are not configured in site or theme settings. Edit `partials/share.hbs` to change which share options appear.
+
+**Icons:** Tripoli used [Evil Icons](https://github.com/evil-icons/evil-icons), Bootstrap, and Font Awesome. Evil Icons has been removed; all icons are now [Bootstrap Icons](https://icons.getbootstrap.com/) SVGs saved as partials in `partials/icons/`. To add one, copy an SVG from Bootstrap Icons into a new file there (e.g. `partials/icons/example.hbs`) and include it with `{{> icons/example }}`.

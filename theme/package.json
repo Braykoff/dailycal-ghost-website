@@ -19,7 +19,6 @@
   "dependencies": {
     "autoprefixer": "^10.5.0",
     "bower": "^1.8.14",
-    "evil-icons": "^1.10.1",
     "fslightbox": "^3.7.5",
     "gulp-postcss": "^10.0.0",
     "modern-normalize": "^3.0.1",

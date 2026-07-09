@@ -20,8 +20,4 @@
     background-color: var(--color-background-primary);
     @include mixins.font($scale: 3, $weight: bold);
   }
-
-  &__icon {
-    fill: var(--color-text-secondary);
-  }
 }

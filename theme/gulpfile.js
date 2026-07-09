@@ -66,7 +66,6 @@ function jsTask() {
     './bower_components/jquery/dist/jquery.js',
     './bower_components/fitvids/jquery.fitvids.js',
     './node_modules/tocbot/dist/tocbot.min.js',
-    './node_modules/evil-icons/assets/evil-icons.min.js',
     './node_modules/prismjs/prism.js',
     './node_modules/fslightbox/index.js',
     './assets/js/app.js'])

@@ -30,13 +30,7 @@
     @include mixins.font($scale: 3, $weight: bold);
 
     @include mixins.attention() {
-      .c-share__icon {
-        fill: var(--color-text-primary);
-      }
+      color: var(--color-text-primary);
     }
-  }
-
-  &__icon {
-    fill: var(--color-text-secondary);
   }
 }
