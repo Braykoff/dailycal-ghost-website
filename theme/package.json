@@ -100,6 +100,23 @@
         "type": "text",
         "default": ""
       },
+      "enable_ads": {
+        "type": "boolean",
+        "default": false,
+        "description": "Show advertisement slots site-wide"
+      },
+      "preview_ad_slots": {
+        "type": "boolean",
+        "default": false,
+        "visibility": "enable_ads:true",
+        "description": "Gray placeholders instead of live AdSense units"
+      },
+      "adsense_publisher_id": {
+        "type": "text",
+        "default": "",
+        "visibility": "enable_ads:true",
+        "description": "Your ca-pub-... publisher ID"
+      },
       "number_of_latest_posts": {
         "type": "text",
         "default": "6",

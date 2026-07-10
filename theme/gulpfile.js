@@ -16,6 +16,8 @@ import gulpSass from 'gulp-sass';
 import headerNavigation from './navigation/data/header.js';
 import { siteNavigation, utilityNavigation, siteSectionsPerRow } from './navigation/data/footer.js';
 import { renderHeaderNavigation, renderFooterNavigation } from './navigation/build.js';
+import { placements } from './ads/data/placements.js';
+import { renderPlacementPartial } from './ads/build.js';
 
 const sassCompiler = gulpSass(sass);
 
@@ -60,6 +62,20 @@ function navTask(done) {
   done();
 }
 
+// Ad placement partials task
+function adsTask(done) {
+  fs.mkdirSync('partials/ads/dist', { recursive: true });
+
+  for (const [name, config] of Object.entries(placements)) {
+    fs.writeFileSync(
+      `partials/ads/dist/${name}.hbs`,
+      renderPlacementPartial(name, config)
+    );
+  }
+
+  done();
+}
+
 // JavaScript Task
 function jsTask() {
   return gulp.src([
@@ -80,6 +96,7 @@ function watchTask() {
   gulp.watch('assets/sass/**/*.scss', gulp.series(buildCSSTask));
   gulp.watch('./assets/js/app.js', gulp.series(jsTask));
   gulp.watch('navigation/**/*.js', gulp.series(navTask));
+  gulp.watch('ads/**/*.js', gulp.series(adsTask));
 }
 
 // Generate zip file name from date, version, and git hash
@@ -115,6 +132,7 @@ function zipTask() {
     '!assets/css/**',
     '!gulpfile.js',
     '!navigation/**',
+    '!ads/**',
     '!**/*.map',
     '!**/*.md',
   ], { dot: true, encoding: false })
@@ -124,7 +142,7 @@ function zipTask() {
 
 // Composite Tasks
 const buildCSSTask = gulp.series(sassTask, inlineCSSTask, inlineCSSRTLTask);
-const buildTask = gulp.series(navTask, buildCSSTask, jsTask);
+const buildTask = gulp.series(navTask, adsTask, buildCSSTask, jsTask);
 const defaultTask = gulp.series(buildTask, watchTask);
 
 // Export Tasks
@@ -133,6 +151,7 @@ export {
   inlineCSSTask as inlinecss,
   inlineCSSRTLTask as inlinecss_rtl,
   navTask as navigation,
+  adsTask as ads,
   jsTask as js,
   zipTask as zip,
   buildCSSTask as build_css,

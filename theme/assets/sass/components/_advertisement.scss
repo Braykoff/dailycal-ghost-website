@@ -1,0 +1,97 @@
+// ------------------------------------
+// Components > Advertisement
+// ------------------------------------
+
+@use '../tools/mixins';
+
+.c-ad-wrap {
+  display: flex;
+  justify-content: center;
+  margin-block: var(--space-24);
+}
+
+.c-ad-unit {
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
+
+  &__disclosure {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    z-index: 1;
+    color: var(--color-text-secondary);
+    @include mixins.font($scale: 0);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  &--leaderboard {
+    width: min(728px, 100%);
+    height: 90px;
+  }
+
+  &--rectangle {
+    width: 300px;
+    height: 250px;
+  }
+
+  &--halfpage {
+    width: 300px;
+    height: 600px;
+  }
+
+  &--mobile-banner {
+    width: 320px;
+    height: 50px;
+  }
+
+  &--responsive {
+    width: 100%;
+    min-height: 90px;
+  }
+}
+
+.c-ad {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  &--preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e8e8e8;
+  }
+
+  &__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+    padding: var(--space-8);
+    text-align: center;
+  }
+
+  &__placeholder-title {
+    color: #9a9a9a;
+    @include mixins.font($scale: 2, $weight: medium, $uppercase: true, $letter-spacing: long-primer);
+  }
+
+  &__placeholder-slot {
+    color: #9a9a9a;
+    @include mixins.font($scale: 0, $letter-spacing: long-primer);
+    text-transform: lowercase;
+  }
+}
+
+.c-ad-unit--responsive .c-ad--preview {
+  min-height: 90px;
+}
+
+.c-ad-unit .adsbygoogle {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

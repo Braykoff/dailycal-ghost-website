@@ -1,0 +1,69 @@
+{{#if @custom.enable_ads}}
+  {{!-- Validate that this is a valid ad size--}}
+  <script>
+    (function (size) {
+      var accepted = ['leaderboard', 'rectangle', 'halfpage', 'mobile-banner', 'responsive'];
+      if (accepted.indexOf(size) === -1) {
+        console.warn('[dc-theme] Unknown ad size "' + size + '" (accepted: ' + accepted.join(', ') + ').');
+      }
+    })('{{ size }}');
+  </script>
+
+  <aside class='c-ad-wrap{{#unless @custom.preview_ad_slots}}{{#if @custom.adsense_publisher_id}}{{#if slot}} js-ad-live{{/if}}{{/if}}{{/unless}}'{{#if name}} aria-label='{{ name }}'{{/if}}>
+    <div class='c-ad-unit c-ad-unit--{{ size }}'>
+      <span class='c-ad-unit__disclosure'>Advertisement</span>
+
+      {{#if @custom.preview_ad_slots}}
+        <div class='c-ad c-ad--preview' role='img' aria-label='Advertisement placeholder{{#if name}} — {{ name }}{{/if}}'>
+          <div class='c-ad__placeholder'>
+            <span class='c-ad__placeholder-title'>ADVERTISEMENT{{#if name}} ({{ name }}){{/if}}</span>
+            <span class='c-ad__placeholder-slot'>slot: {{#if slot}}{{ slot }}{{else}}—{{/if}}</span>
+          </div>
+        </div>
+      {{else}}
+        {{#if @custom.adsense_publisher_id}}
+          {{#if slot}}
+            {{#match size 'leaderboard'}}
+              <ins class='adsbygoogle'
+                style='display:inline-block;width:728px;height:90px'
+                data-ad-client='{{ @custom.adsense_publisher_id }}'
+                data-ad-slot='{{ slot }}'></ins>
+            {{/match}}
+
+            {{#match size 'rectangle'}}
+              <ins class='adsbygoogle'
+                style='display:inline-block;width:300px;height:250px'
+                data-ad-client='{{ @custom.adsense_publisher_id }}'
+                data-ad-slot='{{ slot }}'></ins>
+            {{/match}}
+
+            {{#match size 'halfpage'}}
+              <ins class='adsbygoogle'
+                style='display:inline-block;width:300px;height:600px'
+                data-ad-client='{{ @custom.adsense_publisher_id }}'
+                data-ad-slot='{{ slot }}'></ins>
+            {{/match}}
+
+            {{#match size 'mobile-banner'}}
+              <ins class='adsbygoogle'
+                style='display:inline-block;width:320px;height:50px'
+                data-ad-client='{{ @custom.adsense_publisher_id }}'
+                data-ad-slot='{{ slot }}'></ins>
+            {{/match}}
+
+            {{#match size 'responsive'}}
+              <ins class='adsbygoogle'
+                style='display:block'
+                data-ad-client='{{ @custom.adsense_publisher_id }}'
+                data-ad-slot='{{ slot }}'
+                data-ad-format='auto'
+                data-full-width-responsive='true'></ins>
+            {{/match}}
+
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    </div>
+  </aside>
+{{/if}}

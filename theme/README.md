@@ -43,3 +43,21 @@ This theme has two separate social features:
 **2. Post share buttons** (`partials/share.hbs`): per-post share actions. These are not configured in site or theme settings. Edit `partials/share.hbs` to change which share options appear.
 
 **Icons:** Tripoli used [Evil Icons](https://github.com/evil-icons/evil-icons), Bootstrap, and Font Awesome. Evil Icons has been removed; all icons are now [Bootstrap Icons](https://icons.getbootstrap.com/) SVGs saved as partials in `partials/icons/`. To add one, copy an SVG from Bootstrap Icons into a new file there (e.g. `partials/icons/example.hbs`) and include it with `{{> icons/example }}`.
+
+### 5. Advertisements (Google AdSense)
+
+Ad placements are defined in `ads/data/placements.js` (placement name, size, and AdSense slot ID) and compiled to `partials/ads/dist/*.hbs` at build time (`gulp ads` or `gulp build`). The placement name (e.g. `home-top`) is shown in preview placeholders; the slot ID is used for live AdSense. Include a placement in a template with:
+
+```handlebars
+{{> ads/dist/home-top }}
+```
+
+`partials/ads/advertisement.hbs` is the core partial, it renders a gray preview placeholder or a live AdSense unit. Supported sizes: `leaderboard`, `rectangle`, `halfpage`, `mobile-banner`, `responsive`. Unfilled live slots collapse via `app.js` once AdSense sets `data-ad-status="unfilled"`.
+
+| Theme setting | Purpose |
+|---------------|---------|
+| **Enable ads** | Master on/off switch |
+| **Preview ad slots** | When on, shows gray placeholders instead of AdSense (default off, for testing only) |
+| **AdSense publisher ID** | Your `ca-pub-…` client ID |
+
+To add a placement: add an entry to `ads/data/placements.js`, run `npm run build`, and include `{{> ads/dist/your-placement-name }}` in the relevant template.

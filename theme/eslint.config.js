@@ -29,7 +29,7 @@ export default [
     },
   },
   {
-    files: ['gulpfile.js', 'navigation/**/*.js'],
+    files: ['gulpfile.js', 'navigation/**/*.js', 'ads/**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',

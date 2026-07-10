@@ -26,5 +26,10 @@
   {{/if}}
 
   {{> preload }}
+
+  {{#if @custom.enable_ads}}
+    {{> ads/adsense-script }}
+  {{/if}}
+
   {{ ghost_head }}
 </head>
