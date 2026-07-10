@@ -1,0 +1,10 @@
+{{!-- AdSense <head> script. Included in head on structure/head.hbs. --}}
+{{#if @custom.preview_ad_slots}}
+  <script>console.log('[dc-theme] AdSense preview mode, ad slots are placeholders.');</script>
+{{else}}
+  {{#if @custom.adsense_publisher_id}}
+    <script async src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ @custom.adsense_publisher_id }}' crossorigin='anonymous'></script>
+  {{else}}
+    <script>console.warn('[dc-theme] AdSense publisher ID is missing, set it in Theme settings to serve live ads.');</script>
+  {{/if}}
+{{/if}}
