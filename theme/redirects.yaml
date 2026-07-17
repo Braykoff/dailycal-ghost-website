@@ -19,3 +19,7 @@
 
   # Unwrap hidden /_/… collection indexes to their public paths (any depth).
   ^/_/(.*?)/?$: /$1/
+
+  # Resolve duplicated archive / archives sections.
+  ^/archives(/.*)?$: /archive$1
+
