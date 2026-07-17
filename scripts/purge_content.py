@@ -11,7 +11,7 @@ Usage:
   python3 scripts/purge_content.py articles pages tags authors
 
 Types may appear in any order. When multiple are listed, they always run in
-this fixed order: articles → pages → tags → authors.
+this fixed order: articles, pages, tags, authors.
 
 Auth (see module docstring / README notes):
   Session login via GHOST_ADMIN_EMAIL + GHOST_ADMIN_PASSWORD (default here,
