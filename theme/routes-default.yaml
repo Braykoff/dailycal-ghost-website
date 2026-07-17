@@ -1,0 +1,22 @@
+# routes-default.yaml — SOURCE, tracked in git.
+#
+# Handwritten base routes/collections/taxonomies. The build step
+# (sections/build.js) appends AUTO-GENERATED section categories — desk
+# channels and section collections — at the markers below and writes the
+# final routes.yaml. Do NOT add section entries here; edit
+# sections/data/sections.js instead.
+
+routes:
+  /:
+    template: home
+  /archive/:
+    controller: channel
+    template: archive
+# @@GENERATED_ROUTES@@
+
+collections:
+# @@GENERATED_COLLECTIONS@@
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

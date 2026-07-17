@@ -16,15 +16,15 @@ export default [
   // News
   {
     label: 'News',
-    url: '/tag/news/',
+    url: '/news/',
     children: [
-      { label: 'Campus', url: '/tag/campus/' },
-      { label: 'City', url: '/tag/city/' },
-      { label: 'County', url: '/tag/county/' },
-      { label: 'State', url: '/tag/state/' },
-      { label: 'National', url: '/tag/national/' },
-      { label: 'Obituaries', url: '/tag/obituaries/' },
-      { label: 'Investigations', url: '/tag/investigations/' },
+      { label: 'Campus', url: '/news/campus/' },
+      { label: 'City', url: '/news/city/' },
+      { label: 'County', url: '/news/county/' },
+      { label: 'State', url: '/news/state/' },
+      { label: 'National', url: '/news/national/' },
+      { label: 'Obituaries', url: '/news/obituaries/' },
+      { label: 'Investigations', url: '/news/investigations/' },
     ],
   },
 
@@ -115,12 +115,12 @@ export default [
   // Lifestyle
   {
     label: 'Lifestyle',
-    url: '/tag/lifestyle/',
+    url: '/lifestyle/',
     children: [
-      { label: 'How-To', url: '/tag/how-to/' },
-      { label: 'Local Guides', url: '/tag/local-guides/' },
-      { label: 'Quizzes', url: '/tag/quizzes/' },
-      { label: 'Strikeout', url: '/tag/strikeout/' },
+      { label: 'How-To', url: '/lifestyle/how-to/' },
+      { label: 'Local Guides', url: '/lifestyle/local-guides/' },
+      { label: 'Quizzes', url: '/lifestyle/quizzes/' },
+      { label: 'Strikeout', url: '/lifestyle/strikeout/' },
     ],
   },
 

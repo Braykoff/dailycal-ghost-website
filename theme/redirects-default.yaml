@@ -1,0 +1,17 @@
+# redirects-default.yaml — SOURCE, tracked in git.
+#
+# Handwritten redirects. The build step (sections/build.js) appends
+# AUTO-GENERATED section redirects at the marker below and writes the final
+# redirects.yaml. The generated block adds:
+#   - /_/…            → /…/         (unwrap hidden collection indexes, any depth)
+#   - /tag/sec-…      → /section/…  (section tag archives → section pages)
+
+301:
+  # RSS lives under the /article/ catch-all collection.
+  ^/rss/: /article/rss/
+
+  # Legacy CMS article URLs: keep the full category path + slug, drop the
+  # trailing bogus `article_*.html`. Example:
+  #   /news/campus/some-story/article_12345.html  →  /news/campus/some-story/
+  ^/(.*/)?([^/]+)/article_[^/]+\.html$: /$1$2/
+# @@GENERATED_REDIRECTS@@

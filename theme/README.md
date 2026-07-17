@@ -43,3 +43,16 @@ This theme has two separate social features:
 **2. Post share buttons** (`partials/share.hbs`): per-post share actions. These are not configured in site or theme settings. Edit `partials/share.hbs` to change which share options appear.
 
 **Icons:** Tripoli used [Evil Icons](https://github.com/evil-icons/evil-icons), Bootstrap, and Font Awesome. Evil Icons has been removed; all icons are now [Bootstrap Icons](https://icons.getbootstrap.com/) SVGs saved as partials in `partials/icons/`. To add one, copy an SVG from Bootstrap Icons into a new file there (e.g. `partials/icons/example.hbs`) and include it with `{{> icons/example }}`.
+
+### 5. Department sections (pilot)
+
+News and Lifestyle use one **`sec-*` primary tag** per post (parent or leaf — not both). Each slug encodes its full ancestry: News › Campus › ASUC → `sec-news-campus-asuc`.
+
+- Edit the tree in `sections/data/sections.js`
+- Run `npm run build` to regenerate `routes.yaml`, `redirects.yaml`, and section partials (both YAML files are git-ignored; the handwritten bases are `routes-default.yaml` / `redirects-default.yaml`)
+- The build **validates** every slug against its ancestry and throws if they disagree
+- Create tags in Ghost Admin with those slugs (name: “Campus”); type `sec-` in the tag field to find them
+- Desk URLs: `/news/`, `/news/campus/`; posts: `/news/{slug}/` or `/news/campus/asuc/{slug}/`; untagged posts fall back to `/article/{slug}/`
+- Category labels on cards link to section paths (not `/tag/…`)
+
+Full details: [`routes.md`](routes.md).

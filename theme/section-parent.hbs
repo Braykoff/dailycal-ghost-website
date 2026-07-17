@@ -1,0 +1,27 @@
+{{!< default}}
+
+{{!--
+  Desk / parent section channel, e.g. /news/.
+  Lists posts whose primary tag is this desk OR any of its subsections.
+--}}
+
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+
+{{#tag}}
+  <header class='c-page-header'>
+    <div class='o-grid o-grid--2-columns'>
+      <div>
+        <h1 class='c-topper__headline u-font-headline u-font-family-sansSerif'>{{ name }}</h1>
+        {{#if description}}
+          <p class='c-topper__standfirst u-font-standfirst u-mt-8 u-font-family-sansSerif'>{{ description }}</p>
+        {{/if}}
+      </div>
+    </div>
+  </header>
+{{/tag}}
+
+{{> sections/dist/parent-subnav }}
+
+{{> loop }}
+
+{{ pagination }}

@@ -1,10 +1,6 @@
 <article class='c-teaser c-teaser--{{teaserSize}} {{ post_class }}'>
   <div class='c-teaser__content'>
-    {{#if tags}}
-      <div class='c-teaser__tag c-tag'>
-        {{ tags separator='' limit='1' }}
-      </div>
-    {{/if}}
+    {{> category-label class='c-teaser__tag' }}
 
     <h3 class='c-teaser__headline'>
       <a href='{{ url }}' class='c-teaser__link'>{{ title }}</a>

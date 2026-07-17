@@ -21,15 +21,15 @@ export const siteNavigation = [
   // News
   {
     label: 'News',
-    url: '/news',
+    url: '/news/',
     children: [
-      { label: 'Campus', url: '/news/campus' },
-      { label: 'City', url: '/news/city' },
-      { label: 'County', url: '/news/alameda-county' },
-      { label: 'State', url: '/news/state' },
-      { label: 'National', url: '/news/national' },
-      { label: 'Obituaries', url: '/news/obituary-news' },
-      { label: 'Notes from the Field', url: '/blogs/news-blog' },
+      { label: 'Campus', url: '/news/campus/' },
+      { label: 'City', url: '/news/city/' },
+      { label: 'County', url: '/news/county/' },
+      { label: 'State', url: '/news/state/' },
+      { label: 'National', url: '/news/national/' },
+      { label: 'Obituaries', url: '/news/obituaries/' },
+      { label: 'Investigations', url: '/news/investigations/' },
     ],
   },
 
@@ -85,12 +85,12 @@ export const siteNavigation = [
   // Lifestyle
   {
     label: 'Lifestyle',
-    url: '/lifestyle',
+    url: '/lifestyle/',
     children: [
-      { label: 'How To', url: '/lifestyle/how_to' },
-      { label: 'Local Guides', url: '/lifestyle/local_guides' },
-      { label: 'Quizzes', url: '/lifestyle/quizzes' },
-      { label: 'Strikeout', url: '/lifestyle/strikeout' },
+      { label: 'How To', url: '/lifestyle/how-to/' },
+      { label: 'Local Guides', url: '/lifestyle/local-guides/' },
+      { label: 'Quizzes', url: '/lifestyle/quizzes/' },
+      { label: 'Strikeout', url: '/lifestyle/strikeout/' },
     ],
   },
 

@@ -24,6 +24,8 @@ bower_components
 dist
 theme/assets/css/
 theme/assets/js/app.min.js
+theme/routes.yaml
+theme/redirects.yaml
 
 ## Ghost Instance
 # Keep the seed database and uploaded media (images/files/media).

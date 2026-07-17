@@ -6,6 +6,7 @@
 
   <div class='c-topper__content'>
     {{#is 'post'}}
+      {{> category-label class='c-topper__tag' }}
     {{else}}
       {{#if tags}}
         <div class='c-topper__tag c-tag'>
