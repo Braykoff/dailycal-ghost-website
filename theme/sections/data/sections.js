@@ -454,4 +454,10 @@ export const sections = [
 
   // Best Of Berkeley
   { id: 'best-of-berkeley', label: 'Best Of Berkeley', tagSlug: 'sec_best-of-berkeley' },
+
+  // Data
+  { id: 'data', label: 'Data', tagSlug: 'sec_data' },
+
+  // Stacks Magazine
+  { id: 'stacks', label: 'Stacks Magazine', tagSlug: 'sec_stacks' },
 ];

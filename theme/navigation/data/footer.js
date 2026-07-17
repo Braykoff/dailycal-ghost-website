@@ -125,13 +125,19 @@ export const siteNavigation = [
   // Data
   {
     label: 'Data',
-    url: 'https://dailycal-projects.netlify.app/',
+    url: 'https://data.dailycal.org/',
   },
 
   // Puzzles
   {
     label: 'Puzzles',
     url: '/puzzles/',
+  },
+
+  // Stacks
+  {
+    label: 'Stacks Magazine',
+    url: 'https://stacksmagazine.org',
   },
 ];
 

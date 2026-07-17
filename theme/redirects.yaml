@@ -8,6 +8,12 @@
   # Full-site RSS: unfiltered /latest/ channel includes every section.
   ^/rss/?$: /latest/rss/
 
+  # External pages ($1 must sit in the path — Ghost only rewrites pathname)
+  ^/data/(.*)$: https://data.dailycal.org/$1
+  ^/data/?$: https://data.dailycal.org/
+  ^/stacks/(.*)$: https://stacksmagazine.org/$1
+  ^/stacks/?$: https://stacksmagazine.org/
+
   # Replace one legacy underscore with a hyphen per request. 
   # Repeated requests normalize any number of underscores.
   # Leaves article_*.html and /_/ alone for later matching.
@@ -22,4 +28,3 @@
 
   # Resolve duplicated archive / archives sections.
   ^/archives(/.*)?$: /archive$1
-
