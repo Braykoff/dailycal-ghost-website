@@ -5,8 +5,8 @@
   # Keep uncategorized post permalinks, but do not expose their collection index.
   ^/article/?$: /
 
-  # RSS lives under the /article/ catch-all collection.
-  ^/rss/: /article/rss/
+  # Full-site RSS: unfiltered /latest/ channel includes every section.
+  ^/rss/?$: /latest/rss/
 
   # Replace one legacy underscore with a hyphen per request. 
   # Repeated requests normalize any number of underscores.

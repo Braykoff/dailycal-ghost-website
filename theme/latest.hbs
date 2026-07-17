@@ -1,24 +1,16 @@
 {{!< default}}
 
-{{#contentFor 'title'}}
-  {{#get "pages" filter="slug:archive" limit="1" as |archivePage|}}
-    {{#if archivePage}}
-      {{ archivePage.[0].title }}
-    {{else}}
-      {{t "Archive" }}
-    {{/if}}
-  {{/get}}
-{{/contentFor}}
+{{#contentFor 'title'}}{{t 'Latest' }} | {{ @site.title }}{{/contentFor}}
 
-{{#get "pages" filter="slug:archive" limit="1" as |archivePage|}}
-  {{#if archivePage}}
-    {{#with archivePage.[0]}}
+{{#get "pages" filter="slug:latest" limit="1" as |latestPage|}}
+  {{#if latestPage}}
+    {{#with latestPage.[0]}}
       {{> topper }}
     {{/with}}
   {{else}}
     <header class='c-page-header'>
       <div class='o-grid o-grid--2-columns'>
-        <h1 class='c-topper__headline u-font-headline u-font-family-sansSerif'>{{t 'Archive' }}</h1>
+        <h1 class='c-topper__headline u-font-headline u-font-family-sansSerif'>{{t 'Latest' }}</h1>
       </div>
     </header>
   {{/if}}

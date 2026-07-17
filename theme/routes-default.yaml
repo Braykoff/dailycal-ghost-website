@@ -6,9 +6,9 @@
 routes:
   /:
     template: home
-  /archive/:
+  /latest/:
     controller: channel
-    template: archive
+    template: latest
 
 collections:
 

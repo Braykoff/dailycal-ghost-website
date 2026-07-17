@@ -4,9 +4,9 @@
 routes:
   /:
     template: home
-  /archive/:
+  /latest/:
     controller: channel
-    template: archive
+    template: latest
   /blogs/:
     controller: channel
     filter: primary_tag:[sec_blogs,sec_blogs_clog,sec_blogs_food-blog,sec_blogs_earth-to-berkeley,sec_blogs_travel,sec_blogs_travel_stories-from-abroad,sec_blogs_grammar,sec_blogs_editors,sec_blogs_editors_divcom-blog,sec_blogs_editors_awards,sec_blogs_news-blog,sec_blogs_arts-blog,sec_blogs_satire]
