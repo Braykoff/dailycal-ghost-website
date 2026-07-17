@@ -72,14 +72,21 @@ class GhostAdminClient:
             )
         return response
 
-    def browse_all(self, resource: str, key: str) -> list[dict[str, Any]]:
+    def browse_all(
+        self,
+        resource: str,
+        key: str,
+        *,
+        query: str = "",
+    ) -> list[dict[str, Any]]:
         """Return every record for an Admin API resource (paginated)."""
         items: list[dict[str, Any]] = []
         page = 1
+        extra = f"&{query.lstrip('&')}" if query else ""
         while True:
             response = self._request(
                 "GET",
-                f"/{resource}/?limit=100&page={page}",
+                f"/{resource}/?limit=100&page={page}{extra}",
             )
             payload = response.json()
             batch = payload.get(key, [])
@@ -102,9 +109,10 @@ def _purge_resource(
     resource: str,
     key: str,
     keep: Callable[[dict[str, Any]], bool] | None = None,
+    query: str = "",
 ) -> int:
     """Delete every browsable item for a resource; return deleted count."""
-    items = client.browse_all(resource, key)
+    items = client.browse_all(resource, key, query=query)
     deleted = 0
     skipped = 0
 
@@ -137,9 +145,14 @@ def purge_tags(client: GhostAdminClient) -> int:
 
 
 def purge_authors(client: GhostAdminClient) -> int:
-    """Delete all staff users except the Owner (Ghost forbids deleting Owner)."""
+    """Delete staff users except Owner and the account used to authenticate."""
 
-    def keep_owner(user: dict[str, Any]) -> bool:
+    login_email = GHOST_ADMIN_EMAIL.lower()
+
+    def keep_protected(user: dict[str, Any]) -> bool:
+        email = (user.get("email") or "").lower()
+        if email == login_email:
+            return True
         roles = user.get("roles") or []
         return any(role.get("name") == "Owner" for role in roles)
 
@@ -148,7 +161,8 @@ def purge_authors(client: GhostAdminClient) -> int:
         label="author",
         resource="users",
         key="users",
-        keep=keep_owner,
+        keep=keep_protected,
+        query="include=roles",
     )
 
 
