@@ -1,0 +1,98 @@
+# GENERATED FILE — do not edit by hand.
+# Source: sections/data/sections.js  →  gulp sections | gulp build
+#
+# Pilot: News + Lifestyle. One sec-* primary tag per post (parent or leaf).
+# Desk /news/ is a channel rolling up all descendant primary tags.
+# Parent-only posts permalink via /_/{id}/ → /news/{slug}/.
+
+routes:
+  /:
+    template: home
+  /archive/:
+    controller: channel
+    template: archive
+  /news/:
+    controller: channel
+    filter: primary_tag:[sec-news,sec-campus,sec-city,sec-county,sec-state,sec-national,sec-obituaries,sec-investigations]
+    template: section-parent
+    data: tag.sec-news
+  /lifestyle/:
+    controller: channel
+    filter: primary_tag:[sec-lifestyle,sec-how-to,sec-local-guides,sec-quizzes,sec-strikeout]
+    template: section-parent
+    data: tag.sec-lifestyle
+
+collections:
+  /_/news/:
+    permalink: /news/{slug}/
+    filter: primary_tag:sec-news
+    template: section
+    data: tag.sec-news
+  /news/campus/:
+    permalink: /news/campus/{slug}/
+    filter: primary_tag:sec-campus
+    template: section
+    data: tag.sec-campus
+  /news/city/:
+    permalink: /news/city/{slug}/
+    filter: primary_tag:sec-city
+    template: section
+    data: tag.sec-city
+  /news/county/:
+    permalink: /news/county/{slug}/
+    filter: primary_tag:sec-county
+    template: section
+    data: tag.sec-county
+  /news/state/:
+    permalink: /news/state/{slug}/
+    filter: primary_tag:sec-state
+    template: section
+    data: tag.sec-state
+  /news/national/:
+    permalink: /news/national/{slug}/
+    filter: primary_tag:sec-national
+    template: section
+    data: tag.sec-national
+  /news/obituaries/:
+    permalink: /news/obituaries/{slug}/
+    filter: primary_tag:sec-obituaries
+    template: section
+    data: tag.sec-obituaries
+  /news/investigations/:
+    permalink: /news/investigations/{slug}/
+    filter: primary_tag:sec-investigations
+    template: section
+    data: tag.sec-investigations
+  /_/lifestyle/:
+    permalink: /lifestyle/{slug}/
+    filter: primary_tag:sec-lifestyle
+    template: section
+    data: tag.sec-lifestyle
+  /lifestyle/how-to/:
+    permalink: /lifestyle/how-to/{slug}/
+    filter: primary_tag:sec-how-to
+    template: section
+    data: tag.sec-how-to
+  /lifestyle/local-guides/:
+    permalink: /lifestyle/local-guides/{slug}/
+    filter: primary_tag:sec-local-guides
+    template: section
+    data: tag.sec-local-guides
+  /lifestyle/quizzes/:
+    permalink: /lifestyle/quizzes/{slug}/
+    filter: primary_tag:sec-quizzes
+    template: section
+    data: tag.sec-quizzes
+  /lifestyle/strikeout/:
+    permalink: /lifestyle/strikeout/{slug}/
+    filter: primary_tag:sec-strikeout
+    template: section
+    data: tag.sec-strikeout
+  /latest/:
+    permalink: /{slug}/
+    filter: primary_tag:-[sec-news,sec-campus,sec-city,sec-county,sec-state,sec-national,sec-obituaries,sec-investigations,sec-lifestyle,sec-how-to,sec-local-guides,sec-quizzes,sec-strikeout]
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

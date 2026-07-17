@@ -110,6 +110,17 @@ class GhostAdminClient:
         self._request("DELETE", f"/tags/{tag_id}/")
 
 
+def _js_single_quoted_to_json(match: re.Match[str]) -> str:
+    """Convert a JS single-quoted string body into a JSON double-quoted string."""
+    body = match.group(1)
+    # Preserve real backslashes while unescaping JS \' (invalid in JSON).
+    body = body.replace("\\\\", "\0")
+    body = body.replace("\\'", "'")
+    body = body.replace("\0", "\\\\")
+    body = body.replace('"', '\\"')
+    return f'"{body}"'
+
+
 def js_array_literal_to_json(literal: str) -> str:
     """Normalize a JS array-of-objects literal enough for json.loads."""
     # Remove single line comments "// ..."
@@ -118,8 +129,8 @@ def js_array_literal_to_json(literal: str) -> str:
     text = re.sub(r"/\*.*?\*/", "", text, flags=re.DOTALL)
     # Quote bare keys: { id: ... } / , children:
     text = re.sub(r"([{\[,]\s*)([A-Za-z_][\w]*)\s*:", r'\1"\2":', text)
-    # Single-quoted strings to double-quoted
-    text = re.sub(r"'([^'\\]*(?:\\.[^'\\]*)*)'", r'"\1"', text)
+    # Single-quoted strings to double-quoted (handles Men\'s → Men's)
+    text = re.sub(r"'([^'\\]*(?:\\.[^'\\]*)*)'", _js_single_quoted_to_json, text)
     # Remove trailing commas before } or ]
     text = re.sub(r",(\s*[}\]])", r"\1", text)
     return text

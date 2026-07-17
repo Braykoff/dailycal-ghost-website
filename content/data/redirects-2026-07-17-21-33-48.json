@@ -1,0 +1,1 @@
+[{"from":"^/rss/","to":"/latest/rss/","permanent":true},{"from":"^/(?:.*/)?([^/]+)/article_[^/]+\\.html$","to":"/$1/","permanent":true}]
