@@ -1,35 +1,26 @@
-// Compiles sections/data/sections.js into routes.yaml, redirects.yaml, and
-// the section partials (category link, parent subnav switcher, per-desk subnav).
+// Compiles sections/data/sections.js into routes.yaml and section partials
+// (category link, parent subnav switcher, per-desk subnav).
 //
 // Merge model:
-//   routes-default.yaml    + generated channels/collections  → routes.yaml
-//   redirects-default.yaml + generated redirects             → redirects.yaml
-// Handwritten entries come first; generated entries are injected at markers.
+//   routes-default.yaml + generated channels/collections → routes.yaml
+// Handwritten entries come first. redirects.yaml is handwritten and not
+// generated here.
 
+import YAML from 'yaml';
 import { sections } from './data/sections.js';
 
-const ROUTES_MARKER = '# @@GENERATED_ROUTES@@';
-const COLLECTIONS_MARKER = '# @@GENERATED_COLLECTIONS@@';
-const REDIRECTS_MARKER = '# @@GENERATED_REDIRECTS@@';
-
+// Default path if article has no valid primary tag
 const CATCH_ALL_PATH = '/article/';
 
 const SLUG_SEGMENT = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const MAX_TAG_SLUG_LENGTH = 191;
 
 const ROUTES_HEADER =
-  '# GENERATED FILE — do not edit by hand.\n' +
+  '# GENERATED FILE. Do not edit by hand.\n' +
   '# Built from routes-default.yaml + sections/data/sections.js by sections/build.js\n' +
   '# (run `gulp sections` or `gulp build`). Edit those sources instead.\n';
 
-const REDIRECTS_HEADER =
-  '# GENERATED FILE — do not edit by hand.\n' +
-  '# Built from redirects-default.yaml + sections/data/sections.js by sections/build.js\n' +
-  '# (run `gulp sections` or `gulp build`). Edit those sources instead.\n';
-
-function indent(level, line) {
-  return `${'  '.repeat(level)}${line}`;
-}
-
+/** Return whether a section node has no child sections. */
 function isLeaf(node) {
   return !node.children || node.children.length === 0;
 }
@@ -47,10 +38,10 @@ export function flatten(tree = sections, ancestorIds = []) {
       raw: node,
       id: node.id,
       label: node.label,
-      tag: node.tag,
+      tagSlug: node.tagSlug,
       ids,
       path: `/${ids.join('/')}/`,
-      expectedSlug: `sec-${ids.join('-')}`,
+      expectedSlug: `sec_${ids.join('_')}`,
       leaf: isLeaf(node),
       children: node.children || [],
     };
@@ -63,8 +54,9 @@ export function flatten(tree = sections, ancestorIds = []) {
   return out;
 }
 
+/** Get a list of a tag slug and all its descendant tag slugs */
 function selfAndDescendantTags(node) {
-  const tags = [node.tag];
+  const tags = [node.tagSlug];
   for (const child of node.children || []) {
     tags.push(...selfAndDescendantTags(child));
   }
@@ -78,24 +70,38 @@ export function validateSections(tree = sections) {
   const seenPaths = new Set();
 
   for (const node of nodes) {
+    if (typeof node.label !== 'string' || node.label.trim() === '') {
+      throw new Error(`[sections] Section ${node.path} must have a non-empty label.`);
+    }
+    if (typeof node.tagSlug !== 'string' || node.tagSlug.trim() === '') {
+      throw new Error(`[sections] Section ${node.path} must have a non-empty tagSlug.`);
+    }
+    if (node.tagSlug.length > MAX_TAG_SLUG_LENGTH) {
+      throw new Error(
+        `[sections] tagSlug "${node.tagSlug}" for ${node.path} is ${node.tagSlug.length} ` +
+        `characters; Ghost allows at most ${MAX_TAG_SLUG_LENGTH}.`
+      );
+    }
+
     for (const segment of node.ids) {
-      if (!SLUG_SEGMENT.test(segment)) {
+      if (typeof segment !== 'string' || !SLUG_SEGMENT.test(segment)) {
         throw new Error(
           `[sections] Invalid id segment "${segment}" in ${node.path} — use lowercase letters, numbers, and hyphens.`
         );
       }
     }
 
-    if (node.tag.toLowerCase() !== node.expectedSlug.toLowerCase()) {
+    if (node.tagSlug.toLowerCase() !== node.expectedSlug.toLowerCase()) {
       throw new Error(
-        `[sections] Tag slug "${node.tag}" for ${node.path} must be "${node.expectedSlug}" ` +
-        `(ancestry: ${node.ids.join(' > ')}).`
+        `[sections] tagSlug "${node.tagSlug}" for ${node.path} must be "${node.expectedSlug}" ` +
+        `(ancestry: ${node.ids.join(' > ')}). Use underscores only between ` +
+        'ancestry levels and preserve hyphens inside section ids.'
       );
     }
 
-    const slugKey = node.tag.toLowerCase();
+    const slugKey = node.tagSlug.toLowerCase();
     if (seenSlugs.has(slugKey)) {
-      throw new Error(`[sections] Duplicate tag slug "${node.tag}".`);
+      throw new Error(`[sections] Duplicate tagSlug "${node.tagSlug}".`);
     }
     seenSlugs.add(slugKey);
 
@@ -108,144 +114,131 @@ export function validateSections(tree = sections) {
   return nodes;
 }
 
-// --- routes.yaml blocks -----------------------------------------------------
+// --- routes.yaml objects ----------------------------------------------------
 
-// Non-leaf desk: a channel that rolls up the desk + every descendant primary tag.
-function channelBlock(node) {
+/** Build the Ghost channel configuration for a non-leaf section. */
+function channelEntry(node) {
   const tags = selfAndDescendantTags(node.raw);
-  return [
-    indent(1, `${node.path}:`),
-    indent(2, 'controller: channel'),
-    indent(2, `filter: primary_tag:[${tags.join(',')}]`),
-    indent(2, 'template: section-parent'),
-    indent(2, `data: tag.${node.tag}`),
-  ].join('\n');
+  return {
+    controller: 'channel',
+    filter: `primary_tag:[${tags.join(',')}]`,
+    template: 'section-parent',
+    data: `tag.${node.tagSlug}`,
+  };
 }
 
-// Leaf: a collection that owns its posts' permalinks and its own index page.
-function leafCollectionBlock(node) {
-  return [
-    indent(1, `${node.path}:`),
-    indent(2, `permalink: ${node.path}{slug}/`),
-    indent(2, `filter: primary_tag:${node.tag}`),
-    indent(2, 'template: section'),
-    indent(2, `data: tag.${node.tag}`),
-  ].join('\n');
+/** Build the Ghost collection configuration that owns a section's posts. */
+function collectionEntry(node) {
+  return {
+    permalink: `${node.path}{slug}/`,
+    filter: `primary_tag:${node.tagSlug}`,
+    template: 'section',
+    data: `tag.${node.tagSlug}`,
+  };
 }
 
-// Non-leaf: its own posts still need permalinks at /a/b/{slug}/, but /a/b/ is
-// the channel index — so own the permalinks from a hidden /_/a/b/ collection.
-function parentPermalinkCollectionBlock(node) {
-  return [
-    indent(1, `/_${node.path}:`),
-    indent(2, `permalink: ${node.path}{slug}/`),
-    indent(2, `filter: primary_tag:${node.tag}`),
-    indent(2, 'template: section'),
-    indent(2, `data: tag.${node.tag}`),
-  ].join('\n');
+/** Build the fallback collection for posts without a configured section tag. */
+function catchAllCollectionEntry(nodes) {
+  const allTags = nodes.map((node) => node.tagSlug).join(',');
+  return {
+    permalink: `${CATCH_ALL_PATH}{slug}/`,
+    filter: `primary_tag:-[${allTags}]`,
+    template: 'index',
+  };
 }
 
-// Catch-all for posts with no section tag: /article/{slug}/. Excludes every
-// section tag so section posts never fall through to it. Must be listed last.
-function catchAllCollectionBlock(nodes) {
-  const allTags = nodes.map((node) => node.tag).join(',');
-  return [
-    indent(1, `${CATCH_ALL_PATH}:`),
-    indent(2, `permalink: ${CATCH_ALL_PATH}{slug}/`),
-    indent(2, `filter: primary_tag:-[${allTags}]`),
-    indent(2, 'template: index'),
-  ].join('\n');
-}
-
-function generatedRoutesBlock(nodes) {
-  return nodes
-    .filter((node) => !node.leaf)
-    .map(channelBlock)
-    .join('\n');
-}
-
-function generatedCollectionsBlock(nodes) {
-  const blocks = nodes.map((node) =>
-    node.leaf ? leafCollectionBlock(node) : parentPermalinkCollectionBlock(node)
-  );
-  blocks.push(catchAllCollectionBlock(nodes));
-  return blocks.join('\n');
-}
-
-// --- redirects.yaml blocks --------------------------------------------------
-
-function generatedRedirectsBlock(nodes) {
-  const lines = [];
-
-  // Unwrap the hidden /_/… collection indexes to their public paths (any depth).
-  lines.push(indent(1, '^/_/(.*?)/?$: /$1/'));
-
-  // Section tag archives → section pages. Explicit per section because segment
-  // ids may contain hyphens, so slug→path boundaries can't be recovered by a
-  // generic regex.
-  for (const node of nodes) {
-    lines.push(indent(1, `^/tag/${node.tag}/?$: ${node.path}`));
+/** Build the generated routes map for every non-leaf section channel. */
+function generatedRoutes(nodes) {
+  const routes = {};
+  for (const node of nodes.filter((entry) => !entry.leaf)) {
+    routes[node.path] = channelEntry(node);
   }
-
-  return lines.join('\n');
+  return routes;
 }
 
-// --- merge helpers ----------------------------------------------------------
-
-function stripComments(text) {
-  return (
-    text
-      .split('\n')
-      .filter((line) => !/^\s*#/.test(line))
-      .join('\n')
-      .replace(/\n{3,}/g, '\n\n')
-      .replace(/^\n+/, '')
-      .trimEnd() + '\n'
-  );
+/** Build the generated collections map for all sections and fallback posts. */
+function generatedCollections(nodes) {
+  const collections = {};
+  for (const node of nodes) {
+    // Leaves own their public path; non-leaves use a hidden /_/… path so the
+    // public path can remain a rollup channel.
+    const key = node.leaf ? node.path : `/_${node.path}`;
+    collections[key] = collectionEntry(node);
+  }
+  collections[CATCH_ALL_PATH] = catchAllCollectionEntry(nodes);
+  return collections;
 }
 
-// Use a replacer function so `$1`/`$&` in generated content are treated as
-// literals rather than regex substitution tokens.
-function injectMarker(text, marker, block) {
-  return text.replace(marker, () => block);
+/** Return a mapping value as an object, or an empty object for invalid values. */
+function asObject(value) {
+  return value && typeof value === 'object' && !Array.isArray(value) ? value : {};
 }
 
+/**
+ * Merge generated section routes into the handwritten defaults and serialize
+ * the complete Ghost routes configuration as YAML.
+ */
 export function renderRoutesYaml(routesDefault, tree = sections) {
   const nodes = validateSections(tree);
-  let merged = injectMarker(routesDefault, ROUTES_MARKER, generatedRoutesBlock(nodes));
-  merged = injectMarker(merged, COLLECTIONS_MARKER, generatedCollectionsBlock(nodes));
-  return ROUTES_HEADER + stripComments(merged);
-}
+  const defaults = YAML.parse(routesDefault) || {};
 
-export function renderRedirectsYaml(redirectsDefault, tree = sections) {
-  const nodes = validateSections(tree);
-  const merged = injectMarker(redirectsDefault, REDIRECTS_MARKER, generatedRedirectsBlock(nodes));
-  return REDIRECTS_HEADER + stripComments(merged);
+  if (!Object.hasOwn(defaults, 'routes')) {
+    throw new Error('[sections] routes-default.yaml must contain a routes: block.');
+  }
+  if (!Object.hasOwn(defaults, 'collections')) {
+    throw new Error('[sections] routes-default.yaml must contain a collections: block.');
+  }
+
+  const doc = {
+    routes: {
+      ...asObject(defaults.routes),
+      ...generatedRoutes(nodes),
+    },
+    collections: {
+      ...asObject(defaults.collections),
+      ...generatedCollections(nodes),
+    },
+  };
+
+  if (Object.hasOwn(defaults, 'taxonomies')) {
+    doc.taxonomies = asObject(defaults.taxonomies);
+  }
+
+  return (
+    ROUTES_HEADER +
+    YAML.stringify(doc, {
+      lineWidth: 0,
+      defaultKeyType: 'PLAIN',
+      defaultStringType: 'PLAIN',
+    })
+  );
 }
 
 // --- generated partials -----------------------------------------------------
 
+/** Render the partial that maps each primary section tag to its public path. */
 export function renderCategoryLinkPartial(tree = sections) {
   const nodes = validateSections(tree);
 
   let body = '{{#primary_tag}}\n';
   nodes.forEach((node, index) => {
     const keyword = index === 0 ? '#match' : 'else match';
-    body += `  {{${keyword} slug '${node.tag}'}}\n`;
+    body += `  {{${keyword} slug '${node.tagSlug}'}}\n`;
     body += `    <a href='${node.path}'>{{name}}</a>\n`;
   });
   body += '  {{else}}\n';
-  body += "    <a href='{{url}}'>{{name}}</a>\n";
+  body += '    <span>{{name}}</span>\n';
   body += '  {{/match}}\n';
   body += '{{/primary_tag}}\n';
 
   return `{{!-- Category link — generated from sections/data/sections.js --}}\n${body}`;
 }
 
+/** Render the dispatcher partial that selects a non-leaf section's subnav. */
 function renderParentSubnavSwitcher(nonLeafNodes) {
   const matches = nonLeafNodes.map((node, index) => {
     const keyword = index === 0 ? '#match' : 'else match';
-    return `  {{${keyword} slug '${node.tag}'}}\n    {{> sections/dist/${node.tag}-subnav }}`;
+    return `  {{${keyword} slug '${node.tagSlug}'}}\n    {{> sections/dist/${node.tagSlug}-subnav }}`;
   });
 
   const inner = matches.length
@@ -261,6 +254,7 @@ function renderParentSubnavSwitcher(nonLeafNodes) {
   ].join('\n');
 }
 
+/** Render the direct-child navigation partial for one non-leaf section. */
 function renderSectionSubnav(node) {
   const links = node.children.map((child) => {
     const childPath = `${node.path}${child.id}/`;
@@ -272,7 +266,7 @@ function renderSectionSubnav(node) {
   });
 
   return [
-    `{{!-- ${node.tag} subnav — generated from sections/data/sections.js --}}`,
+    `{{!-- ${node.tagSlug} subnav — generated from sections/data/sections.js --}}`,
     `<nav class='c-section-subnav' aria-label='${node.label} sections'>`,
     ...links,
     '</nav>',
@@ -294,7 +288,7 @@ export function sectionPartials(tree = sections) {
   ];
 
   for (const node of nonLeaf) {
-    partials.push({ file: `${node.tag}-subnav.hbs`, content: renderSectionSubnav(node) });
+    partials.push({ file: `${node.tagSlug}-subnav.hbs`, content: renderSectionSubnav(node) });
   }
 
   return partials;

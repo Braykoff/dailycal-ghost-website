@@ -46,13 +46,15 @@ This theme has two separate social features:
 
 ### 5. Department sections (pilot)
 
-News and Lifestyle use one **`sec-*` primary tag** per post (parent or leaf — not both). Each slug encodes its full ancestry: News › Campus › ASUC → `sec-news-campus-asuc`.
+News and Lifestyle use exactly one **`sec_*` primary tag** per post (parent or leaf — not both). Tags are reserved for sections, while migrated legacy keywords live in per-post head injection. Underscores separate ancestry levels while hyphens remain inside section ids: News › Campus › ASUC → `sec_news_campus_asuc`; Lifestyle › How-To → `sec_lifestyle_how-to`.
 
 - Edit the tree in `sections/data/sections.js`
-- Run `npm run build` to regenerate `routes.yaml`, `redirects.yaml`, and section partials (both YAML files are git-ignored; the handwritten bases are `routes-default.yaml` / `redirects-default.yaml`)
+- Run `npm run build` to regenerate `routes.yaml` and section partials (`routes.yaml` is git-ignored; edit `routes-default.yaml` for handwritten routes)
+- Edit `redirects.yaml` directly — it is handwritten and tracked in git
 - The build **validates** every slug against its ancestry and throws if they disagree
-- Create tags in Ghost Admin with those slugs (name: “Campus”); type `sec-` in the tag field to find them
-- Desk URLs: `/news/`, `/news/campus/`; posts: `/news/{slug}/` or `/news/campus/asuc/{slug}/`; untagged posts fall back to `/article/{slug}/`
-- Category labels on cards link to section paths (not `/tag/…`)
+- Create tags in Ghost Admin with those slugs (name: “Campus”); type `sec_` in the tag field to find them
+- Desk URLs: `/news/`, `/news/campus/`; posts: `/news/{slug}/` or `/news/campus/asuc/{slug}/`; missing section tags fall back to `/article/{slug}/`
+- `/article/` redirects home, tag taxonomy is disabled, and category labels link directly to section paths
+- Legacy URL redirects preserve category paths, normalize underscores to dashes, and remove trailing `article_*.html`
 
 Full details: [`routes.md`](routes.md).

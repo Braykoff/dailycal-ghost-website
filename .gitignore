@@ -2,9 +2,8 @@
 .DS_Store
 .vscode/
 
-docs.pdf
 *.zip
-files.md
+*.ignore.*
 
 ## Node + npm
 logs
@@ -25,7 +24,6 @@ dist
 theme/assets/css/
 theme/assets/js/app.min.js
 theme/routes.yaml
-theme/redirects.yaml
 
 ## Ghost Instance
 # Keep the seed database and uploaded media (images/files/media).

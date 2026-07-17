@@ -19,7 +19,6 @@ import { renderHeaderNavigation, renderFooterNavigation } from './navigation/bui
 import { sections } from './sections/data/sections.js';
 import {
   renderRoutesYaml,
-  renderRedirectsYaml,
   sectionPartials,
 } from './sections/build.js';
 
@@ -66,14 +65,11 @@ function navTask(done) {
   done();
 }
 
-// Department sections → routes.yaml, redirects.yaml, and generated partials.
-// Merges the handwritten *-default.yaml sources with generated section entries.
+// Generates sections partials and merges handwritten routes-default.yaml with 
+// generated section entries.
 function sectionsTask(done) {
   const routesDefault = fs.readFileSync('routes-default.yaml', 'utf8');
-  const redirectsDefault = fs.readFileSync('redirects-default.yaml', 'utf8');
-
   fs.writeFileSync('routes.yaml', renderRoutesYaml(routesDefault, sections));
-  fs.writeFileSync('redirects.yaml', renderRedirectsYaml(redirectsDefault, sections));
 
   // Rebuild the dist directory so renamed/removed sections leave no stale files.
   fs.rmSync('partials/sections/dist', { recursive: true, force: true });
@@ -106,7 +102,7 @@ function watchTask() {
   gulp.watch('assets/sass/**/*.scss', gulp.series(buildCSSTask));
   gulp.watch('./assets/js/app.js', gulp.series(jsTask));
   gulp.watch('navigation/**/*.js', gulp.series(navTask));
-  gulp.watch(['sections/**/*.js', 'routes-default.yaml', 'redirects-default.yaml'], gulp.series(sectionsTask));
+  gulp.watch(['sections/**/*.js', 'routes-default.yaml'], gulp.series(sectionsTask));
 }
 
 // Generate zip file name from date, version, and git hash
@@ -144,7 +140,6 @@ function zipTask() {
     '!navigation/**',
     '!sections/**',
     '!routes-default.yaml',
-    '!redirects-default.yaml',
     '!**/*.map',
     '!**/*.md',
   ], { dot: true, encoding: false })
