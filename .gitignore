@@ -39,6 +39,8 @@ content/data/*.db-journal
 content/data/*.db-shm
 content/data/*.db-wal
 
+content/settings/routes-*.yaml
+
 ## Python
 __pycache__/
 *.py[cod]
