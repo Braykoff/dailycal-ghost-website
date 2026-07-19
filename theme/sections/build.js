@@ -234,6 +234,30 @@ export function renderCategoryLinkPartial(tree = sections) {
   return `{{!-- Category link — generated from sections/data/sections.js --}}\n${body}`;
 }
 
+/** Render selected homepage sections with filters that include descendants. */
+function renderHomeSectionDispatcher(nodes) {
+  const matches = nodes.map((node, index) => {
+    const keyword = index === 0 ? '#match' : 'else match';
+    const tags = selfAndDescendantTags(node.raw).join(',');
+    return [
+      `  {{${keyword} this '${node.tagSlug}'}}`,
+      '    {{> tag-section',
+      `      sectionSlug='${node.tagSlug}'`,
+      `      sectionName="${node.label.replaceAll('"', '&quot;')}"`,
+      `      sectionUrl='${node.path}'`,
+      `      postFilter='primary_tag:[${tags}]'`,
+      '    }}',
+    ].join('\n');
+  });
+
+  return [
+    '{{!-- Homepage section dispatcher — generated from sections/data/sections.js --}}',
+    ...matches,
+    '  {{/match}}',
+    '',
+  ].join('\n');
+}
+
 /** Render the dispatcher partial that selects a non-leaf section's subnav. */
 function renderParentSubnavSwitcher(nonLeafNodes) {
   const matches = nonLeafNodes.map((node, index) => {
@@ -284,6 +308,7 @@ export function sectionPartials(tree = sections) {
 
   const partials = [
     { file: 'category-link.hbs', content: renderCategoryLinkPartial(tree) },
+    { file: 'home-section.hbs', content: renderHomeSectionDispatcher(nodes) },
     { file: 'parent-subnav.hbs', content: renderParentSubnavSwitcher(nonLeaf) },
   ];
 
