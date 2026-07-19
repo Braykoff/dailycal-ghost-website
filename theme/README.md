@@ -43,3 +43,18 @@ This theme has two separate social features:
 **2. Post share buttons** (`partials/share.hbs`): per-post share actions. These are not configured in site or theme settings. Edit `partials/share.hbs` to change which share options appear.
 
 **Icons:** Tripoli used [Evil Icons](https://github.com/evil-icons/evil-icons), Bootstrap, and Font Awesome. Evil Icons has been removed; all icons are now [Bootstrap Icons](https://icons.getbootstrap.com/) SVGs saved as partials in `partials/icons/`. To add one, copy an SVG from Bootstrap Icons into a new file there (e.g. `partials/icons/example.hbs`) and include it with `{{> icons/example }}`.
+
+### 5. Department sections (pilot)
+
+News and Lifestyle use exactly one **`sec_*` primary tag** per post (parent or leaf — not both). Tags are reserved for sections, while migrated legacy keywords live in per-post head injection. Underscores separate ancestry levels while hyphens remain inside section ids: News › Campus › ASUC → `sec_news_campus_asuc`; Lifestyle › How-To → `sec_lifestyle_how-to`.
+
+- Edit the tree in `sections/data/sections.js`
+- Run `npm run build` to regenerate `routes.yaml` and section partials (`routes.yaml` is git-ignored; edit `routes-default.yaml` for handwritten routes)
+- Edit `redirects.yaml` directly — it is handwritten and tracked in git
+- The build **validates** every slug against its ancestry and throws if they disagree
+- Create tags in Ghost Admin with those slugs (name: “Campus”); type `sec_` in the tag field to find them
+- Desk URLs: `/news/`, `/news/campus/`; posts: `/news/{slug}/` or `/news/campus/asuc/{slug}/`; missing section tags fall back to `/article/{slug}/`
+- `/article/` redirects home, tag taxonomy is disabled, and category labels link directly to section paths
+- Legacy URL redirects preserve category paths, normalize underscores to dashes, and remove trailing `article_*.html`
+
+Full details: [`routes.md`](routes.md).

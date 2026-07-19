@@ -1,0 +1,16 @@
+# Handwritten base routes/collections/taxonomies. The build step
+# (sections/build.js) appends AUTO-GENERATED section categories, then
+# writes the final routes.yaml. Do NOT add section entries here; edit
+# sections/data/sections.js instead.
+
+routes:
+  /:
+    template: home
+  /latest/:
+    controller: channel
+    template: latest
+
+collections:
+
+taxonomies:
+  author: /author/{slug}/

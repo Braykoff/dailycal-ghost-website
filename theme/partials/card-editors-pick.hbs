@@ -12,9 +12,7 @@
   {{/if}}
 
   <div class='c-editors-pick__content'>
-    <div class='c-editors-pick__tag c-tag'>
-      {{ tags separator='' limit='1' }}
-    </div>
+    {{> category-label class='c-editors-pick__tag' }}
 
     <h3 class='c-editors-pick__headline'><a href='{{ url }}' class='c-card__link'>{{ title }}</a></h3>
 

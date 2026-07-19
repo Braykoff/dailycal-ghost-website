@@ -2,9 +2,8 @@
 .DS_Store
 .vscode/
 
-docs.pdf
 *.zip
-files.md
+*.ignore.*
 
 ## Node + npm
 logs
@@ -24,6 +23,7 @@ bower_components
 dist
 theme/assets/css/
 theme/assets/js/app.min.js
+theme/routes.yaml
 
 ## Ghost Instance
 # Keep the seed database and uploaded media (images/files/media).
@@ -38,6 +38,9 @@ content/images/size/
 content/data/*.db-journal
 content/data/*.db-shm
 content/data/*.db-wal
+
+content/settings/routes-*.yaml
+content/data/redirects-*.json
 
 ## Python
 __pycache__/

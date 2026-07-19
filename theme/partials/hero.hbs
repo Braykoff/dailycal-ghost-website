@@ -24,7 +24,7 @@
         {{#get 'posts' filter='id:-[{{posts[*].id}}]' include='tags,authors' limit=@custom.number_of_latest_posts}}
           {{#if posts}}
             <div class='c-section-heading'>
-              <h2 class='c-section-heading__title c-section-heading__title--small'><a href='{{ @site.url }}/latest'>{{t 'Latest' }}</a></h2>
+              <h2 class='c-section-heading__title c-section-heading__title--small'><a href='{{ @site.url }}/article/'>{{t 'Latest' }}</a></h2>
             </div>
 
             {{#foreach posts}}

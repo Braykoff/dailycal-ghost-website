@@ -12,11 +12,7 @@
   {{/if}}
 
   <div class='c-card__content'>
-    {{#if tags}}
-      <div class='c-card__tag c-tag'>
-        {{ tags separator='' limit='1' }}
-      </div>
-    {{/if}}
+    {{> category-label class='c-card__tag' }}
 
     <h3 class='c-card__headline'><a href='{{ url }}' class='c-card__link'>{{ title }}</a></h3>
 

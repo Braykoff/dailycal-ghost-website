@@ -16,6 +16,11 @@ import gulpSass from 'gulp-sass';
 import headerNavigation from './navigation/data/header.js';
 import { siteNavigation, utilityNavigation, siteSectionsPerRow } from './navigation/data/footer.js';
 import { renderHeaderNavigation, renderFooterNavigation } from './navigation/build.js';
+import { sections } from './sections/data/sections.js';
+import {
+  renderRoutesYaml,
+  sectionPartials,
+} from './sections/build.js';
 
 const sassCompiler = gulpSass(sass);
 
@@ -60,6 +65,23 @@ function navTask(done) {
   done();
 }
 
+// Generates sections partials and merges handwritten routes-default.yaml with 
+// generated section entries.
+function sectionsTask(done) {
+  const routesDefault = fs.readFileSync('routes-default.yaml', 'utf8');
+  fs.writeFileSync('routes.yaml', renderRoutesYaml(routesDefault, sections));
+
+  // Rebuild the dist directory so renamed/removed sections leave no stale files.
+  fs.rmSync('partials/sections/dist', { recursive: true, force: true });
+  fs.mkdirSync('partials/sections/dist', { recursive: true });
+
+  for (const { file, content } of sectionPartials(sections)) {
+    fs.writeFileSync(`partials/sections/dist/${file}`, content);
+  }
+
+  done();
+}
+
 // JavaScript Task
 function jsTask() {
   return gulp.src([
@@ -80,6 +102,7 @@ function watchTask() {
   gulp.watch('assets/sass/**/*.scss', gulp.series(buildCSSTask));
   gulp.watch('./assets/js/app.js', gulp.series(jsTask));
   gulp.watch('navigation/**/*.js', gulp.series(navTask));
+  gulp.watch(['sections/**/*.js', 'routes-default.yaml'], gulp.series(sectionsTask));
 }
 
 // Generate zip file name from date, version, and git hash
@@ -115,6 +138,8 @@ function zipTask() {
     '!assets/css/**',
     '!gulpfile.js',
     '!navigation/**',
+    '!sections/**',
+    '!routes-default.yaml',
     '!**/*.map',
     '!**/*.md',
   ], { dot: true, encoding: false })
@@ -124,7 +149,7 @@ function zipTask() {
 
 // Composite Tasks
 const buildCSSTask = gulp.series(sassTask, inlineCSSTask, inlineCSSRTLTask);
-const buildTask = gulp.series(navTask, buildCSSTask, jsTask);
+const buildTask = gulp.series(navTask, sectionsTask, buildCSSTask, jsTask);
 const defaultTask = gulp.series(buildTask, watchTask);
 
 // Export Tasks
@@ -133,6 +158,7 @@ export {
   inlineCSSTask as inlinecss,
   inlineCSSRTLTask as inlinecss_rtl,
   navTask as navigation,
+  sectionsTask as sections,
   jsTask as js,
   zipTask as zip,
   buildCSSTask as build_css,
