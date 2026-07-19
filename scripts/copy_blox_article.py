@@ -167,6 +167,22 @@ class GhostClient:
         posts = response.json().get("posts", [])
         return posts[0] if posts else None
 
+    def get_tag_by_slug(self, slug: str) -> dict[str, Any] | None:
+        """Return an existing Ghost tag by slug, or None if not found."""
+        response = self.session.get(
+            f"{self.admin_api}/tags/slug/{slug}/",
+            timeout=30,
+        )
+        if response.status_code == 404:
+            return None
+        if response.status_code >= 400:
+            raise RuntimeError(
+                f"Ghost API GET /tags/slug/{slug}/ failed "
+                f"({response.status_code}): {response.text}"
+            )
+        tags = response.json().get("tags", [])
+        return tags[0] if tags else None
+
     def create_post(self, payload: dict[str, Any]) -> dict[str, Any]:
         """Create a published post from an HTML payload."""
         response = self._request(
@@ -227,32 +243,19 @@ def parse_category_tags_from_url(url: str) -> list[tuple[str, str]]:
     return [(segment, format_category_name(segment)) for segment in segments]
 
 
-def build_post_tags(
-    category_tags: list[tuple[str, str]],
-    keyword_tags: list[str],
-) -> list[dict[str, str]]:
-    """Build Ghost tag payloads with the leaf URL category as the primary tag."""
-    tags: list[dict[str, str]] = []
-    seen_slugs: set[str] = set()
+def build_section_tag_slug(category_tags: list[tuple[str, str]]) -> str:
+    """Build the sec_* tag slug from the full BLOX category ancestry."""
+    if not category_tags:
+        raise ValueError("BLOX article URL does not contain a section path")
+    return "sec_" + "_".join(slug for slug, _name in category_tags)
 
-    if category_tags:
-        leaf_slug, leaf_name = category_tags[-1]
-        tags.append({"name": leaf_name, "slug": leaf_slug})
-        seen_slugs.add(leaf_slug)
 
-        for slug, name in category_tags[:-1]:
-            if slug not in seen_slugs:
-                tags.append({"name": name, "slug": slug})
-                seen_slugs.add(slug)
-
-    for keyword in keyword_tags:
-        slug = slugify(keyword)
-        if slug in seen_slugs:
-            continue
-        tags.append({"name": keyword})
-        seen_slugs.add(slug)
-
-    return tags
+def build_keywords_head_injection(keyword_tags: list[str]) -> str | None:
+    """Build valid HTML5 metadata for the BLOX article keywords."""
+    if not keyword_tags:
+        return None
+    content = html.escape(", ".join(keyword_tags), quote=True)
+    return f'<meta name="keywords" content="{content}">'
 
 
 def parse_author_label(raw: str) -> str:
@@ -485,6 +488,13 @@ def migrate(url: str) -> dict[str, Any]:
     """Fetch a BLOX article and create or update the matching Ghost post."""
     article = fetch_blox_article(url)
     ghost = GhostClient()
+    section_tag_slug = build_section_tag_slug(article.category_tags)
+    section_tag = ghost.get_tag_by_slug(section_tag_slug)
+    if not section_tag:
+        raise ValueError(
+            f"Required Ghost section tag '{section_tag_slug}' does not exist"
+        )
+
     existing = ghost.get_post_by_slug(article.slug)
 
     author_records = [ghost.ensure_author(name) for name in article.authors]
@@ -500,8 +510,6 @@ def migrate(url: str) -> dict[str, Any]:
             ghost,
         )
 
-    post_tags = build_post_tags(article.category_tags, article.keyword_tags)
-
     payload: dict[str, Any] = {
         "title": article.title,
         "slug": article.slug,
@@ -510,7 +518,8 @@ def migrate(url: str) -> dict[str, Any]:
         "published_at": article.published_at,
         "custom_excerpt": article.excerpt,
         "authors": [{"id": author["id"]} for author in author_records],
-        "tags": post_tags,
+        "tags": [{"id": section_tag["id"]}],
+        "codeinjection_head": build_keywords_head_injection(article.keyword_tags),
     }
     if feature_image:
         payload["feature_image"] = feature_image
@@ -533,8 +542,9 @@ def migrate(url: str) -> dict[str, Any]:
         "url": post["url"],
         "title": post["title"],
         "authors": [author["name"] for author in author_records],
-        "primary_tag": article.category_tags[-1][1] if article.category_tags else None,
-        "tags": [tag["name"] for tag in post_tags],
+        "primary_tag": section_tag["name"],
+        "tags": [section_tag["name"]],
+        "keywords": article.keyword_tags,
     }
 
 
