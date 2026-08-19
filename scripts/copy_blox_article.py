@@ -29,6 +29,11 @@ FEATURE_IMAGE_MAX_DIMENSION = int(os.environ.get("FEATURE_IMAGE_MAX_DIMENSION", 
 FEATURE_IMAGE_QUALITY = int(os.environ.get("FEATURE_IMAGE_QUALITY", "75"))
 FEATURE_IMAGE_ALT_MAX_LENGTH = 191
 CONTENT_DIR = Path(__file__).resolve().parent.parent / "content"
+BROWSER_USER_AGENT = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/127.0.0.0 Safari/537.36"
+)
 
 
 @dataclass
@@ -367,9 +372,22 @@ def clamp_feature_image_alt(alt: str | None) -> str | None:
     return alt[:FEATURE_IMAGE_ALT_MAX_LENGTH].rstrip()
 
 
+def blox_request_headers(
+    accept: str = "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+) -> dict[str, str]:
+    """Return browser-like headers for BLOX fetches."""
+    return {
+        "User-Agent": BROWSER_USER_AGENT,
+        "Accept": accept,
+        "Accept-Language": "en-US,en;q=0.9",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+    }
+
+
 def fetch_blox_article(url: str) -> BloxArticle:
     """Download and parse a BLOX article into structured fields."""
-    response = requests.get(url, timeout=60)
+    response = requests.get(url, headers=blox_request_headers(), timeout=60)
     response.raise_for_status()
 
     soup = BeautifulSoup(response.text, "html.parser")
@@ -410,7 +428,11 @@ def optimize_feature_image(raw_bytes: bytes) -> bytes:
 
 def download_feature_image(url: str) -> tuple[bytes, str]:
     """Download a feature image and return optimized JPEG bytes."""
-    response = requests.get(url, timeout=60)
+    response = requests.get(
+        url,
+        headers=blox_request_headers(accept="image/avif,image/webp,image/apng,image/*,*/*;q=0.8"),
+        timeout=60,
+    )
     response.raise_for_status()
     return optimize_feature_image(response.content), "feature.jpg"
 
