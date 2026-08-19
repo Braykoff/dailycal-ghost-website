@@ -12,12 +12,16 @@
   {{/if}}
 
   <div class='c-card__content'>
-    {{> category-label class='c-card__tag' }}
+    {{#unless hideTag}}
+      {{> category-label class='c-card__tag' }}
+    {{/unless}}
 
     <h3 class='c-card__headline'><a href='{{ url }}' class='c-card__link'>{{ title }}</a></h3>
 
     {{#match cardSize 'large'}}
-      <p class='c-card__standfirst'>{{ excerpt }}</p>
+      {{#if showExcerpt}}
+        <p class='c-card__standfirst'>{{ excerpt }}</p>
+      {{/if}}
     {{else}}
       {{#if showExcerpt}}
         {{#if @custom.enable_post_card_excerpt}}

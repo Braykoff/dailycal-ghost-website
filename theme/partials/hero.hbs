@@ -4,19 +4,19 @@
     <h2 class='u-screenreader'>{{t 'Featured' }}</h2>
 
     {{#get 'posts' filter='featured:true' include='tags,authors' limit='3' }}
-      <div class='left c-stack-stories'>
+      <div class='left'>
+        {{#foreach posts}}
+          {{#if @first}}
+            {{> card cardSize='large' showExcerpt=false hideTag=true }}
+          {{/if}}
+        {{/foreach}}
+      </div>
+
+      <div class='center c-stack-stories'>
         {{#foreach posts}}
           {{#unless @first}}
             {{> card showExcerpt=false }}
           {{/unless}}
-        {{/foreach}}
-      </div>
-
-      <div class='center'>
-        {{#foreach posts}}
-          {{#if @first}}
-            {{> card cardSize='large' cardAlign='center' showExcerpt=true }}
-          {{/if}}
         {{/foreach}}
       </div>
 

@@ -18,16 +18,4 @@
       {{> visibility-label}}
     </div>
   </div>
-
-  {{#if feature_image}}
-    <a href='{{ url }}' class='c-teaser__media'>
-      <img
-        loading='lazy'
-        decoding='async'
-        class='c-teaser__image'
-        alt="{{#if feature_image_alt}}{{ feature_image_alt }}{{ else }}{{ title }}{{/if}}"
-        src='{{ img_url feature_image size='feature-image-large' format='webp' }}'
-      >
-    </a>
-  {{/if}}
 </article>

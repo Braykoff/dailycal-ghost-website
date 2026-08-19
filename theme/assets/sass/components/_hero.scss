@@ -12,21 +12,10 @@
       margin-top: var(--content-flow);
     }
 
-    .center {
-      margin-top: 0;
-    }
-
-    // Order in small screens
+    // The lead story is first in the document, so small screens need no
+    // reordering — it just sits flush to the top.
     .left {
-      order: 2;
-    }
-
-    .center {
-      order: 1;
-    }
-
-    .right {
-      order: 3;
+      margin-top: 0;
     }
   }
 
@@ -35,9 +24,14 @@
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: minmax(2rem, auto) repeat(2, 1fr);
 
-    .left {
-      grid-column: 1 / span 3;
+    .left,
+    .center,
+    .right {
       grid-row-start: 1;
+    }
+
+    .left {
+      grid-column: 1 / span 6;
 
       position: relative;
 
@@ -53,7 +47,7 @@
     }
 
     .center {
-      grid-column: 4 / span 6;
+      grid-column: 7 / span 3;
     }
 
     .right {
