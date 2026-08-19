@@ -41,6 +41,7 @@ content/data/*.db-wal
 
 content/settings/routes-*.yaml
 content/data/redirects-*.json
+content/data/*.ghost*.json
 
 ## Python
 __pycache__/
