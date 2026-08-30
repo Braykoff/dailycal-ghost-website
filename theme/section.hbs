@@ -1,0 +1,22 @@
+{{!< default}}
+
+{{!-- Leaf section collection index, e.g. /news/campus/ --}}
+
+{{#contentFor 'title'}}{{ meta_title }}{{/contentFor}}
+
+{{#tag}}
+  <header class='c-page-header'>
+    <div class='o-grid o-grid--2-columns'>
+      <div>
+        <h1 class='c-topper__headline u-font-headline u-font-family-sansSerif'>{{ name }}</h1>
+        {{#if description}}
+          <p class='c-topper__standfirst u-font-standfirst u-mt-8 u-font-family-sansSerif'>{{ description }}</p>
+        {{/if}}
+      </div>
+    </div>
+  </header>
+{{/tag}}
+
+{{> loop }}
+
+{{ pagination }}

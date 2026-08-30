@@ -1,15 +1,2056 @@
+# GENERATED FILE. Do not edit by hand.
+# Built from routes-default.yaml + sections/data/sections.js by sections/build.js
+# (run `gulp sections` or `gulp build`). Edit those sources instead.
 routes:
   /:
     template: home
-  /archive/:
-    controller: channel
-    template: archive
-
-collections:
   /latest/:
-    permalink: /{slug}/
+    controller: channel
+    template: latest
+  /blogs/:
+    controller: channel
+    filter: primary_tag:[sec_blogs,sec_blogs_clog,sec_blogs_food-blog,sec_blogs_earth-to-berkeley,sec_blogs_travel,sec_blogs_travel_stories-from-abroad,sec_blogs_grammar,sec_blogs_editors,sec_blogs_editors_divcom-blog,sec_blogs_editors_awards,sec_blogs_news-blog,sec_blogs_arts-blog,sec_blogs_satire]
+    template: section-parent
+    data: tag.sec_blogs
+  /blogs/travel/:
+    controller: channel
+    filter: primary_tag:[sec_blogs_travel,sec_blogs_travel_stories-from-abroad]
+    template: section-parent
+    data: tag.sec_blogs_travel
+  /blogs/editors/:
+    controller: channel
+    filter: primary_tag:[sec_blogs_editors,sec_blogs_editors_divcom-blog,sec_blogs_editors_awards]
+    template: section-parent
+    data: tag.sec_blogs_editors
+  /news/:
+    controller: channel
+    filter: primary_tag:[sec_news,sec_news_campus,sec_news_campus_research-and-ideas,sec_news_campus_student-life,sec_news_campus_asuc,sec_news_campus_asuc_asuc-elections-2024,sec_news_campus_asuc_asuc-elections-2025,sec_news_campus_asuc_asuc-elections-2023,sec_news_campus_asuc_asuc-elections-2022,sec_news_campus_administration,sec_news_campus_academics,sec_news_city,sec_news_city_local-businesses,sec_news_city_city-government,sec_news_city_law-and-justice,sec_news_city_communities,sec_news_city_housing,sec_news_city_crime-and-safety,sec_news_city_local-schools,sec_news_city_transit,sec_news_city_elections,sec_news_city_elections_elections-2024,sec_news_city_environment,sec_news_uc,sec_news_state,sec_news_obituary-news,sec_news_national,sec_news_alameda-county,sec_news_race-and-diversity,sec_news_investigations]
+    template: section-parent
+    data: tag.sec_news
+  /news/campus/:
+    controller: channel
+    filter: primary_tag:[sec_news_campus,sec_news_campus_research-and-ideas,sec_news_campus_student-life,sec_news_campus_asuc,sec_news_campus_asuc_asuc-elections-2024,sec_news_campus_asuc_asuc-elections-2025,sec_news_campus_asuc_asuc-elections-2023,sec_news_campus_asuc_asuc-elections-2022,sec_news_campus_administration,sec_news_campus_academics]
+    template: section-parent
+    data: tag.sec_news_campus
+  /news/campus/asuc/:
+    controller: channel
+    filter: primary_tag:[sec_news_campus_asuc,sec_news_campus_asuc_asuc-elections-2024,sec_news_campus_asuc_asuc-elections-2025,sec_news_campus_asuc_asuc-elections-2023,sec_news_campus_asuc_asuc-elections-2022]
+    template: section-parent
+    data: tag.sec_news_campus_asuc
+  /news/city/:
+    controller: channel
+    filter: primary_tag:[sec_news_city,sec_news_city_local-businesses,sec_news_city_city-government,sec_news_city_law-and-justice,sec_news_city_communities,sec_news_city_housing,sec_news_city_crime-and-safety,sec_news_city_local-schools,sec_news_city_transit,sec_news_city_elections,sec_news_city_elections_elections-2024,sec_news_city_environment]
+    template: section-parent
+    data: tag.sec_news_city
+  /news/city/elections/:
+    controller: channel
+    filter: primary_tag:[sec_news_city_elections,sec_news_city_elections_elections-2024]
+    template: section-parent
+    data: tag.sec_news_city_elections
+  /sports/:
+    controller: channel
+    filter: primary_tag:[sec_sports,sec_sports_msports,sec_sports_msports_football,sec_sports_msports_football_acc-character-profiles,sec_sports_msports_basketball,sec_sports_msports_tennis,sec_sports_msports_baseball,sec_sports_msports_golf,sec_sports_msports_rugby,sec_sports_msports_soccer,sec_sports_msports_swimming-and-diving,sec_sports_msports_water-polo,sec_sports_msports_gymnastics,sec_sports_msports_crew,sec_sports_wsports,sec_sports_wsports_basketball,sec_sports_wsports_softball,sec_sports_wsports_volleyball,sec_sports_wsports_tennis,sec_sports_wsports_gymnastics,sec_sports_wsports_water-polo,sec_sports_wsports_field-hockey,sec_sports_wsports_golf,sec_sports_wsports_beach-volleyball,sec_sports_wsports_lacrosse,sec_sports_wsports_soccer,sec_sports_wsports_swimming-and-diving,sec_sports_wsports_rowing,sec_sports_bearbytes,sec_sports_bearbytes_esports,sec_sports_sports-columns,sec_sports_sports-columns_our-brown-leather-couch,sec_sports_sports-columns_love-and-basketball,sec_sports_sports-columns_euros-on-tape,sec_sports_track-and-field,sec_sports_crew,sec_sports_cross-country,sec_sports_special-report,sec_sports_special-report_paris-olympics,sec_sports_special-report_winter-olympics-2026,sec_sports_gameday,sec_sports_boxing,sec_sports_national,sec_sports_world-cup]
+    template: section-parent
+    data: tag.sec_sports
+  /sports/msports/:
+    controller: channel
+    filter: primary_tag:[sec_sports_msports,sec_sports_msports_football,sec_sports_msports_football_acc-character-profiles,sec_sports_msports_basketball,sec_sports_msports_tennis,sec_sports_msports_baseball,sec_sports_msports_golf,sec_sports_msports_rugby,sec_sports_msports_soccer,sec_sports_msports_swimming-and-diving,sec_sports_msports_water-polo,sec_sports_msports_gymnastics,sec_sports_msports_crew]
+    template: section-parent
+    data: tag.sec_sports_msports
+  /sports/msports/football/:
+    controller: channel
+    filter: primary_tag:[sec_sports_msports_football,sec_sports_msports_football_acc-character-profiles]
+    template: section-parent
+    data: tag.sec_sports_msports_football
+  /sports/wsports/:
+    controller: channel
+    filter: primary_tag:[sec_sports_wsports,sec_sports_wsports_basketball,sec_sports_wsports_softball,sec_sports_wsports_volleyball,sec_sports_wsports_tennis,sec_sports_wsports_gymnastics,sec_sports_wsports_water-polo,sec_sports_wsports_field-hockey,sec_sports_wsports_golf,sec_sports_wsports_beach-volleyball,sec_sports_wsports_lacrosse,sec_sports_wsports_soccer,sec_sports_wsports_swimming-and-diving,sec_sports_wsports_rowing]
+    template: section-parent
+    data: tag.sec_sports_wsports
+  /sports/bearbytes/:
+    controller: channel
+    filter: primary_tag:[sec_sports_bearbytes,sec_sports_bearbytes_esports]
+    template: section-parent
+    data: tag.sec_sports_bearbytes
+  /sports/sports-columns/:
+    controller: channel
+    filter: primary_tag:[sec_sports_sports-columns,sec_sports_sports-columns_our-brown-leather-couch,sec_sports_sports-columns_love-and-basketball,sec_sports_sports-columns_euros-on-tape]
+    template: section-parent
+    data: tag.sec_sports_sports-columns
+  /sports/special-report/:
+    controller: channel
+    filter: primary_tag:[sec_sports_special-report,sec_sports_special-report_paris-olympics,sec_sports_special-report_winter-olympics-2026]
+    template: section-parent
+    data: tag.sec_sports_special-report
+  /arts/:
+    controller: channel
+    filter: primary_tag:[sec_arts,sec_arts_film-and-television,sec_arts_music,sec_arts_music_album-reviews,sec_arts_music_concerts,sec_arts_theater,sec_arts_visual-art,sec_arts_culture-shot,sec_arts_art-columns,sec_arts_art-columns_art-to-heart,sec_arts_art-columns_arts-away,sec_arts_dance,sec_arts_books,sec_arts_local-event,sec_arts_video-games,sec_arts_fashion-arts,sec_arts_arts-awards,sec_arts_comedy-arts,sec_arts_festivals]
+    template: section-parent
+    data: tag.sec_arts
+  /arts/music/:
+    controller: channel
+    filter: primary_tag:[sec_arts_music,sec_arts_music_album-reviews,sec_arts_music_concerts]
+    template: section-parent
+    data: tag.sec_arts_music
+  /arts/art-columns/:
+    controller: channel
+    filter: primary_tag:[sec_arts_art-columns,sec_arts_art-columns_art-to-heart,sec_arts_art-columns_arts-away]
+    template: section-parent
+    data: tag.sec_arts_art-columns
+  /weekender/:
+    controller: channel
+    filter: primary_tag:[sec_weekender,sec_weekender_personal-essays,sec_weekender_poems,sec_weekender_commentary,sec_weekender_fiction,sec_weekender_features,sec_weekender_back-and-forth,sec_weekender_culture,sec_weekender_portfolio,sec_weekender_commentaries-and-features]
+    template: section-parent
+    data: tag.sec_weekender
+  /multimedia/:
+    controller: channel
+    filter: primary_tag:[sec_multimedia,sec_multimedia_photo-essays]
+    template: section-parent
+    data: tag.sec_multimedia
+  /opinion/:
+    controller: channel
+    filter: primary_tag:[sec_opinion,sec_opinion_the-soapbox,sec_opinion_opinion-columns,sec_opinion_opinion-columns_sex-on-tuesday,sec_opinion_opinion-columns_cal-in-color,sec_opinion_opinion-columns_off-the-beat,sec_opinion_opinion-columns_non-trad-undergrad,sec_opinion_opinion-columns_the-graduate,sec_opinion_opinion-columns_word,sec_opinion_opinion-columns_10-kinds-of-immortality,sec_opinion_opinion-columns_american-void,sec_opinion_opinion-columns_day-one-as-a-dictator,sec_opinion_opinion-columns_equivalent-exchange,sec_opinion_opinion-columns_on-being-kids,sec_opinion_opinion-columns_reflections-on-the-bay,sec_opinion_opinion-columns_soundtrack-of-a-letter,sec_opinion_opinion-columns_words-we-live-by,sec_opinion_opinion-columns_blood-and-water,sec_opinion_opinion-columns_on-god,sec_opinion_opinion-columns_time-and-place,sec_opinion_opinion-columns_time-and-place_10-kinds-of-immortality,sec_opinion_opinion-columns_between-the-world-and-me,sec_opinion_opinion-columns_broke-in-berkeley,sec_opinion_opinion-columns_californication,sec_opinion_opinion-columns_good-mythical-monday,sec_opinion_opinion-columns_ships-on-a-wine-dark-sea,sec_opinion_opinion-columns_stories-from-abroad,sec_opinion_opinion-columns_trail-mix,sec_opinion_opinion-columns_growing-up-again,sec_opinion_opinion-columns_where-i-was-from,sec_opinion_opinion-columns_intertext,sec_opinion_opinion-columns_traveler-s-guide-to-saying-yes,sec_opinion_opinion-columns_growing-into-myself,sec_opinion_opinion-columns_the-measured-medium,sec_opinion_opinion-columns_we-need-to-talk,sec_opinion_opinion-columns_apathetic-america,sec_opinion_opinion-columns_cis-to-sis,sec_opinion_opinion-columns_head-in-the-cloud,sec_opinion_opinion-columns_non-trade-undergrad,sec_opinion_opinion-columns_odes-to-art,sec_opinion_opinion-columns_organize-your-thoughts,sec_opinion_opinion-columns_points-west,sec_opinion_opinion-columns_reciprocity,sec_opinion_opinion-columns_scarlet-letter,sec_opinion_opinion-columns_sex,sec_opinion_opinion-columns_suggested-reply,sec_opinion_opinion-columns_the-greek-theater,sec_opinion_op-eds,sec_opinion_editorials,sec_opinion_our-voices,sec_opinion_letters-to-the-editor,sec_opinion_elections-2024]
+    template: section-parent
+    data: tag.sec_opinion
+  /opinion/opinion-columns/:
+    controller: channel
+    filter: primary_tag:[sec_opinion_opinion-columns,sec_opinion_opinion-columns_sex-on-tuesday,sec_opinion_opinion-columns_cal-in-color,sec_opinion_opinion-columns_off-the-beat,sec_opinion_opinion-columns_non-trad-undergrad,sec_opinion_opinion-columns_the-graduate,sec_opinion_opinion-columns_word,sec_opinion_opinion-columns_10-kinds-of-immortality,sec_opinion_opinion-columns_american-void,sec_opinion_opinion-columns_day-one-as-a-dictator,sec_opinion_opinion-columns_equivalent-exchange,sec_opinion_opinion-columns_on-being-kids,sec_opinion_opinion-columns_reflections-on-the-bay,sec_opinion_opinion-columns_soundtrack-of-a-letter,sec_opinion_opinion-columns_words-we-live-by,sec_opinion_opinion-columns_blood-and-water,sec_opinion_opinion-columns_on-god,sec_opinion_opinion-columns_time-and-place,sec_opinion_opinion-columns_time-and-place_10-kinds-of-immortality,sec_opinion_opinion-columns_between-the-world-and-me,sec_opinion_opinion-columns_broke-in-berkeley,sec_opinion_opinion-columns_californication,sec_opinion_opinion-columns_good-mythical-monday,sec_opinion_opinion-columns_ships-on-a-wine-dark-sea,sec_opinion_opinion-columns_stories-from-abroad,sec_opinion_opinion-columns_trail-mix,sec_opinion_opinion-columns_growing-up-again,sec_opinion_opinion-columns_where-i-was-from,sec_opinion_opinion-columns_intertext,sec_opinion_opinion-columns_traveler-s-guide-to-saying-yes,sec_opinion_opinion-columns_growing-into-myself,sec_opinion_opinion-columns_the-measured-medium,sec_opinion_opinion-columns_we-need-to-talk,sec_opinion_opinion-columns_apathetic-america,sec_opinion_opinion-columns_cis-to-sis,sec_opinion_opinion-columns_head-in-the-cloud,sec_opinion_opinion-columns_non-trade-undergrad,sec_opinion_opinion-columns_odes-to-art,sec_opinion_opinion-columns_organize-your-thoughts,sec_opinion_opinion-columns_points-west,sec_opinion_opinion-columns_reciprocity,sec_opinion_opinion-columns_scarlet-letter,sec_opinion_opinion-columns_sex,sec_opinion_opinion-columns_suggested-reply,sec_opinion_opinion-columns_the-greek-theater]
+    template: section-parent
+    data: tag.sec_opinion_opinion-columns
+  /opinion/opinion-columns/time-and-place/:
+    controller: channel
+    filter: primary_tag:[sec_opinion_opinion-columns_time-and-place,sec_opinion_opinion-columns_time-and-place_10-kinds-of-immortality]
+    template: section-parent
+    data: tag.sec_opinion_opinion-columns_time-and-place
+  /featured/:
+    controller: channel
+    filter: primary_tag:[sec_featured,sec_featured_special-issues,sec_featured_special-issues_career-fair,sec_featured_special-issues_mental-health,sec_featured_special-issues_cal-day-2023,sec_featured_special-issues_free-speech-2023,sec_featured_special-issues_orientation,sec_featured_special-issues_cal-day,sec_featured_special-issues_elections,sec_featured_special-issues_new-year,sec_featured_special-issues_puzzles-2022,sec_featured_special-issues_sex-issue-2023,sec_featured_special-issues_black-history-month,sec_featured_special-issues_black-history-month-2023,sec_featured_special-issues_job-fair-issue-2023,sec_featured_special-issues_new-year-2023,sec_featured_special-issues_pride,sec_featured_special-issues_retrospective,sec_featured_special-issues_sex,sec_featured_special-issues_sex_sex-issue-2024,sec_featured_special-issues_best-of-berkeley-2023,sec_featured_special-issues_cal-day-2021,sec_featured_special-issues_california-primaries-2020,sec_featured_special-issues_california-primary-2016,sec_featured_special-issues_career-fair-2021,sec_featured_special-issues_criminal-justice-2018,sec_featured_special-issues_graduation,sec_featured_special-issues_graduation-2023,sec_featured_special-issues_graduation-issue-2022,sec_featured_special-issues_homecoming,sec_featured_special-issues_housing,sec_featured_special-issues_march-madness-2025,sec_featured_special-issues_mental-health-2019,sec_featured_special-issues_mental-health-2020,sec_featured_special-issues_mental-health-2021,sec_featured_special-issues_mental-health-issue-2024,sec_featured_special-issues_mentorship-2019,sec_featured_special-issues_summer-orientation-2021,sec_featured_special-issues_year-in-retrospect-2022,sec_featured_special-issues_year-in-retrospect-hindsight-is-2020,sec_featured_special-issues_year-in-retrospect-sunset-on-2021,sec_featured_special-issues_30-years-of-ada-2020,sec_featured_special-issues_admissions-2014,sec_featured_special-issues_admissions-2015,sec_featured_special-issues_around-the-world-2017-special,sec_featured_special-issues_back-to-school-2014,sec_featured_special-issues_berkeley-menu-guide-2015,sec_featured_special-issues_berkeley-menu-guide-2016,sec_featured_special-issues_berkeley-slipped-away,sec_featured_special-issues_black-history-month-2018,sec_featured_special-issues_black-history-month-2019,sec_featured_special-issues_black-history-month-2026,sec_featured_special-issues_bleed-blue-win-gold-tokyo-olympics-issue,sec_featured_special-issues_cal-day-2015,sec_featured_special-issues_cal-day-2016,sec_featured_special-issues_cal-day-2018,sec_featured_special-issues_cal-day-2019,sec_featured_special-issues_cal-day-2020,sec_featured_special-issues_cal-day-2022,sec_featured_special-issues_california-elections-2018,sec_featured_special-issues_calso-issue-2014,sec_featured_special-issues_calsoissue-2015,sec_featured_special-issues_calsoissue-2016,sec_featured_special-issues_career-fair-2017,sec_featured_special-issues_career-fair-2018,sec_featured_special-issues_career-fair-2019,sec_featured_special-issues_career-fair-2020,sec_featured_special-issues_career-fair-study-abroad-2022,sec_featured_special-issues_carol-christ-2017,sec_featured_special-issues_charter-day-2018,sec_featured_special-issues_daily-cal-150,sec_featured_special-issues_dead-week-2014,sec_featured_special-issues_dead-week-puzzles-2013,sec_featured_special-issues_dead-week-puzzles-2014,sec_featured_special-issues_dead-week-puzzles-2015,sec_featured_special-issues_dead-week-puzzles-2016,sec_featured_special-issues_dead-week-puzzles-2017,sec_featured_special-issues_dead-week-puzzles-in-retrospect-2019,sec_featured_special-issues_disability-awareness-2018,sec_featured_special-issues_earth-day-2018,sec_featured_special-issues_editors-note-fall-orientation-2021,sec_featured_special-issues_editors-note-semester-in-the-cloud,sec_featured_special-issues_election-2016-retrospective-issue,sec_featured_special-issues_fall-orientation-2013,sec_featured_special-issues_fall-orientation-2015-special,sec_featured_special-issues_fall-orientation-2016,sec_featured_special-issues_fall-orientation-2017,sec_featured_special-issues_fall-orientation-2018,sec_featured_special-issues_fall-orientation-2019,sec_featured_special-issues_fall-orientation-2022,sec_featured_special-issues_fall-orientation-2023,sec_featured_special-issues_food-cuisine-2013,sec_featured_special-issues_free-speech-movement-issue-2014,sec_featured_special-issues_freshman-orientation-2013,sec_featured_special-issues_freshman-orientation-2024,sec_featured_special-issues_get-counted-general-elections-2020,sec_featured_special-issues_grad-issue-2025,sec_featured_special-issues_grad-issue-2024,sec_featured_special-issues_graduation-2014,sec_featured_special-issues_graduation-2015,sec_featured_special-issues_graduation-2016,sec_featured_special-issues_graduation-2017,sec_featured_special-issues_graduation-2019,sec_featured_special-issues_graduation-issue-2018,sec_featured_special-issues_graduation-issue-2020,sec_featured_special-issues_graduation-2026,sec_featured_special-issues_holiday-buying-guide-2016,sec_featured_special-issues_holiday-buying-guide-2017,sec_featured_special-issues_holiday-guide-2015,sec_featured_special-issues_homecoming-2015,sec_featured_special-issues_homecoming-2017-special,sec_featured_special-issues_homecoming-2018,sec_featured_special-issues_homecoming-2019,sec_featured_special-issues_housing-2020,sec_featured_special-issues_housing-2022,sec_featured_special-issues_housing-issue-2014,sec_featured_special-issues_housing-issue-2015,sec_featured_special-issues_housing-issue-2016,sec_featured_special-issues_housing-issue-2017,sec_featured_special-issues_housing-issue-2018,sec_featured_special-issues_housing-survival-guide-2019,sec_featured_special-issues_indigenous-peoples-day-2017,sec_featured_special-issues_innovation-2017,sec_featured_special-issues_internships-2017,sec_featured_special-issues_march-madness,sec_featured_special-issues_march-madness-2014,sec_featured_special-issues_march-madness-2015,sec_featured_special-issues_march-madness-2016,sec_featured_special-issues_march-madness-2019,sec_featured_special-issues_mental-health-2018,sec_featured_special-issues_mental-health-2022,sec_featured_special-issues_mental-health-issue-2017,sec_featured_special-issues_mental-health-issue-2023,sec_featured_special-issues_metoo-2018,sec_featured_special-issues_midterm-elections-2022,sec_featured_special-issues_millenials-issue-generation-haters,sec_featured_special-issues_new-year-2019,sec_featured_special-issues_new-year-2020,sec_featured_special-issues_new-year-2021,sec_featured_special-issues_new-year-2022,sec_featured_special-issues_new-year-s-2024,sec_featured_special-issues_olympics,sec_featured_special-issues_olympics-2016,sec_featured_special-issues_outside-2021,sec_featured_special-issues_preparedness-2019,sec_featured_special-issues_pride-2018,sec_featured_special-issues_pride-2019,sec_featured_special-issues_pride-2021,sec_featured_special-issues_pride-2026,sec_featured_special-issues_primary-election-2018,sec_featured_special-issues_puzzles,sec_featured_special-issues_puzzles-2018,sec_featured_special-issues_puzzles-2020,sec_featured_special-issues_puzzles-2023,sec_featured_special-issues_rehabilitation-2019,sec_featured_special-issues_retrospective-2013,sec_featured_special-issues_retrospective-2014,sec_featured_special-issues_retrospective-2015,sec_featured_special-issues_retrospective-issue-2016,sec_featured_special-issues_retrospective-issue-2017,sec_featured_special-issues_rrr-week-rest-refresh-with-riddles,sec_featured_special-issues_sex-2019,sec_featured_special-issues_sex-2020,sec_featured_special-issues_sex-issue-2014,sec_featured_special-issues_sex-issue-2015,sec_featured_special-issues_sex-issue-2016,sec_featured_special-issues_sex-issue-2017,sec_featured_special-issues_sex-issue-2021,sec_featured_special-issues_sex-issue-2022,sec_featured_special-issues_special-sex-issue-2018,sec_featured_special-issues_spring-orientation-2014,sec_featured_special-issues_study-abroad-2013,sec_featured_special-issues_study-abroad-2014,sec_featured_special-issues_study-abroad-2015,sec_featured_special-issues_study-abroad-2016,sec_featured_special-issues_study-abroad-2017,sec_featured_special-issues_study-abroad-2018,sec_featured_special-issues_study-abroad-2019,sec_featured_special-issues_summer-in-berkeley-2015,sec_featured_special-issues_summer-issue-2014-special,sec_featured_special-issues_summer-orientation-2016,sec_featured_special-issues_summer-orientation-2018,sec_featured_special-issues_summer-orientation-2019,sec_featured_special-issues_tech-and-ideas-2013,sec_featured_special-issues_transfer-students-2018,sec_featured_special-issues_uc-labor-2019,sec_featured_special-issues_welcome-back-2016,sec_featured_special-issues_welcome-back-2018,sec_featured_special-issues_welcome-bears-2018,sec_featured_special-issues_welcome-bears-2019,sec_featured_special-issues_welcome-freshmen-2014,sec_featured_special-issues_welcome-new-students-2015,sec_featured_special-issues_welcome-new-students-2016,sec_featured_special-issues_welcome-new-students-2017,sec_featured_special-issues_what-journalism-means,sec_featured_special-issues_year-in-retrospect-2018,sec_featured_special-issues_year-in-retrospect-2023,sec_featured_awards,sec_featured_editors-picks]
+    template: section-parent
+    data: tag.sec_featured
+  /featured/special-issues/:
+    controller: channel
+    filter: primary_tag:[sec_featured_special-issues,sec_featured_special-issues_career-fair,sec_featured_special-issues_mental-health,sec_featured_special-issues_cal-day-2023,sec_featured_special-issues_free-speech-2023,sec_featured_special-issues_orientation,sec_featured_special-issues_cal-day,sec_featured_special-issues_elections,sec_featured_special-issues_new-year,sec_featured_special-issues_puzzles-2022,sec_featured_special-issues_sex-issue-2023,sec_featured_special-issues_black-history-month,sec_featured_special-issues_black-history-month-2023,sec_featured_special-issues_job-fair-issue-2023,sec_featured_special-issues_new-year-2023,sec_featured_special-issues_pride,sec_featured_special-issues_retrospective,sec_featured_special-issues_sex,sec_featured_special-issues_sex_sex-issue-2024,sec_featured_special-issues_best-of-berkeley-2023,sec_featured_special-issues_cal-day-2021,sec_featured_special-issues_california-primaries-2020,sec_featured_special-issues_california-primary-2016,sec_featured_special-issues_career-fair-2021,sec_featured_special-issues_criminal-justice-2018,sec_featured_special-issues_graduation,sec_featured_special-issues_graduation-2023,sec_featured_special-issues_graduation-issue-2022,sec_featured_special-issues_homecoming,sec_featured_special-issues_housing,sec_featured_special-issues_march-madness-2025,sec_featured_special-issues_mental-health-2019,sec_featured_special-issues_mental-health-2020,sec_featured_special-issues_mental-health-2021,sec_featured_special-issues_mental-health-issue-2024,sec_featured_special-issues_mentorship-2019,sec_featured_special-issues_summer-orientation-2021,sec_featured_special-issues_year-in-retrospect-2022,sec_featured_special-issues_year-in-retrospect-hindsight-is-2020,sec_featured_special-issues_year-in-retrospect-sunset-on-2021,sec_featured_special-issues_30-years-of-ada-2020,sec_featured_special-issues_admissions-2014,sec_featured_special-issues_admissions-2015,sec_featured_special-issues_around-the-world-2017-special,sec_featured_special-issues_back-to-school-2014,sec_featured_special-issues_berkeley-menu-guide-2015,sec_featured_special-issues_berkeley-menu-guide-2016,sec_featured_special-issues_berkeley-slipped-away,sec_featured_special-issues_black-history-month-2018,sec_featured_special-issues_black-history-month-2019,sec_featured_special-issues_black-history-month-2026,sec_featured_special-issues_bleed-blue-win-gold-tokyo-olympics-issue,sec_featured_special-issues_cal-day-2015,sec_featured_special-issues_cal-day-2016,sec_featured_special-issues_cal-day-2018,sec_featured_special-issues_cal-day-2019,sec_featured_special-issues_cal-day-2020,sec_featured_special-issues_cal-day-2022,sec_featured_special-issues_california-elections-2018,sec_featured_special-issues_calso-issue-2014,sec_featured_special-issues_calsoissue-2015,sec_featured_special-issues_calsoissue-2016,sec_featured_special-issues_career-fair-2017,sec_featured_special-issues_career-fair-2018,sec_featured_special-issues_career-fair-2019,sec_featured_special-issues_career-fair-2020,sec_featured_special-issues_career-fair-study-abroad-2022,sec_featured_special-issues_carol-christ-2017,sec_featured_special-issues_charter-day-2018,sec_featured_special-issues_daily-cal-150,sec_featured_special-issues_dead-week-2014,sec_featured_special-issues_dead-week-puzzles-2013,sec_featured_special-issues_dead-week-puzzles-2014,sec_featured_special-issues_dead-week-puzzles-2015,sec_featured_special-issues_dead-week-puzzles-2016,sec_featured_special-issues_dead-week-puzzles-2017,sec_featured_special-issues_dead-week-puzzles-in-retrospect-2019,sec_featured_special-issues_disability-awareness-2018,sec_featured_special-issues_earth-day-2018,sec_featured_special-issues_editors-note-fall-orientation-2021,sec_featured_special-issues_editors-note-semester-in-the-cloud,sec_featured_special-issues_election-2016-retrospective-issue,sec_featured_special-issues_fall-orientation-2013,sec_featured_special-issues_fall-orientation-2015-special,sec_featured_special-issues_fall-orientation-2016,sec_featured_special-issues_fall-orientation-2017,sec_featured_special-issues_fall-orientation-2018,sec_featured_special-issues_fall-orientation-2019,sec_featured_special-issues_fall-orientation-2022,sec_featured_special-issues_fall-orientation-2023,sec_featured_special-issues_food-cuisine-2013,sec_featured_special-issues_free-speech-movement-issue-2014,sec_featured_special-issues_freshman-orientation-2013,sec_featured_special-issues_freshman-orientation-2024,sec_featured_special-issues_get-counted-general-elections-2020,sec_featured_special-issues_grad-issue-2025,sec_featured_special-issues_grad-issue-2024,sec_featured_special-issues_graduation-2014,sec_featured_special-issues_graduation-2015,sec_featured_special-issues_graduation-2016,sec_featured_special-issues_graduation-2017,sec_featured_special-issues_graduation-2019,sec_featured_special-issues_graduation-issue-2018,sec_featured_special-issues_graduation-issue-2020,sec_featured_special-issues_graduation-2026,sec_featured_special-issues_holiday-buying-guide-2016,sec_featured_special-issues_holiday-buying-guide-2017,sec_featured_special-issues_holiday-guide-2015,sec_featured_special-issues_homecoming-2015,sec_featured_special-issues_homecoming-2017-special,sec_featured_special-issues_homecoming-2018,sec_featured_special-issues_homecoming-2019,sec_featured_special-issues_housing-2020,sec_featured_special-issues_housing-2022,sec_featured_special-issues_housing-issue-2014,sec_featured_special-issues_housing-issue-2015,sec_featured_special-issues_housing-issue-2016,sec_featured_special-issues_housing-issue-2017,sec_featured_special-issues_housing-issue-2018,sec_featured_special-issues_housing-survival-guide-2019,sec_featured_special-issues_indigenous-peoples-day-2017,sec_featured_special-issues_innovation-2017,sec_featured_special-issues_internships-2017,sec_featured_special-issues_march-madness,sec_featured_special-issues_march-madness-2014,sec_featured_special-issues_march-madness-2015,sec_featured_special-issues_march-madness-2016,sec_featured_special-issues_march-madness-2019,sec_featured_special-issues_mental-health-2018,sec_featured_special-issues_mental-health-2022,sec_featured_special-issues_mental-health-issue-2017,sec_featured_special-issues_mental-health-issue-2023,sec_featured_special-issues_metoo-2018,sec_featured_special-issues_midterm-elections-2022,sec_featured_special-issues_millenials-issue-generation-haters,sec_featured_special-issues_new-year-2019,sec_featured_special-issues_new-year-2020,sec_featured_special-issues_new-year-2021,sec_featured_special-issues_new-year-2022,sec_featured_special-issues_new-year-s-2024,sec_featured_special-issues_olympics,sec_featured_special-issues_olympics-2016,sec_featured_special-issues_outside-2021,sec_featured_special-issues_preparedness-2019,sec_featured_special-issues_pride-2018,sec_featured_special-issues_pride-2019,sec_featured_special-issues_pride-2021,sec_featured_special-issues_pride-2026,sec_featured_special-issues_primary-election-2018,sec_featured_special-issues_puzzles,sec_featured_special-issues_puzzles-2018,sec_featured_special-issues_puzzles-2020,sec_featured_special-issues_puzzles-2023,sec_featured_special-issues_rehabilitation-2019,sec_featured_special-issues_retrospective-2013,sec_featured_special-issues_retrospective-2014,sec_featured_special-issues_retrospective-2015,sec_featured_special-issues_retrospective-issue-2016,sec_featured_special-issues_retrospective-issue-2017,sec_featured_special-issues_rrr-week-rest-refresh-with-riddles,sec_featured_special-issues_sex-2019,sec_featured_special-issues_sex-2020,sec_featured_special-issues_sex-issue-2014,sec_featured_special-issues_sex-issue-2015,sec_featured_special-issues_sex-issue-2016,sec_featured_special-issues_sex-issue-2017,sec_featured_special-issues_sex-issue-2021,sec_featured_special-issues_sex-issue-2022,sec_featured_special-issues_special-sex-issue-2018,sec_featured_special-issues_spring-orientation-2014,sec_featured_special-issues_study-abroad-2013,sec_featured_special-issues_study-abroad-2014,sec_featured_special-issues_study-abroad-2015,sec_featured_special-issues_study-abroad-2016,sec_featured_special-issues_study-abroad-2017,sec_featured_special-issues_study-abroad-2018,sec_featured_special-issues_study-abroad-2019,sec_featured_special-issues_summer-in-berkeley-2015,sec_featured_special-issues_summer-issue-2014-special,sec_featured_special-issues_summer-orientation-2016,sec_featured_special-issues_summer-orientation-2018,sec_featured_special-issues_summer-orientation-2019,sec_featured_special-issues_tech-and-ideas-2013,sec_featured_special-issues_transfer-students-2018,sec_featured_special-issues_uc-labor-2019,sec_featured_special-issues_welcome-back-2016,sec_featured_special-issues_welcome-back-2018,sec_featured_special-issues_welcome-bears-2018,sec_featured_special-issues_welcome-bears-2019,sec_featured_special-issues_welcome-freshmen-2014,sec_featured_special-issues_welcome-new-students-2015,sec_featured_special-issues_welcome-new-students-2016,sec_featured_special-issues_welcome-new-students-2017,sec_featured_special-issues_what-journalism-means,sec_featured_special-issues_year-in-retrospect-2018,sec_featured_special-issues_year-in-retrospect-2023]
+    template: section-parent
+    data: tag.sec_featured_special-issues
+  /featured/special-issues/sex/:
+    controller: channel
+    filter: primary_tag:[sec_featured_special-issues_sex,sec_featured_special-issues_sex_sex-issue-2024]
+    template: section-parent
+    data: tag.sec_featured_special-issues_sex
+  /lifestyle/:
+    controller: channel
+    filter: primary_tag:[sec_lifestyle,sec_lifestyle_how-to,sec_lifestyle_strikeout,sec_lifestyle_local-guides,sec_lifestyle_quizzes,sec_lifestyle_grammar]
+    template: section-parent
+    data: tag.sec_lifestyle
+collections:
+  /_/blogs/:
+    permalink: /blogs/{slug}/
+    filter: primary_tag:sec_blogs
+    template: section
+    data: tag.sec_blogs
+  /blogs/clog/:
+    permalink: /blogs/clog/{slug}/
+    filter: primary_tag:sec_blogs_clog
+    template: section
+    data: tag.sec_blogs_clog
+  /blogs/food-blog/:
+    permalink: /blogs/food-blog/{slug}/
+    filter: primary_tag:sec_blogs_food-blog
+    template: section
+    data: tag.sec_blogs_food-blog
+  /blogs/earth-to-berkeley/:
+    permalink: /blogs/earth-to-berkeley/{slug}/
+    filter: primary_tag:sec_blogs_earth-to-berkeley
+    template: section
+    data: tag.sec_blogs_earth-to-berkeley
+  /_/blogs/travel/:
+    permalink: /blogs/travel/{slug}/
+    filter: primary_tag:sec_blogs_travel
+    template: section
+    data: tag.sec_blogs_travel
+  /blogs/travel/stories-from-abroad/:
+    permalink: /blogs/travel/stories-from-abroad/{slug}/
+    filter: primary_tag:sec_blogs_travel_stories-from-abroad
+    template: section
+    data: tag.sec_blogs_travel_stories-from-abroad
+  /blogs/grammar/:
+    permalink: /blogs/grammar/{slug}/
+    filter: primary_tag:sec_blogs_grammar
+    template: section
+    data: tag.sec_blogs_grammar
+  /_/blogs/editors/:
+    permalink: /blogs/editors/{slug}/
+    filter: primary_tag:sec_blogs_editors
+    template: section
+    data: tag.sec_blogs_editors
+  /blogs/editors/divcom-blog/:
+    permalink: /blogs/editors/divcom-blog/{slug}/
+    filter: primary_tag:sec_blogs_editors_divcom-blog
+    template: section
+    data: tag.sec_blogs_editors_divcom-blog
+  /blogs/editors/awards/:
+    permalink: /blogs/editors/awards/{slug}/
+    filter: primary_tag:sec_blogs_editors_awards
+    template: section
+    data: tag.sec_blogs_editors_awards
+  /blogs/news-blog/:
+    permalink: /blogs/news-blog/{slug}/
+    filter: primary_tag:sec_blogs_news-blog
+    template: section
+    data: tag.sec_blogs_news-blog
+  /blogs/arts-blog/:
+    permalink: /blogs/arts-blog/{slug}/
+    filter: primary_tag:sec_blogs_arts-blog
+    template: section
+    data: tag.sec_blogs_arts-blog
+  /blogs/satire/:
+    permalink: /blogs/satire/{slug}/
+    filter: primary_tag:sec_blogs_satire
+    template: section
+    data: tag.sec_blogs_satire
+  /_/news/:
+    permalink: /news/{slug}/
+    filter: primary_tag:sec_news
+    template: section
+    data: tag.sec_news
+  /_/news/campus/:
+    permalink: /news/campus/{slug}/
+    filter: primary_tag:sec_news_campus
+    template: section
+    data: tag.sec_news_campus
+  /news/campus/research-and-ideas/:
+    permalink: /news/campus/research-and-ideas/{slug}/
+    filter: primary_tag:sec_news_campus_research-and-ideas
+    template: section
+    data: tag.sec_news_campus_research-and-ideas
+  /news/campus/student-life/:
+    permalink: /news/campus/student-life/{slug}/
+    filter: primary_tag:sec_news_campus_student-life
+    template: section
+    data: tag.sec_news_campus_student-life
+  /_/news/campus/asuc/:
+    permalink: /news/campus/asuc/{slug}/
+    filter: primary_tag:sec_news_campus_asuc
+    template: section
+    data: tag.sec_news_campus_asuc
+  /news/campus/asuc/asuc-elections-2024/:
+    permalink: /news/campus/asuc/asuc-elections-2024/{slug}/
+    filter: primary_tag:sec_news_campus_asuc_asuc-elections-2024
+    template: section
+    data: tag.sec_news_campus_asuc_asuc-elections-2024
+  /news/campus/asuc/asuc-elections-2025/:
+    permalink: /news/campus/asuc/asuc-elections-2025/{slug}/
+    filter: primary_tag:sec_news_campus_asuc_asuc-elections-2025
+    template: section
+    data: tag.sec_news_campus_asuc_asuc-elections-2025
+  /news/campus/asuc/asuc-elections-2023/:
+    permalink: /news/campus/asuc/asuc-elections-2023/{slug}/
+    filter: primary_tag:sec_news_campus_asuc_asuc-elections-2023
+    template: section
+    data: tag.sec_news_campus_asuc_asuc-elections-2023
+  /news/campus/asuc/asuc-elections-2022/:
+    permalink: /news/campus/asuc/asuc-elections-2022/{slug}/
+    filter: primary_tag:sec_news_campus_asuc_asuc-elections-2022
+    template: section
+    data: tag.sec_news_campus_asuc_asuc-elections-2022
+  /news/campus/administration/:
+    permalink: /news/campus/administration/{slug}/
+    filter: primary_tag:sec_news_campus_administration
+    template: section
+    data: tag.sec_news_campus_administration
+  /news/campus/academics/:
+    permalink: /news/campus/academics/{slug}/
+    filter: primary_tag:sec_news_campus_academics
+    template: section
+    data: tag.sec_news_campus_academics
+  /_/news/city/:
+    permalink: /news/city/{slug}/
+    filter: primary_tag:sec_news_city
+    template: section
+    data: tag.sec_news_city
+  /news/city/local-businesses/:
+    permalink: /news/city/local-businesses/{slug}/
+    filter: primary_tag:sec_news_city_local-businesses
+    template: section
+    data: tag.sec_news_city_local-businesses
+  /news/city/city-government/:
+    permalink: /news/city/city-government/{slug}/
+    filter: primary_tag:sec_news_city_city-government
+    template: section
+    data: tag.sec_news_city_city-government
+  /news/city/law-and-justice/:
+    permalink: /news/city/law-and-justice/{slug}/
+    filter: primary_tag:sec_news_city_law-and-justice
+    template: section
+    data: tag.sec_news_city_law-and-justice
+  /news/city/communities/:
+    permalink: /news/city/communities/{slug}/
+    filter: primary_tag:sec_news_city_communities
+    template: section
+    data: tag.sec_news_city_communities
+  /news/city/housing/:
+    permalink: /news/city/housing/{slug}/
+    filter: primary_tag:sec_news_city_housing
+    template: section
+    data: tag.sec_news_city_housing
+  /news/city/crime-and-safety/:
+    permalink: /news/city/crime-and-safety/{slug}/
+    filter: primary_tag:sec_news_city_crime-and-safety
+    template: section
+    data: tag.sec_news_city_crime-and-safety
+  /news/city/local-schools/:
+    permalink: /news/city/local-schools/{slug}/
+    filter: primary_tag:sec_news_city_local-schools
+    template: section
+    data: tag.sec_news_city_local-schools
+  /news/city/transit/:
+    permalink: /news/city/transit/{slug}/
+    filter: primary_tag:sec_news_city_transit
+    template: section
+    data: tag.sec_news_city_transit
+  /_/news/city/elections/:
+    permalink: /news/city/elections/{slug}/
+    filter: primary_tag:sec_news_city_elections
+    template: section
+    data: tag.sec_news_city_elections
+  /news/city/elections/elections-2024/:
+    permalink: /news/city/elections/elections-2024/{slug}/
+    filter: primary_tag:sec_news_city_elections_elections-2024
+    template: section
+    data: tag.sec_news_city_elections_elections-2024
+  /news/city/environment/:
+    permalink: /news/city/environment/{slug}/
+    filter: primary_tag:sec_news_city_environment
+    template: section
+    data: tag.sec_news_city_environment
+  /news/uc/:
+    permalink: /news/uc/{slug}/
+    filter: primary_tag:sec_news_uc
+    template: section
+    data: tag.sec_news_uc
+  /news/state/:
+    permalink: /news/state/{slug}/
+    filter: primary_tag:sec_news_state
+    template: section
+    data: tag.sec_news_state
+  /news/obituary-news/:
+    permalink: /news/obituary-news/{slug}/
+    filter: primary_tag:sec_news_obituary-news
+    template: section
+    data: tag.sec_news_obituary-news
+  /news/national/:
+    permalink: /news/national/{slug}/
+    filter: primary_tag:sec_news_national
+    template: section
+    data: tag.sec_news_national
+  /news/alameda-county/:
+    permalink: /news/alameda-county/{slug}/
+    filter: primary_tag:sec_news_alameda-county
+    template: section
+    data: tag.sec_news_alameda-county
+  /news/race-and-diversity/:
+    permalink: /news/race-and-diversity/{slug}/
+    filter: primary_tag:sec_news_race-and-diversity
+    template: section
+    data: tag.sec_news_race-and-diversity
+  /news/investigations/:
+    permalink: /news/investigations/{slug}/
+    filter: primary_tag:sec_news_investigations
+    template: section
+    data: tag.sec_news_investigations
+  /_/sports/:
+    permalink: /sports/{slug}/
+    filter: primary_tag:sec_sports
+    template: section
+    data: tag.sec_sports
+  /_/sports/msports/:
+    permalink: /sports/msports/{slug}/
+    filter: primary_tag:sec_sports_msports
+    template: section
+    data: tag.sec_sports_msports
+  /_/sports/msports/football/:
+    permalink: /sports/msports/football/{slug}/
+    filter: primary_tag:sec_sports_msports_football
+    template: section
+    data: tag.sec_sports_msports_football
+  /sports/msports/football/acc-character-profiles/:
+    permalink: /sports/msports/football/acc-character-profiles/{slug}/
+    filter: primary_tag:sec_sports_msports_football_acc-character-profiles
+    template: section
+    data: tag.sec_sports_msports_football_acc-character-profiles
+  /sports/msports/basketball/:
+    permalink: /sports/msports/basketball/{slug}/
+    filter: primary_tag:sec_sports_msports_basketball
+    template: section
+    data: tag.sec_sports_msports_basketball
+  /sports/msports/tennis/:
+    permalink: /sports/msports/tennis/{slug}/
+    filter: primary_tag:sec_sports_msports_tennis
+    template: section
+    data: tag.sec_sports_msports_tennis
+  /sports/msports/baseball/:
+    permalink: /sports/msports/baseball/{slug}/
+    filter: primary_tag:sec_sports_msports_baseball
+    template: section
+    data: tag.sec_sports_msports_baseball
+  /sports/msports/golf/:
+    permalink: /sports/msports/golf/{slug}/
+    filter: primary_tag:sec_sports_msports_golf
+    template: section
+    data: tag.sec_sports_msports_golf
+  /sports/msports/rugby/:
+    permalink: /sports/msports/rugby/{slug}/
+    filter: primary_tag:sec_sports_msports_rugby
+    template: section
+    data: tag.sec_sports_msports_rugby
+  /sports/msports/soccer/:
+    permalink: /sports/msports/soccer/{slug}/
+    filter: primary_tag:sec_sports_msports_soccer
+    template: section
+    data: tag.sec_sports_msports_soccer
+  /sports/msports/swimming-and-diving/:
+    permalink: /sports/msports/swimming-and-diving/{slug}/
+    filter: primary_tag:sec_sports_msports_swimming-and-diving
+    template: section
+    data: tag.sec_sports_msports_swimming-and-diving
+  /sports/msports/water-polo/:
+    permalink: /sports/msports/water-polo/{slug}/
+    filter: primary_tag:sec_sports_msports_water-polo
+    template: section
+    data: tag.sec_sports_msports_water-polo
+  /sports/msports/gymnastics/:
+    permalink: /sports/msports/gymnastics/{slug}/
+    filter: primary_tag:sec_sports_msports_gymnastics
+    template: section
+    data: tag.sec_sports_msports_gymnastics
+  /sports/msports/crew/:
+    permalink: /sports/msports/crew/{slug}/
+    filter: primary_tag:sec_sports_msports_crew
+    template: section
+    data: tag.sec_sports_msports_crew
+  /_/sports/wsports/:
+    permalink: /sports/wsports/{slug}/
+    filter: primary_tag:sec_sports_wsports
+    template: section
+    data: tag.sec_sports_wsports
+  /sports/wsports/basketball/:
+    permalink: /sports/wsports/basketball/{slug}/
+    filter: primary_tag:sec_sports_wsports_basketball
+    template: section
+    data: tag.sec_sports_wsports_basketball
+  /sports/wsports/softball/:
+    permalink: /sports/wsports/softball/{slug}/
+    filter: primary_tag:sec_sports_wsports_softball
+    template: section
+    data: tag.sec_sports_wsports_softball
+  /sports/wsports/volleyball/:
+    permalink: /sports/wsports/volleyball/{slug}/
+    filter: primary_tag:sec_sports_wsports_volleyball
+    template: section
+    data: tag.sec_sports_wsports_volleyball
+  /sports/wsports/tennis/:
+    permalink: /sports/wsports/tennis/{slug}/
+    filter: primary_tag:sec_sports_wsports_tennis
+    template: section
+    data: tag.sec_sports_wsports_tennis
+  /sports/wsports/gymnastics/:
+    permalink: /sports/wsports/gymnastics/{slug}/
+    filter: primary_tag:sec_sports_wsports_gymnastics
+    template: section
+    data: tag.sec_sports_wsports_gymnastics
+  /sports/wsports/water-polo/:
+    permalink: /sports/wsports/water-polo/{slug}/
+    filter: primary_tag:sec_sports_wsports_water-polo
+    template: section
+    data: tag.sec_sports_wsports_water-polo
+  /sports/wsports/field-hockey/:
+    permalink: /sports/wsports/field-hockey/{slug}/
+    filter: primary_tag:sec_sports_wsports_field-hockey
+    template: section
+    data: tag.sec_sports_wsports_field-hockey
+  /sports/wsports/golf/:
+    permalink: /sports/wsports/golf/{slug}/
+    filter: primary_tag:sec_sports_wsports_golf
+    template: section
+    data: tag.sec_sports_wsports_golf
+  /sports/wsports/beach-volleyball/:
+    permalink: /sports/wsports/beach-volleyball/{slug}/
+    filter: primary_tag:sec_sports_wsports_beach-volleyball
+    template: section
+    data: tag.sec_sports_wsports_beach-volleyball
+  /sports/wsports/lacrosse/:
+    permalink: /sports/wsports/lacrosse/{slug}/
+    filter: primary_tag:sec_sports_wsports_lacrosse
+    template: section
+    data: tag.sec_sports_wsports_lacrosse
+  /sports/wsports/soccer/:
+    permalink: /sports/wsports/soccer/{slug}/
+    filter: primary_tag:sec_sports_wsports_soccer
+    template: section
+    data: tag.sec_sports_wsports_soccer
+  /sports/wsports/swimming-and-diving/:
+    permalink: /sports/wsports/swimming-and-diving/{slug}/
+    filter: primary_tag:sec_sports_wsports_swimming-and-diving
+    template: section
+    data: tag.sec_sports_wsports_swimming-and-diving
+  /sports/wsports/rowing/:
+    permalink: /sports/wsports/rowing/{slug}/
+    filter: primary_tag:sec_sports_wsports_rowing
+    template: section
+    data: tag.sec_sports_wsports_rowing
+  /_/sports/bearbytes/:
+    permalink: /sports/bearbytes/{slug}/
+    filter: primary_tag:sec_sports_bearbytes
+    template: section
+    data: tag.sec_sports_bearbytes
+  /sports/bearbytes/esports/:
+    permalink: /sports/bearbytes/esports/{slug}/
+    filter: primary_tag:sec_sports_bearbytes_esports
+    template: section
+    data: tag.sec_sports_bearbytes_esports
+  /_/sports/sports-columns/:
+    permalink: /sports/sports-columns/{slug}/
+    filter: primary_tag:sec_sports_sports-columns
+    template: section
+    data: tag.sec_sports_sports-columns
+  /sports/sports-columns/our-brown-leather-couch/:
+    permalink: /sports/sports-columns/our-brown-leather-couch/{slug}/
+    filter: primary_tag:sec_sports_sports-columns_our-brown-leather-couch
+    template: section
+    data: tag.sec_sports_sports-columns_our-brown-leather-couch
+  /sports/sports-columns/love-and-basketball/:
+    permalink: /sports/sports-columns/love-and-basketball/{slug}/
+    filter: primary_tag:sec_sports_sports-columns_love-and-basketball
+    template: section
+    data: tag.sec_sports_sports-columns_love-and-basketball
+  /sports/sports-columns/euros-on-tape/:
+    permalink: /sports/sports-columns/euros-on-tape/{slug}/
+    filter: primary_tag:sec_sports_sports-columns_euros-on-tape
+    template: section
+    data: tag.sec_sports_sports-columns_euros-on-tape
+  /sports/track-and-field/:
+    permalink: /sports/track-and-field/{slug}/
+    filter: primary_tag:sec_sports_track-and-field
+    template: section
+    data: tag.sec_sports_track-and-field
+  /sports/crew/:
+    permalink: /sports/crew/{slug}/
+    filter: primary_tag:sec_sports_crew
+    template: section
+    data: tag.sec_sports_crew
+  /sports/cross-country/:
+    permalink: /sports/cross-country/{slug}/
+    filter: primary_tag:sec_sports_cross-country
+    template: section
+    data: tag.sec_sports_cross-country
+  /_/sports/special-report/:
+    permalink: /sports/special-report/{slug}/
+    filter: primary_tag:sec_sports_special-report
+    template: section
+    data: tag.sec_sports_special-report
+  /sports/special-report/paris-olympics/:
+    permalink: /sports/special-report/paris-olympics/{slug}/
+    filter: primary_tag:sec_sports_special-report_paris-olympics
+    template: section
+    data: tag.sec_sports_special-report_paris-olympics
+  /sports/special-report/winter-olympics-2026/:
+    permalink: /sports/special-report/winter-olympics-2026/{slug}/
+    filter: primary_tag:sec_sports_special-report_winter-olympics-2026
+    template: section
+    data: tag.sec_sports_special-report_winter-olympics-2026
+  /sports/gameday/:
+    permalink: /sports/gameday/{slug}/
+    filter: primary_tag:sec_sports_gameday
+    template: section
+    data: tag.sec_sports_gameday
+  /sports/boxing/:
+    permalink: /sports/boxing/{slug}/
+    filter: primary_tag:sec_sports_boxing
+    template: section
+    data: tag.sec_sports_boxing
+  /sports/national/:
+    permalink: /sports/national/{slug}/
+    filter: primary_tag:sec_sports_national
+    template: section
+    data: tag.sec_sports_national
+  /sports/world-cup/:
+    permalink: /sports/world-cup/{slug}/
+    filter: primary_tag:sec_sports_world-cup
+    template: section
+    data: tag.sec_sports_world-cup
+  /_/arts/:
+    permalink: /arts/{slug}/
+    filter: primary_tag:sec_arts
+    template: section
+    data: tag.sec_arts
+  /arts/film-and-television/:
+    permalink: /arts/film-and-television/{slug}/
+    filter: primary_tag:sec_arts_film-and-television
+    template: section
+    data: tag.sec_arts_film-and-television
+  /_/arts/music/:
+    permalink: /arts/music/{slug}/
+    filter: primary_tag:sec_arts_music
+    template: section
+    data: tag.sec_arts_music
+  /arts/music/album-reviews/:
+    permalink: /arts/music/album-reviews/{slug}/
+    filter: primary_tag:sec_arts_music_album-reviews
+    template: section
+    data: tag.sec_arts_music_album-reviews
+  /arts/music/concerts/:
+    permalink: /arts/music/concerts/{slug}/
+    filter: primary_tag:sec_arts_music_concerts
+    template: section
+    data: tag.sec_arts_music_concerts
+  /arts/theater/:
+    permalink: /arts/theater/{slug}/
+    filter: primary_tag:sec_arts_theater
+    template: section
+    data: tag.sec_arts_theater
+  /arts/visual-art/:
+    permalink: /arts/visual-art/{slug}/
+    filter: primary_tag:sec_arts_visual-art
+    template: section
+    data: tag.sec_arts_visual-art
+  /arts/culture-shot/:
+    permalink: /arts/culture-shot/{slug}/
+    filter: primary_tag:sec_arts_culture-shot
+    template: section
+    data: tag.sec_arts_culture-shot
+  /_/arts/art-columns/:
+    permalink: /arts/art-columns/{slug}/
+    filter: primary_tag:sec_arts_art-columns
+    template: section
+    data: tag.sec_arts_art-columns
+  /arts/art-columns/art-to-heart/:
+    permalink: /arts/art-columns/art-to-heart/{slug}/
+    filter: primary_tag:sec_arts_art-columns_art-to-heart
+    template: section
+    data: tag.sec_arts_art-columns_art-to-heart
+  /arts/art-columns/arts-away/:
+    permalink: /arts/art-columns/arts-away/{slug}/
+    filter: primary_tag:sec_arts_art-columns_arts-away
+    template: section
+    data: tag.sec_arts_art-columns_arts-away
+  /arts/dance/:
+    permalink: /arts/dance/{slug}/
+    filter: primary_tag:sec_arts_dance
+    template: section
+    data: tag.sec_arts_dance
+  /arts/books/:
+    permalink: /arts/books/{slug}/
+    filter: primary_tag:sec_arts_books
+    template: section
+    data: tag.sec_arts_books
+  /arts/local-event/:
+    permalink: /arts/local-event/{slug}/
+    filter: primary_tag:sec_arts_local-event
+    template: section
+    data: tag.sec_arts_local-event
+  /arts/video-games/:
+    permalink: /arts/video-games/{slug}/
+    filter: primary_tag:sec_arts_video-games
+    template: section
+    data: tag.sec_arts_video-games
+  /arts/fashion-arts/:
+    permalink: /arts/fashion-arts/{slug}/
+    filter: primary_tag:sec_arts_fashion-arts
+    template: section
+    data: tag.sec_arts_fashion-arts
+  /arts/arts-awards/:
+    permalink: /arts/arts-awards/{slug}/
+    filter: primary_tag:sec_arts_arts-awards
+    template: section
+    data: tag.sec_arts_arts-awards
+  /arts/comedy-arts/:
+    permalink: /arts/comedy-arts/{slug}/
+    filter: primary_tag:sec_arts_comedy-arts
+    template: section
+    data: tag.sec_arts_comedy-arts
+  /arts/festivals/:
+    permalink: /arts/festivals/{slug}/
+    filter: primary_tag:sec_arts_festivals
+    template: section
+    data: tag.sec_arts_festivals
+  /_/weekender/:
+    permalink: /weekender/{slug}/
+    filter: primary_tag:sec_weekender
+    template: section
+    data: tag.sec_weekender
+  /weekender/personal-essays/:
+    permalink: /weekender/personal-essays/{slug}/
+    filter: primary_tag:sec_weekender_personal-essays
+    template: section
+    data: tag.sec_weekender_personal-essays
+  /weekender/poems/:
+    permalink: /weekender/poems/{slug}/
+    filter: primary_tag:sec_weekender_poems
+    template: section
+    data: tag.sec_weekender_poems
+  /weekender/commentary/:
+    permalink: /weekender/commentary/{slug}/
+    filter: primary_tag:sec_weekender_commentary
+    template: section
+    data: tag.sec_weekender_commentary
+  /weekender/fiction/:
+    permalink: /weekender/fiction/{slug}/
+    filter: primary_tag:sec_weekender_fiction
+    template: section
+    data: tag.sec_weekender_fiction
+  /weekender/features/:
+    permalink: /weekender/features/{slug}/
+    filter: primary_tag:sec_weekender_features
+    template: section
+    data: tag.sec_weekender_features
+  /weekender/back-and-forth/:
+    permalink: /weekender/back-and-forth/{slug}/
+    filter: primary_tag:sec_weekender_back-and-forth
+    template: section
+    data: tag.sec_weekender_back-and-forth
+  /weekender/culture/:
+    permalink: /weekender/culture/{slug}/
+    filter: primary_tag:sec_weekender_culture
+    template: section
+    data: tag.sec_weekender_culture
+  /weekender/portfolio/:
+    permalink: /weekender/portfolio/{slug}/
+    filter: primary_tag:sec_weekender_portfolio
+    template: section
+    data: tag.sec_weekender_portfolio
+  /weekender/commentaries-and-features/:
+    permalink: /weekender/commentaries-and-features/{slug}/
+    filter: primary_tag:sec_weekender_commentaries-and-features
+    template: section
+    data: tag.sec_weekender_commentaries-and-features
+  /_/multimedia/:
+    permalink: /multimedia/{slug}/
+    filter: primary_tag:sec_multimedia
+    template: section
+    data: tag.sec_multimedia
+  /multimedia/photo-essays/:
+    permalink: /multimedia/photo-essays/{slug}/
+    filter: primary_tag:sec_multimedia_photo-essays
+    template: section
+    data: tag.sec_multimedia_photo-essays
+  /_/opinion/:
+    permalink: /opinion/{slug}/
+    filter: primary_tag:sec_opinion
+    template: section
+    data: tag.sec_opinion
+  /opinion/the-soapbox/:
+    permalink: /opinion/the-soapbox/{slug}/
+    filter: primary_tag:sec_opinion_the-soapbox
+    template: section
+    data: tag.sec_opinion_the-soapbox
+  /_/opinion/opinion-columns/:
+    permalink: /opinion/opinion-columns/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns
+    template: section
+    data: tag.sec_opinion_opinion-columns
+  /opinion/opinion-columns/sex-on-tuesday/:
+    permalink: /opinion/opinion-columns/sex-on-tuesday/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_sex-on-tuesday
+    template: section
+    data: tag.sec_opinion_opinion-columns_sex-on-tuesday
+  /opinion/opinion-columns/cal-in-color/:
+    permalink: /opinion/opinion-columns/cal-in-color/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_cal-in-color
+    template: section
+    data: tag.sec_opinion_opinion-columns_cal-in-color
+  /opinion/opinion-columns/off-the-beat/:
+    permalink: /opinion/opinion-columns/off-the-beat/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_off-the-beat
+    template: section
+    data: tag.sec_opinion_opinion-columns_off-the-beat
+  /opinion/opinion-columns/non-trad-undergrad/:
+    permalink: /opinion/opinion-columns/non-trad-undergrad/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_non-trad-undergrad
+    template: section
+    data: tag.sec_opinion_opinion-columns_non-trad-undergrad
+  /opinion/opinion-columns/the-graduate/:
+    permalink: /opinion/opinion-columns/the-graduate/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_the-graduate
+    template: section
+    data: tag.sec_opinion_opinion-columns_the-graduate
+  /opinion/opinion-columns/word/:
+    permalink: /opinion/opinion-columns/word/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_word
+    template: section
+    data: tag.sec_opinion_opinion-columns_word
+  /opinion/opinion-columns/10-kinds-of-immortality/:
+    permalink: /opinion/opinion-columns/10-kinds-of-immortality/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_10-kinds-of-immortality
+    template: section
+    data: tag.sec_opinion_opinion-columns_10-kinds-of-immortality
+  /opinion/opinion-columns/american-void/:
+    permalink: /opinion/opinion-columns/american-void/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_american-void
+    template: section
+    data: tag.sec_opinion_opinion-columns_american-void
+  /opinion/opinion-columns/day-one-as-a-dictator/:
+    permalink: /opinion/opinion-columns/day-one-as-a-dictator/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_day-one-as-a-dictator
+    template: section
+    data: tag.sec_opinion_opinion-columns_day-one-as-a-dictator
+  /opinion/opinion-columns/equivalent-exchange/:
+    permalink: /opinion/opinion-columns/equivalent-exchange/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_equivalent-exchange
+    template: section
+    data: tag.sec_opinion_opinion-columns_equivalent-exchange
+  /opinion/opinion-columns/on-being-kids/:
+    permalink: /opinion/opinion-columns/on-being-kids/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_on-being-kids
+    template: section
+    data: tag.sec_opinion_opinion-columns_on-being-kids
+  /opinion/opinion-columns/reflections-on-the-bay/:
+    permalink: /opinion/opinion-columns/reflections-on-the-bay/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_reflections-on-the-bay
+    template: section
+    data: tag.sec_opinion_opinion-columns_reflections-on-the-bay
+  /opinion/opinion-columns/soundtrack-of-a-letter/:
+    permalink: /opinion/opinion-columns/soundtrack-of-a-letter/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_soundtrack-of-a-letter
+    template: section
+    data: tag.sec_opinion_opinion-columns_soundtrack-of-a-letter
+  /opinion/opinion-columns/words-we-live-by/:
+    permalink: /opinion/opinion-columns/words-we-live-by/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_words-we-live-by
+    template: section
+    data: tag.sec_opinion_opinion-columns_words-we-live-by
+  /opinion/opinion-columns/blood-and-water/:
+    permalink: /opinion/opinion-columns/blood-and-water/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_blood-and-water
+    template: section
+    data: tag.sec_opinion_opinion-columns_blood-and-water
+  /opinion/opinion-columns/on-god/:
+    permalink: /opinion/opinion-columns/on-god/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_on-god
+    template: section
+    data: tag.sec_opinion_opinion-columns_on-god
+  /_/opinion/opinion-columns/time-and-place/:
+    permalink: /opinion/opinion-columns/time-and-place/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_time-and-place
+    template: section
+    data: tag.sec_opinion_opinion-columns_time-and-place
+  /opinion/opinion-columns/time-and-place/10-kinds-of-immortality/:
+    permalink: /opinion/opinion-columns/time-and-place/10-kinds-of-immortality/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_time-and-place_10-kinds-of-immortality
+    template: section
+    data: tag.sec_opinion_opinion-columns_time-and-place_10-kinds-of-immortality
+  /opinion/opinion-columns/between-the-world-and-me/:
+    permalink: /opinion/opinion-columns/between-the-world-and-me/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_between-the-world-and-me
+    template: section
+    data: tag.sec_opinion_opinion-columns_between-the-world-and-me
+  /opinion/opinion-columns/broke-in-berkeley/:
+    permalink: /opinion/opinion-columns/broke-in-berkeley/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_broke-in-berkeley
+    template: section
+    data: tag.sec_opinion_opinion-columns_broke-in-berkeley
+  /opinion/opinion-columns/californication/:
+    permalink: /opinion/opinion-columns/californication/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_californication
+    template: section
+    data: tag.sec_opinion_opinion-columns_californication
+  /opinion/opinion-columns/good-mythical-monday/:
+    permalink: /opinion/opinion-columns/good-mythical-monday/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_good-mythical-monday
+    template: section
+    data: tag.sec_opinion_opinion-columns_good-mythical-monday
+  /opinion/opinion-columns/ships-on-a-wine-dark-sea/:
+    permalink: /opinion/opinion-columns/ships-on-a-wine-dark-sea/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_ships-on-a-wine-dark-sea
+    template: section
+    data: tag.sec_opinion_opinion-columns_ships-on-a-wine-dark-sea
+  /opinion/opinion-columns/stories-from-abroad/:
+    permalink: /opinion/opinion-columns/stories-from-abroad/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_stories-from-abroad
+    template: section
+    data: tag.sec_opinion_opinion-columns_stories-from-abroad
+  /opinion/opinion-columns/trail-mix/:
+    permalink: /opinion/opinion-columns/trail-mix/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_trail-mix
+    template: section
+    data: tag.sec_opinion_opinion-columns_trail-mix
+  /opinion/opinion-columns/growing-up-again/:
+    permalink: /opinion/opinion-columns/growing-up-again/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_growing-up-again
+    template: section
+    data: tag.sec_opinion_opinion-columns_growing-up-again
+  /opinion/opinion-columns/where-i-was-from/:
+    permalink: /opinion/opinion-columns/where-i-was-from/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_where-i-was-from
+    template: section
+    data: tag.sec_opinion_opinion-columns_where-i-was-from
+  /opinion/opinion-columns/intertext/:
+    permalink: /opinion/opinion-columns/intertext/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_intertext
+    template: section
+    data: tag.sec_opinion_opinion-columns_intertext
+  /opinion/opinion-columns/traveler-s-guide-to-saying-yes/:
+    permalink: /opinion/opinion-columns/traveler-s-guide-to-saying-yes/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_traveler-s-guide-to-saying-yes
+    template: section
+    data: tag.sec_opinion_opinion-columns_traveler-s-guide-to-saying-yes
+  /opinion/opinion-columns/growing-into-myself/:
+    permalink: /opinion/opinion-columns/growing-into-myself/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_growing-into-myself
+    template: section
+    data: tag.sec_opinion_opinion-columns_growing-into-myself
+  /opinion/opinion-columns/the-measured-medium/:
+    permalink: /opinion/opinion-columns/the-measured-medium/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_the-measured-medium
+    template: section
+    data: tag.sec_opinion_opinion-columns_the-measured-medium
+  /opinion/opinion-columns/we-need-to-talk/:
+    permalink: /opinion/opinion-columns/we-need-to-talk/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_we-need-to-talk
+    template: section
+    data: tag.sec_opinion_opinion-columns_we-need-to-talk
+  /opinion/opinion-columns/apathetic-america/:
+    permalink: /opinion/opinion-columns/apathetic-america/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_apathetic-america
+    template: section
+    data: tag.sec_opinion_opinion-columns_apathetic-america
+  /opinion/opinion-columns/cis-to-sis/:
+    permalink: /opinion/opinion-columns/cis-to-sis/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_cis-to-sis
+    template: section
+    data: tag.sec_opinion_opinion-columns_cis-to-sis
+  /opinion/opinion-columns/head-in-the-cloud/:
+    permalink: /opinion/opinion-columns/head-in-the-cloud/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_head-in-the-cloud
+    template: section
+    data: tag.sec_opinion_opinion-columns_head-in-the-cloud
+  /opinion/opinion-columns/non-trade-undergrad/:
+    permalink: /opinion/opinion-columns/non-trade-undergrad/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_non-trade-undergrad
+    template: section
+    data: tag.sec_opinion_opinion-columns_non-trade-undergrad
+  /opinion/opinion-columns/odes-to-art/:
+    permalink: /opinion/opinion-columns/odes-to-art/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_odes-to-art
+    template: section
+    data: tag.sec_opinion_opinion-columns_odes-to-art
+  /opinion/opinion-columns/organize-your-thoughts/:
+    permalink: /opinion/opinion-columns/organize-your-thoughts/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_organize-your-thoughts
+    template: section
+    data: tag.sec_opinion_opinion-columns_organize-your-thoughts
+  /opinion/opinion-columns/points-west/:
+    permalink: /opinion/opinion-columns/points-west/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_points-west
+    template: section
+    data: tag.sec_opinion_opinion-columns_points-west
+  /opinion/opinion-columns/reciprocity/:
+    permalink: /opinion/opinion-columns/reciprocity/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_reciprocity
+    template: section
+    data: tag.sec_opinion_opinion-columns_reciprocity
+  /opinion/opinion-columns/scarlet-letter/:
+    permalink: /opinion/opinion-columns/scarlet-letter/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_scarlet-letter
+    template: section
+    data: tag.sec_opinion_opinion-columns_scarlet-letter
+  /opinion/opinion-columns/sex/:
+    permalink: /opinion/opinion-columns/sex/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_sex
+    template: section
+    data: tag.sec_opinion_opinion-columns_sex
+  /opinion/opinion-columns/suggested-reply/:
+    permalink: /opinion/opinion-columns/suggested-reply/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_suggested-reply
+    template: section
+    data: tag.sec_opinion_opinion-columns_suggested-reply
+  /opinion/opinion-columns/the-greek-theater/:
+    permalink: /opinion/opinion-columns/the-greek-theater/{slug}/
+    filter: primary_tag:sec_opinion_opinion-columns_the-greek-theater
+    template: section
+    data: tag.sec_opinion_opinion-columns_the-greek-theater
+  /opinion/op-eds/:
+    permalink: /opinion/op-eds/{slug}/
+    filter: primary_tag:sec_opinion_op-eds
+    template: section
+    data: tag.sec_opinion_op-eds
+  /opinion/editorials/:
+    permalink: /opinion/editorials/{slug}/
+    filter: primary_tag:sec_opinion_editorials
+    template: section
+    data: tag.sec_opinion_editorials
+  /opinion/our-voices/:
+    permalink: /opinion/our-voices/{slug}/
+    filter: primary_tag:sec_opinion_our-voices
+    template: section
+    data: tag.sec_opinion_our-voices
+  /opinion/letters-to-the-editor/:
+    permalink: /opinion/letters-to-the-editor/{slug}/
+    filter: primary_tag:sec_opinion_letters-to-the-editor
+    template: section
+    data: tag.sec_opinion_letters-to-the-editor
+  /opinion/elections-2024/:
+    permalink: /opinion/elections-2024/{slug}/
+    filter: primary_tag:sec_opinion_elections-2024
+    template: section
+    data: tag.sec_opinion_elections-2024
+  /_/featured/:
+    permalink: /featured/{slug}/
+    filter: primary_tag:sec_featured
+    template: section
+    data: tag.sec_featured
+  /_/featured/special-issues/:
+    permalink: /featured/special-issues/{slug}/
+    filter: primary_tag:sec_featured_special-issues
+    template: section
+    data: tag.sec_featured_special-issues
+  /featured/special-issues/career-fair/:
+    permalink: /featured/special-issues/career-fair/{slug}/
+    filter: primary_tag:sec_featured_special-issues_career-fair
+    template: section
+    data: tag.sec_featured_special-issues_career-fair
+  /featured/special-issues/mental-health/:
+    permalink: /featured/special-issues/mental-health/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health
+    template: section
+    data: tag.sec_featured_special-issues_mental-health
+  /featured/special-issues/cal-day-2023/:
+    permalink: /featured/special-issues/cal-day-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day-2023
+    template: section
+    data: tag.sec_featured_special-issues_cal-day-2023
+  /featured/special-issues/free-speech-2023/:
+    permalink: /featured/special-issues/free-speech-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_free-speech-2023
+    template: section
+    data: tag.sec_featured_special-issues_free-speech-2023
+  /featured/special-issues/orientation/:
+    permalink: /featured/special-issues/orientation/{slug}/
+    filter: primary_tag:sec_featured_special-issues_orientation
+    template: section
+    data: tag.sec_featured_special-issues_orientation
+  /featured/special-issues/cal-day/:
+    permalink: /featured/special-issues/cal-day/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day
+    template: section
+    data: tag.sec_featured_special-issues_cal-day
+  /featured/special-issues/elections/:
+    permalink: /featured/special-issues/elections/{slug}/
+    filter: primary_tag:sec_featured_special-issues_elections
+    template: section
+    data: tag.sec_featured_special-issues_elections
+  /featured/special-issues/new-year/:
+    permalink: /featured/special-issues/new-year/{slug}/
+    filter: primary_tag:sec_featured_special-issues_new-year
+    template: section
+    data: tag.sec_featured_special-issues_new-year
+  /featured/special-issues/puzzles-2022/:
+    permalink: /featured/special-issues/puzzles-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_puzzles-2022
+    template: section
+    data: tag.sec_featured_special-issues_puzzles-2022
+  /featured/special-issues/sex-issue-2023/:
+    permalink: /featured/special-issues/sex-issue-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-issue-2023
+    template: section
+    data: tag.sec_featured_special-issues_sex-issue-2023
+  /featured/special-issues/black-history-month/:
+    permalink: /featured/special-issues/black-history-month/{slug}/
+    filter: primary_tag:sec_featured_special-issues_black-history-month
+    template: section
+    data: tag.sec_featured_special-issues_black-history-month
+  /featured/special-issues/black-history-month-2023/:
+    permalink: /featured/special-issues/black-history-month-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_black-history-month-2023
+    template: section
+    data: tag.sec_featured_special-issues_black-history-month-2023
+  /featured/special-issues/job-fair-issue-2023/:
+    permalink: /featured/special-issues/job-fair-issue-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_job-fair-issue-2023
+    template: section
+    data: tag.sec_featured_special-issues_job-fair-issue-2023
+  /featured/special-issues/new-year-2023/:
+    permalink: /featured/special-issues/new-year-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_new-year-2023
+    template: section
+    data: tag.sec_featured_special-issues_new-year-2023
+  /featured/special-issues/pride/:
+    permalink: /featured/special-issues/pride/{slug}/
+    filter: primary_tag:sec_featured_special-issues_pride
+    template: section
+    data: tag.sec_featured_special-issues_pride
+  /featured/special-issues/retrospective/:
+    permalink: /featured/special-issues/retrospective/{slug}/
+    filter: primary_tag:sec_featured_special-issues_retrospective
+    template: section
+    data: tag.sec_featured_special-issues_retrospective
+  /_/featured/special-issues/sex/:
+    permalink: /featured/special-issues/sex/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex
+    template: section
+    data: tag.sec_featured_special-issues_sex
+  /featured/special-issues/sex/sex-issue-2024/:
+    permalink: /featured/special-issues/sex/sex-issue-2024/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex_sex-issue-2024
+    template: section
+    data: tag.sec_featured_special-issues_sex_sex-issue-2024
+  /featured/special-issues/best-of-berkeley-2023/:
+    permalink: /featured/special-issues/best-of-berkeley-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_best-of-berkeley-2023
+    template: section
+    data: tag.sec_featured_special-issues_best-of-berkeley-2023
+  /featured/special-issues/cal-day-2021/:
+    permalink: /featured/special-issues/cal-day-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day-2021
+    template: section
+    data: tag.sec_featured_special-issues_cal-day-2021
+  /featured/special-issues/california-primaries-2020/:
+    permalink: /featured/special-issues/california-primaries-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_california-primaries-2020
+    template: section
+    data: tag.sec_featured_special-issues_california-primaries-2020
+  /featured/special-issues/california-primary-2016/:
+    permalink: /featured/special-issues/california-primary-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_california-primary-2016
+    template: section
+    data: tag.sec_featured_special-issues_california-primary-2016
+  /featured/special-issues/career-fair-2021/:
+    permalink: /featured/special-issues/career-fair-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_career-fair-2021
+    template: section
+    data: tag.sec_featured_special-issues_career-fair-2021
+  /featured/special-issues/criminal-justice-2018/:
+    permalink: /featured/special-issues/criminal-justice-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_criminal-justice-2018
+    template: section
+    data: tag.sec_featured_special-issues_criminal-justice-2018
+  /featured/special-issues/graduation/:
+    permalink: /featured/special-issues/graduation/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation
+    template: section
+    data: tag.sec_featured_special-issues_graduation
+  /featured/special-issues/graduation-2023/:
+    permalink: /featured/special-issues/graduation-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-2023
+    template: section
+    data: tag.sec_featured_special-issues_graduation-2023
+  /featured/special-issues/graduation-issue-2022/:
+    permalink: /featured/special-issues/graduation-issue-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-issue-2022
+    template: section
+    data: tag.sec_featured_special-issues_graduation-issue-2022
+  /featured/special-issues/homecoming/:
+    permalink: /featured/special-issues/homecoming/{slug}/
+    filter: primary_tag:sec_featured_special-issues_homecoming
+    template: section
+    data: tag.sec_featured_special-issues_homecoming
+  /featured/special-issues/housing/:
+    permalink: /featured/special-issues/housing/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing
+    template: section
+    data: tag.sec_featured_special-issues_housing
+  /featured/special-issues/march-madness-2025/:
+    permalink: /featured/special-issues/march-madness-2025/{slug}/
+    filter: primary_tag:sec_featured_special-issues_march-madness-2025
+    template: section
+    data: tag.sec_featured_special-issues_march-madness-2025
+  /featured/special-issues/mental-health-2019/:
+    permalink: /featured/special-issues/mental-health-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health-2019
+    template: section
+    data: tag.sec_featured_special-issues_mental-health-2019
+  /featured/special-issues/mental-health-2020/:
+    permalink: /featured/special-issues/mental-health-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health-2020
+    template: section
+    data: tag.sec_featured_special-issues_mental-health-2020
+  /featured/special-issues/mental-health-2021/:
+    permalink: /featured/special-issues/mental-health-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health-2021
+    template: section
+    data: tag.sec_featured_special-issues_mental-health-2021
+  /featured/special-issues/mental-health-issue-2024/:
+    permalink: /featured/special-issues/mental-health-issue-2024/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health-issue-2024
+    template: section
+    data: tag.sec_featured_special-issues_mental-health-issue-2024
+  /featured/special-issues/mentorship-2019/:
+    permalink: /featured/special-issues/mentorship-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mentorship-2019
+    template: section
+    data: tag.sec_featured_special-issues_mentorship-2019
+  /featured/special-issues/summer-orientation-2021/:
+    permalink: /featured/special-issues/summer-orientation-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_summer-orientation-2021
+    template: section
+    data: tag.sec_featured_special-issues_summer-orientation-2021
+  /featured/special-issues/year-in-retrospect-2022/:
+    permalink: /featured/special-issues/year-in-retrospect-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_year-in-retrospect-2022
+    template: section
+    data: tag.sec_featured_special-issues_year-in-retrospect-2022
+  /featured/special-issues/year-in-retrospect-hindsight-is-2020/:
+    permalink: /featured/special-issues/year-in-retrospect-hindsight-is-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_year-in-retrospect-hindsight-is-2020
+    template: section
+    data: tag.sec_featured_special-issues_year-in-retrospect-hindsight-is-2020
+  /featured/special-issues/year-in-retrospect-sunset-on-2021/:
+    permalink: /featured/special-issues/year-in-retrospect-sunset-on-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_year-in-retrospect-sunset-on-2021
+    template: section
+    data: tag.sec_featured_special-issues_year-in-retrospect-sunset-on-2021
+  /featured/special-issues/30-years-of-ada-2020/:
+    permalink: /featured/special-issues/30-years-of-ada-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_30-years-of-ada-2020
+    template: section
+    data: tag.sec_featured_special-issues_30-years-of-ada-2020
+  /featured/special-issues/admissions-2014/:
+    permalink: /featured/special-issues/admissions-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_admissions-2014
+    template: section
+    data: tag.sec_featured_special-issues_admissions-2014
+  /featured/special-issues/admissions-2015/:
+    permalink: /featured/special-issues/admissions-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_admissions-2015
+    template: section
+    data: tag.sec_featured_special-issues_admissions-2015
+  /featured/special-issues/around-the-world-2017-special/:
+    permalink: /featured/special-issues/around-the-world-2017-special/{slug}/
+    filter: primary_tag:sec_featured_special-issues_around-the-world-2017-special
+    template: section
+    data: tag.sec_featured_special-issues_around-the-world-2017-special
+  /featured/special-issues/back-to-school-2014/:
+    permalink: /featured/special-issues/back-to-school-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_back-to-school-2014
+    template: section
+    data: tag.sec_featured_special-issues_back-to-school-2014
+  /featured/special-issues/berkeley-menu-guide-2015/:
+    permalink: /featured/special-issues/berkeley-menu-guide-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_berkeley-menu-guide-2015
+    template: section
+    data: tag.sec_featured_special-issues_berkeley-menu-guide-2015
+  /featured/special-issues/berkeley-menu-guide-2016/:
+    permalink: /featured/special-issues/berkeley-menu-guide-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_berkeley-menu-guide-2016
+    template: section
+    data: tag.sec_featured_special-issues_berkeley-menu-guide-2016
+  /featured/special-issues/berkeley-slipped-away/:
+    permalink: /featured/special-issues/berkeley-slipped-away/{slug}/
+    filter: primary_tag:sec_featured_special-issues_berkeley-slipped-away
+    template: section
+    data: tag.sec_featured_special-issues_berkeley-slipped-away
+  /featured/special-issues/black-history-month-2018/:
+    permalink: /featured/special-issues/black-history-month-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_black-history-month-2018
+    template: section
+    data: tag.sec_featured_special-issues_black-history-month-2018
+  /featured/special-issues/black-history-month-2019/:
+    permalink: /featured/special-issues/black-history-month-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_black-history-month-2019
+    template: section
+    data: tag.sec_featured_special-issues_black-history-month-2019
+  /featured/special-issues/black-history-month-2026/:
+    permalink: /featured/special-issues/black-history-month-2026/{slug}/
+    filter: primary_tag:sec_featured_special-issues_black-history-month-2026
+    template: section
+    data: tag.sec_featured_special-issues_black-history-month-2026
+  /featured/special-issues/bleed-blue-win-gold-tokyo-olympics-issue/:
+    permalink: /featured/special-issues/bleed-blue-win-gold-tokyo-olympics-issue/{slug}/
+    filter: primary_tag:sec_featured_special-issues_bleed-blue-win-gold-tokyo-olympics-issue
+    template: section
+    data: tag.sec_featured_special-issues_bleed-blue-win-gold-tokyo-olympics-issue
+  /featured/special-issues/cal-day-2015/:
+    permalink: /featured/special-issues/cal-day-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day-2015
+    template: section
+    data: tag.sec_featured_special-issues_cal-day-2015
+  /featured/special-issues/cal-day-2016/:
+    permalink: /featured/special-issues/cal-day-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day-2016
+    template: section
+    data: tag.sec_featured_special-issues_cal-day-2016
+  /featured/special-issues/cal-day-2018/:
+    permalink: /featured/special-issues/cal-day-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day-2018
+    template: section
+    data: tag.sec_featured_special-issues_cal-day-2018
+  /featured/special-issues/cal-day-2019/:
+    permalink: /featured/special-issues/cal-day-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day-2019
+    template: section
+    data: tag.sec_featured_special-issues_cal-day-2019
+  /featured/special-issues/cal-day-2020/:
+    permalink: /featured/special-issues/cal-day-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day-2020
+    template: section
+    data: tag.sec_featured_special-issues_cal-day-2020
+  /featured/special-issues/cal-day-2022/:
+    permalink: /featured/special-issues/cal-day-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_cal-day-2022
+    template: section
+    data: tag.sec_featured_special-issues_cal-day-2022
+  /featured/special-issues/california-elections-2018/:
+    permalink: /featured/special-issues/california-elections-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_california-elections-2018
+    template: section
+    data: tag.sec_featured_special-issues_california-elections-2018
+  /featured/special-issues/calso-issue-2014/:
+    permalink: /featured/special-issues/calso-issue-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_calso-issue-2014
+    template: section
+    data: tag.sec_featured_special-issues_calso-issue-2014
+  /featured/special-issues/calsoissue-2015/:
+    permalink: /featured/special-issues/calsoissue-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_calsoissue-2015
+    template: section
+    data: tag.sec_featured_special-issues_calsoissue-2015
+  /featured/special-issues/calsoissue-2016/:
+    permalink: /featured/special-issues/calsoissue-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_calsoissue-2016
+    template: section
+    data: tag.sec_featured_special-issues_calsoissue-2016
+  /featured/special-issues/career-fair-2017/:
+    permalink: /featured/special-issues/career-fair-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_career-fair-2017
+    template: section
+    data: tag.sec_featured_special-issues_career-fair-2017
+  /featured/special-issues/career-fair-2018/:
+    permalink: /featured/special-issues/career-fair-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_career-fair-2018
+    template: section
+    data: tag.sec_featured_special-issues_career-fair-2018
+  /featured/special-issues/career-fair-2019/:
+    permalink: /featured/special-issues/career-fair-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_career-fair-2019
+    template: section
+    data: tag.sec_featured_special-issues_career-fair-2019
+  /featured/special-issues/career-fair-2020/:
+    permalink: /featured/special-issues/career-fair-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_career-fair-2020
+    template: section
+    data: tag.sec_featured_special-issues_career-fair-2020
+  /featured/special-issues/career-fair-study-abroad-2022/:
+    permalink: /featured/special-issues/career-fair-study-abroad-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_career-fair-study-abroad-2022
+    template: section
+    data: tag.sec_featured_special-issues_career-fair-study-abroad-2022
+  /featured/special-issues/carol-christ-2017/:
+    permalink: /featured/special-issues/carol-christ-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_carol-christ-2017
+    template: section
+    data: tag.sec_featured_special-issues_carol-christ-2017
+  /featured/special-issues/charter-day-2018/:
+    permalink: /featured/special-issues/charter-day-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_charter-day-2018
+    template: section
+    data: tag.sec_featured_special-issues_charter-day-2018
+  /featured/special-issues/daily-cal-150/:
+    permalink: /featured/special-issues/daily-cal-150/{slug}/
+    filter: primary_tag:sec_featured_special-issues_daily-cal-150
+    template: section
+    data: tag.sec_featured_special-issues_daily-cal-150
+  /featured/special-issues/dead-week-2014/:
+    permalink: /featured/special-issues/dead-week-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_dead-week-2014
+    template: section
+    data: tag.sec_featured_special-issues_dead-week-2014
+  /featured/special-issues/dead-week-puzzles-2013/:
+    permalink: /featured/special-issues/dead-week-puzzles-2013/{slug}/
+    filter: primary_tag:sec_featured_special-issues_dead-week-puzzles-2013
+    template: section
+    data: tag.sec_featured_special-issues_dead-week-puzzles-2013
+  /featured/special-issues/dead-week-puzzles-2014/:
+    permalink: /featured/special-issues/dead-week-puzzles-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_dead-week-puzzles-2014
+    template: section
+    data: tag.sec_featured_special-issues_dead-week-puzzles-2014
+  /featured/special-issues/dead-week-puzzles-2015/:
+    permalink: /featured/special-issues/dead-week-puzzles-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_dead-week-puzzles-2015
+    template: section
+    data: tag.sec_featured_special-issues_dead-week-puzzles-2015
+  /featured/special-issues/dead-week-puzzles-2016/:
+    permalink: /featured/special-issues/dead-week-puzzles-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_dead-week-puzzles-2016
+    template: section
+    data: tag.sec_featured_special-issues_dead-week-puzzles-2016
+  /featured/special-issues/dead-week-puzzles-2017/:
+    permalink: /featured/special-issues/dead-week-puzzles-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_dead-week-puzzles-2017
+    template: section
+    data: tag.sec_featured_special-issues_dead-week-puzzles-2017
+  /featured/special-issues/dead-week-puzzles-in-retrospect-2019/:
+    permalink: /featured/special-issues/dead-week-puzzles-in-retrospect-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_dead-week-puzzles-in-retrospect-2019
+    template: section
+    data: tag.sec_featured_special-issues_dead-week-puzzles-in-retrospect-2019
+  /featured/special-issues/disability-awareness-2018/:
+    permalink: /featured/special-issues/disability-awareness-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_disability-awareness-2018
+    template: section
+    data: tag.sec_featured_special-issues_disability-awareness-2018
+  /featured/special-issues/earth-day-2018/:
+    permalink: /featured/special-issues/earth-day-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_earth-day-2018
+    template: section
+    data: tag.sec_featured_special-issues_earth-day-2018
+  /featured/special-issues/editors-note-fall-orientation-2021/:
+    permalink: /featured/special-issues/editors-note-fall-orientation-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_editors-note-fall-orientation-2021
+    template: section
+    data: tag.sec_featured_special-issues_editors-note-fall-orientation-2021
+  /featured/special-issues/editors-note-semester-in-the-cloud/:
+    permalink: /featured/special-issues/editors-note-semester-in-the-cloud/{slug}/
+    filter: primary_tag:sec_featured_special-issues_editors-note-semester-in-the-cloud
+    template: section
+    data: tag.sec_featured_special-issues_editors-note-semester-in-the-cloud
+  /featured/special-issues/election-2016-retrospective-issue/:
+    permalink: /featured/special-issues/election-2016-retrospective-issue/{slug}/
+    filter: primary_tag:sec_featured_special-issues_election-2016-retrospective-issue
+    template: section
+    data: tag.sec_featured_special-issues_election-2016-retrospective-issue
+  /featured/special-issues/fall-orientation-2013/:
+    permalink: /featured/special-issues/fall-orientation-2013/{slug}/
+    filter: primary_tag:sec_featured_special-issues_fall-orientation-2013
+    template: section
+    data: tag.sec_featured_special-issues_fall-orientation-2013
+  /featured/special-issues/fall-orientation-2015-special/:
+    permalink: /featured/special-issues/fall-orientation-2015-special/{slug}/
+    filter: primary_tag:sec_featured_special-issues_fall-orientation-2015-special
+    template: section
+    data: tag.sec_featured_special-issues_fall-orientation-2015-special
+  /featured/special-issues/fall-orientation-2016/:
+    permalink: /featured/special-issues/fall-orientation-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_fall-orientation-2016
+    template: section
+    data: tag.sec_featured_special-issues_fall-orientation-2016
+  /featured/special-issues/fall-orientation-2017/:
+    permalink: /featured/special-issues/fall-orientation-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_fall-orientation-2017
+    template: section
+    data: tag.sec_featured_special-issues_fall-orientation-2017
+  /featured/special-issues/fall-orientation-2018/:
+    permalink: /featured/special-issues/fall-orientation-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_fall-orientation-2018
+    template: section
+    data: tag.sec_featured_special-issues_fall-orientation-2018
+  /featured/special-issues/fall-orientation-2019/:
+    permalink: /featured/special-issues/fall-orientation-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_fall-orientation-2019
+    template: section
+    data: tag.sec_featured_special-issues_fall-orientation-2019
+  /featured/special-issues/fall-orientation-2022/:
+    permalink: /featured/special-issues/fall-orientation-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_fall-orientation-2022
+    template: section
+    data: tag.sec_featured_special-issues_fall-orientation-2022
+  /featured/special-issues/fall-orientation-2023/:
+    permalink: /featured/special-issues/fall-orientation-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_fall-orientation-2023
+    template: section
+    data: tag.sec_featured_special-issues_fall-orientation-2023
+  /featured/special-issues/food-cuisine-2013/:
+    permalink: /featured/special-issues/food-cuisine-2013/{slug}/
+    filter: primary_tag:sec_featured_special-issues_food-cuisine-2013
+    template: section
+    data: tag.sec_featured_special-issues_food-cuisine-2013
+  /featured/special-issues/free-speech-movement-issue-2014/:
+    permalink: /featured/special-issues/free-speech-movement-issue-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_free-speech-movement-issue-2014
+    template: section
+    data: tag.sec_featured_special-issues_free-speech-movement-issue-2014
+  /featured/special-issues/freshman-orientation-2013/:
+    permalink: /featured/special-issues/freshman-orientation-2013/{slug}/
+    filter: primary_tag:sec_featured_special-issues_freshman-orientation-2013
+    template: section
+    data: tag.sec_featured_special-issues_freshman-orientation-2013
+  /featured/special-issues/freshman-orientation-2024/:
+    permalink: /featured/special-issues/freshman-orientation-2024/{slug}/
+    filter: primary_tag:sec_featured_special-issues_freshman-orientation-2024
+    template: section
+    data: tag.sec_featured_special-issues_freshman-orientation-2024
+  /featured/special-issues/get-counted-general-elections-2020/:
+    permalink: /featured/special-issues/get-counted-general-elections-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_get-counted-general-elections-2020
+    template: section
+    data: tag.sec_featured_special-issues_get-counted-general-elections-2020
+  /featured/special-issues/grad-issue-2025/:
+    permalink: /featured/special-issues/grad-issue-2025/{slug}/
+    filter: primary_tag:sec_featured_special-issues_grad-issue-2025
+    template: section
+    data: tag.sec_featured_special-issues_grad-issue-2025
+  /featured/special-issues/grad-issue-2024/:
+    permalink: /featured/special-issues/grad-issue-2024/{slug}/
+    filter: primary_tag:sec_featured_special-issues_grad-issue-2024
+    template: section
+    data: tag.sec_featured_special-issues_grad-issue-2024
+  /featured/special-issues/graduation-2014/:
+    permalink: /featured/special-issues/graduation-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-2014
+    template: section
+    data: tag.sec_featured_special-issues_graduation-2014
+  /featured/special-issues/graduation-2015/:
+    permalink: /featured/special-issues/graduation-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-2015
+    template: section
+    data: tag.sec_featured_special-issues_graduation-2015
+  /featured/special-issues/graduation-2016/:
+    permalink: /featured/special-issues/graduation-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-2016
+    template: section
+    data: tag.sec_featured_special-issues_graduation-2016
+  /featured/special-issues/graduation-2017/:
+    permalink: /featured/special-issues/graduation-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-2017
+    template: section
+    data: tag.sec_featured_special-issues_graduation-2017
+  /featured/special-issues/graduation-2019/:
+    permalink: /featured/special-issues/graduation-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-2019
+    template: section
+    data: tag.sec_featured_special-issues_graduation-2019
+  /featured/special-issues/graduation-issue-2018/:
+    permalink: /featured/special-issues/graduation-issue-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-issue-2018
+    template: section
+    data: tag.sec_featured_special-issues_graduation-issue-2018
+  /featured/special-issues/graduation-issue-2020/:
+    permalink: /featured/special-issues/graduation-issue-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-issue-2020
+    template: section
+    data: tag.sec_featured_special-issues_graduation-issue-2020
+  /featured/special-issues/graduation-2026/:
+    permalink: /featured/special-issues/graduation-2026/{slug}/
+    filter: primary_tag:sec_featured_special-issues_graduation-2026
+    template: section
+    data: tag.sec_featured_special-issues_graduation-2026
+  /featured/special-issues/holiday-buying-guide-2016/:
+    permalink: /featured/special-issues/holiday-buying-guide-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_holiday-buying-guide-2016
+    template: section
+    data: tag.sec_featured_special-issues_holiday-buying-guide-2016
+  /featured/special-issues/holiday-buying-guide-2017/:
+    permalink: /featured/special-issues/holiday-buying-guide-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_holiday-buying-guide-2017
+    template: section
+    data: tag.sec_featured_special-issues_holiday-buying-guide-2017
+  /featured/special-issues/holiday-guide-2015/:
+    permalink: /featured/special-issues/holiday-guide-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_holiday-guide-2015
+    template: section
+    data: tag.sec_featured_special-issues_holiday-guide-2015
+  /featured/special-issues/homecoming-2015/:
+    permalink: /featured/special-issues/homecoming-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_homecoming-2015
+    template: section
+    data: tag.sec_featured_special-issues_homecoming-2015
+  /featured/special-issues/homecoming-2017-special/:
+    permalink: /featured/special-issues/homecoming-2017-special/{slug}/
+    filter: primary_tag:sec_featured_special-issues_homecoming-2017-special
+    template: section
+    data: tag.sec_featured_special-issues_homecoming-2017-special
+  /featured/special-issues/homecoming-2018/:
+    permalink: /featured/special-issues/homecoming-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_homecoming-2018
+    template: section
+    data: tag.sec_featured_special-issues_homecoming-2018
+  /featured/special-issues/homecoming-2019/:
+    permalink: /featured/special-issues/homecoming-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_homecoming-2019
+    template: section
+    data: tag.sec_featured_special-issues_homecoming-2019
+  /featured/special-issues/housing-2020/:
+    permalink: /featured/special-issues/housing-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing-2020
+    template: section
+    data: tag.sec_featured_special-issues_housing-2020
+  /featured/special-issues/housing-2022/:
+    permalink: /featured/special-issues/housing-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing-2022
+    template: section
+    data: tag.sec_featured_special-issues_housing-2022
+  /featured/special-issues/housing-issue-2014/:
+    permalink: /featured/special-issues/housing-issue-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing-issue-2014
+    template: section
+    data: tag.sec_featured_special-issues_housing-issue-2014
+  /featured/special-issues/housing-issue-2015/:
+    permalink: /featured/special-issues/housing-issue-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing-issue-2015
+    template: section
+    data: tag.sec_featured_special-issues_housing-issue-2015
+  /featured/special-issues/housing-issue-2016/:
+    permalink: /featured/special-issues/housing-issue-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing-issue-2016
+    template: section
+    data: tag.sec_featured_special-issues_housing-issue-2016
+  /featured/special-issues/housing-issue-2017/:
+    permalink: /featured/special-issues/housing-issue-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing-issue-2017
+    template: section
+    data: tag.sec_featured_special-issues_housing-issue-2017
+  /featured/special-issues/housing-issue-2018/:
+    permalink: /featured/special-issues/housing-issue-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing-issue-2018
+    template: section
+    data: tag.sec_featured_special-issues_housing-issue-2018
+  /featured/special-issues/housing-survival-guide-2019/:
+    permalink: /featured/special-issues/housing-survival-guide-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_housing-survival-guide-2019
+    template: section
+    data: tag.sec_featured_special-issues_housing-survival-guide-2019
+  /featured/special-issues/indigenous-peoples-day-2017/:
+    permalink: /featured/special-issues/indigenous-peoples-day-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_indigenous-peoples-day-2017
+    template: section
+    data: tag.sec_featured_special-issues_indigenous-peoples-day-2017
+  /featured/special-issues/innovation-2017/:
+    permalink: /featured/special-issues/innovation-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_innovation-2017
+    template: section
+    data: tag.sec_featured_special-issues_innovation-2017
+  /featured/special-issues/internships-2017/:
+    permalink: /featured/special-issues/internships-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_internships-2017
+    template: section
+    data: tag.sec_featured_special-issues_internships-2017
+  /featured/special-issues/march-madness/:
+    permalink: /featured/special-issues/march-madness/{slug}/
+    filter: primary_tag:sec_featured_special-issues_march-madness
+    template: section
+    data: tag.sec_featured_special-issues_march-madness
+  /featured/special-issues/march-madness-2014/:
+    permalink: /featured/special-issues/march-madness-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_march-madness-2014
+    template: section
+    data: tag.sec_featured_special-issues_march-madness-2014
+  /featured/special-issues/march-madness-2015/:
+    permalink: /featured/special-issues/march-madness-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_march-madness-2015
+    template: section
+    data: tag.sec_featured_special-issues_march-madness-2015
+  /featured/special-issues/march-madness-2016/:
+    permalink: /featured/special-issues/march-madness-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_march-madness-2016
+    template: section
+    data: tag.sec_featured_special-issues_march-madness-2016
+  /featured/special-issues/march-madness-2019/:
+    permalink: /featured/special-issues/march-madness-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_march-madness-2019
+    template: section
+    data: tag.sec_featured_special-issues_march-madness-2019
+  /featured/special-issues/mental-health-2018/:
+    permalink: /featured/special-issues/mental-health-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health-2018
+    template: section
+    data: tag.sec_featured_special-issues_mental-health-2018
+  /featured/special-issues/mental-health-2022/:
+    permalink: /featured/special-issues/mental-health-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health-2022
+    template: section
+    data: tag.sec_featured_special-issues_mental-health-2022
+  /featured/special-issues/mental-health-issue-2017/:
+    permalink: /featured/special-issues/mental-health-issue-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health-issue-2017
+    template: section
+    data: tag.sec_featured_special-issues_mental-health-issue-2017
+  /featured/special-issues/mental-health-issue-2023/:
+    permalink: /featured/special-issues/mental-health-issue-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_mental-health-issue-2023
+    template: section
+    data: tag.sec_featured_special-issues_mental-health-issue-2023
+  /featured/special-issues/metoo-2018/:
+    permalink: /featured/special-issues/metoo-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_metoo-2018
+    template: section
+    data: tag.sec_featured_special-issues_metoo-2018
+  /featured/special-issues/midterm-elections-2022/:
+    permalink: /featured/special-issues/midterm-elections-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_midterm-elections-2022
+    template: section
+    data: tag.sec_featured_special-issues_midterm-elections-2022
+  /featured/special-issues/millenials-issue-generation-haters/:
+    permalink: /featured/special-issues/millenials-issue-generation-haters/{slug}/
+    filter: primary_tag:sec_featured_special-issues_millenials-issue-generation-haters
+    template: section
+    data: tag.sec_featured_special-issues_millenials-issue-generation-haters
+  /featured/special-issues/new-year-2019/:
+    permalink: /featured/special-issues/new-year-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_new-year-2019
+    template: section
+    data: tag.sec_featured_special-issues_new-year-2019
+  /featured/special-issues/new-year-2020/:
+    permalink: /featured/special-issues/new-year-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_new-year-2020
+    template: section
+    data: tag.sec_featured_special-issues_new-year-2020
+  /featured/special-issues/new-year-2021/:
+    permalink: /featured/special-issues/new-year-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_new-year-2021
+    template: section
+    data: tag.sec_featured_special-issues_new-year-2021
+  /featured/special-issues/new-year-2022/:
+    permalink: /featured/special-issues/new-year-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_new-year-2022
+    template: section
+    data: tag.sec_featured_special-issues_new-year-2022
+  /featured/special-issues/new-year-s-2024/:
+    permalink: /featured/special-issues/new-year-s-2024/{slug}/
+    filter: primary_tag:sec_featured_special-issues_new-year-s-2024
+    template: section
+    data: tag.sec_featured_special-issues_new-year-s-2024
+  /featured/special-issues/olympics/:
+    permalink: /featured/special-issues/olympics/{slug}/
+    filter: primary_tag:sec_featured_special-issues_olympics
+    template: section
+    data: tag.sec_featured_special-issues_olympics
+  /featured/special-issues/olympics-2016/:
+    permalink: /featured/special-issues/olympics-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_olympics-2016
+    template: section
+    data: tag.sec_featured_special-issues_olympics-2016
+  /featured/special-issues/outside-2021/:
+    permalink: /featured/special-issues/outside-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_outside-2021
+    template: section
+    data: tag.sec_featured_special-issues_outside-2021
+  /featured/special-issues/preparedness-2019/:
+    permalink: /featured/special-issues/preparedness-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_preparedness-2019
+    template: section
+    data: tag.sec_featured_special-issues_preparedness-2019
+  /featured/special-issues/pride-2018/:
+    permalink: /featured/special-issues/pride-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_pride-2018
+    template: section
+    data: tag.sec_featured_special-issues_pride-2018
+  /featured/special-issues/pride-2019/:
+    permalink: /featured/special-issues/pride-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_pride-2019
+    template: section
+    data: tag.sec_featured_special-issues_pride-2019
+  /featured/special-issues/pride-2021/:
+    permalink: /featured/special-issues/pride-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_pride-2021
+    template: section
+    data: tag.sec_featured_special-issues_pride-2021
+  /featured/special-issues/pride-2026/:
+    permalink: /featured/special-issues/pride-2026/{slug}/
+    filter: primary_tag:sec_featured_special-issues_pride-2026
+    template: section
+    data: tag.sec_featured_special-issues_pride-2026
+  /featured/special-issues/primary-election-2018/:
+    permalink: /featured/special-issues/primary-election-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_primary-election-2018
+    template: section
+    data: tag.sec_featured_special-issues_primary-election-2018
+  /featured/special-issues/puzzles/:
+    permalink: /featured/special-issues/puzzles/{slug}/
+    filter: primary_tag:sec_featured_special-issues_puzzles
+    template: section
+    data: tag.sec_featured_special-issues_puzzles
+  /featured/special-issues/puzzles-2018/:
+    permalink: /featured/special-issues/puzzles-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_puzzles-2018
+    template: section
+    data: tag.sec_featured_special-issues_puzzles-2018
+  /featured/special-issues/puzzles-2020/:
+    permalink: /featured/special-issues/puzzles-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_puzzles-2020
+    template: section
+    data: tag.sec_featured_special-issues_puzzles-2020
+  /featured/special-issues/puzzles-2023/:
+    permalink: /featured/special-issues/puzzles-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_puzzles-2023
+    template: section
+    data: tag.sec_featured_special-issues_puzzles-2023
+  /featured/special-issues/rehabilitation-2019/:
+    permalink: /featured/special-issues/rehabilitation-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_rehabilitation-2019
+    template: section
+    data: tag.sec_featured_special-issues_rehabilitation-2019
+  /featured/special-issues/retrospective-2013/:
+    permalink: /featured/special-issues/retrospective-2013/{slug}/
+    filter: primary_tag:sec_featured_special-issues_retrospective-2013
+    template: section
+    data: tag.sec_featured_special-issues_retrospective-2013
+  /featured/special-issues/retrospective-2014/:
+    permalink: /featured/special-issues/retrospective-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_retrospective-2014
+    template: section
+    data: tag.sec_featured_special-issues_retrospective-2014
+  /featured/special-issues/retrospective-2015/:
+    permalink: /featured/special-issues/retrospective-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_retrospective-2015
+    template: section
+    data: tag.sec_featured_special-issues_retrospective-2015
+  /featured/special-issues/retrospective-issue-2016/:
+    permalink: /featured/special-issues/retrospective-issue-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_retrospective-issue-2016
+    template: section
+    data: tag.sec_featured_special-issues_retrospective-issue-2016
+  /featured/special-issues/retrospective-issue-2017/:
+    permalink: /featured/special-issues/retrospective-issue-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_retrospective-issue-2017
+    template: section
+    data: tag.sec_featured_special-issues_retrospective-issue-2017
+  /featured/special-issues/rrr-week-rest-refresh-with-riddles/:
+    permalink: /featured/special-issues/rrr-week-rest-refresh-with-riddles/{slug}/
+    filter: primary_tag:sec_featured_special-issues_rrr-week-rest-refresh-with-riddles
+    template: section
+    data: tag.sec_featured_special-issues_rrr-week-rest-refresh-with-riddles
+  /featured/special-issues/sex-2019/:
+    permalink: /featured/special-issues/sex-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-2019
+    template: section
+    data: tag.sec_featured_special-issues_sex-2019
+  /featured/special-issues/sex-2020/:
+    permalink: /featured/special-issues/sex-2020/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-2020
+    template: section
+    data: tag.sec_featured_special-issues_sex-2020
+  /featured/special-issues/sex-issue-2014/:
+    permalink: /featured/special-issues/sex-issue-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-issue-2014
+    template: section
+    data: tag.sec_featured_special-issues_sex-issue-2014
+  /featured/special-issues/sex-issue-2015/:
+    permalink: /featured/special-issues/sex-issue-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-issue-2015
+    template: section
+    data: tag.sec_featured_special-issues_sex-issue-2015
+  /featured/special-issues/sex-issue-2016/:
+    permalink: /featured/special-issues/sex-issue-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-issue-2016
+    template: section
+    data: tag.sec_featured_special-issues_sex-issue-2016
+  /featured/special-issues/sex-issue-2017/:
+    permalink: /featured/special-issues/sex-issue-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-issue-2017
+    template: section
+    data: tag.sec_featured_special-issues_sex-issue-2017
+  /featured/special-issues/sex-issue-2021/:
+    permalink: /featured/special-issues/sex-issue-2021/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-issue-2021
+    template: section
+    data: tag.sec_featured_special-issues_sex-issue-2021
+  /featured/special-issues/sex-issue-2022/:
+    permalink: /featured/special-issues/sex-issue-2022/{slug}/
+    filter: primary_tag:sec_featured_special-issues_sex-issue-2022
+    template: section
+    data: tag.sec_featured_special-issues_sex-issue-2022
+  /featured/special-issues/special-sex-issue-2018/:
+    permalink: /featured/special-issues/special-sex-issue-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_special-sex-issue-2018
+    template: section
+    data: tag.sec_featured_special-issues_special-sex-issue-2018
+  /featured/special-issues/spring-orientation-2014/:
+    permalink: /featured/special-issues/spring-orientation-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_spring-orientation-2014
+    template: section
+    data: tag.sec_featured_special-issues_spring-orientation-2014
+  /featured/special-issues/study-abroad-2013/:
+    permalink: /featured/special-issues/study-abroad-2013/{slug}/
+    filter: primary_tag:sec_featured_special-issues_study-abroad-2013
+    template: section
+    data: tag.sec_featured_special-issues_study-abroad-2013
+  /featured/special-issues/study-abroad-2014/:
+    permalink: /featured/special-issues/study-abroad-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_study-abroad-2014
+    template: section
+    data: tag.sec_featured_special-issues_study-abroad-2014
+  /featured/special-issues/study-abroad-2015/:
+    permalink: /featured/special-issues/study-abroad-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_study-abroad-2015
+    template: section
+    data: tag.sec_featured_special-issues_study-abroad-2015
+  /featured/special-issues/study-abroad-2016/:
+    permalink: /featured/special-issues/study-abroad-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_study-abroad-2016
+    template: section
+    data: tag.sec_featured_special-issues_study-abroad-2016
+  /featured/special-issues/study-abroad-2017/:
+    permalink: /featured/special-issues/study-abroad-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_study-abroad-2017
+    template: section
+    data: tag.sec_featured_special-issues_study-abroad-2017
+  /featured/special-issues/study-abroad-2018/:
+    permalink: /featured/special-issues/study-abroad-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_study-abroad-2018
+    template: section
+    data: tag.sec_featured_special-issues_study-abroad-2018
+  /featured/special-issues/study-abroad-2019/:
+    permalink: /featured/special-issues/study-abroad-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_study-abroad-2019
+    template: section
+    data: tag.sec_featured_special-issues_study-abroad-2019
+  /featured/special-issues/summer-in-berkeley-2015/:
+    permalink: /featured/special-issues/summer-in-berkeley-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_summer-in-berkeley-2015
+    template: section
+    data: tag.sec_featured_special-issues_summer-in-berkeley-2015
+  /featured/special-issues/summer-issue-2014-special/:
+    permalink: /featured/special-issues/summer-issue-2014-special/{slug}/
+    filter: primary_tag:sec_featured_special-issues_summer-issue-2014-special
+    template: section
+    data: tag.sec_featured_special-issues_summer-issue-2014-special
+  /featured/special-issues/summer-orientation-2016/:
+    permalink: /featured/special-issues/summer-orientation-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_summer-orientation-2016
+    template: section
+    data: tag.sec_featured_special-issues_summer-orientation-2016
+  /featured/special-issues/summer-orientation-2018/:
+    permalink: /featured/special-issues/summer-orientation-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_summer-orientation-2018
+    template: section
+    data: tag.sec_featured_special-issues_summer-orientation-2018
+  /featured/special-issues/summer-orientation-2019/:
+    permalink: /featured/special-issues/summer-orientation-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_summer-orientation-2019
+    template: section
+    data: tag.sec_featured_special-issues_summer-orientation-2019
+  /featured/special-issues/tech-and-ideas-2013/:
+    permalink: /featured/special-issues/tech-and-ideas-2013/{slug}/
+    filter: primary_tag:sec_featured_special-issues_tech-and-ideas-2013
+    template: section
+    data: tag.sec_featured_special-issues_tech-and-ideas-2013
+  /featured/special-issues/transfer-students-2018/:
+    permalink: /featured/special-issues/transfer-students-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_transfer-students-2018
+    template: section
+    data: tag.sec_featured_special-issues_transfer-students-2018
+  /featured/special-issues/uc-labor-2019/:
+    permalink: /featured/special-issues/uc-labor-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_uc-labor-2019
+    template: section
+    data: tag.sec_featured_special-issues_uc-labor-2019
+  /featured/special-issues/welcome-back-2016/:
+    permalink: /featured/special-issues/welcome-back-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_welcome-back-2016
+    template: section
+    data: tag.sec_featured_special-issues_welcome-back-2016
+  /featured/special-issues/welcome-back-2018/:
+    permalink: /featured/special-issues/welcome-back-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_welcome-back-2018
+    template: section
+    data: tag.sec_featured_special-issues_welcome-back-2018
+  /featured/special-issues/welcome-bears-2018/:
+    permalink: /featured/special-issues/welcome-bears-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_welcome-bears-2018
+    template: section
+    data: tag.sec_featured_special-issues_welcome-bears-2018
+  /featured/special-issues/welcome-bears-2019/:
+    permalink: /featured/special-issues/welcome-bears-2019/{slug}/
+    filter: primary_tag:sec_featured_special-issues_welcome-bears-2019
+    template: section
+    data: tag.sec_featured_special-issues_welcome-bears-2019
+  /featured/special-issues/welcome-freshmen-2014/:
+    permalink: /featured/special-issues/welcome-freshmen-2014/{slug}/
+    filter: primary_tag:sec_featured_special-issues_welcome-freshmen-2014
+    template: section
+    data: tag.sec_featured_special-issues_welcome-freshmen-2014
+  /featured/special-issues/welcome-new-students-2015/:
+    permalink: /featured/special-issues/welcome-new-students-2015/{slug}/
+    filter: primary_tag:sec_featured_special-issues_welcome-new-students-2015
+    template: section
+    data: tag.sec_featured_special-issues_welcome-new-students-2015
+  /featured/special-issues/welcome-new-students-2016/:
+    permalink: /featured/special-issues/welcome-new-students-2016/{slug}/
+    filter: primary_tag:sec_featured_special-issues_welcome-new-students-2016
+    template: section
+    data: tag.sec_featured_special-issues_welcome-new-students-2016
+  /featured/special-issues/welcome-new-students-2017/:
+    permalink: /featured/special-issues/welcome-new-students-2017/{slug}/
+    filter: primary_tag:sec_featured_special-issues_welcome-new-students-2017
+    template: section
+    data: tag.sec_featured_special-issues_welcome-new-students-2017
+  /featured/special-issues/what-journalism-means/:
+    permalink: /featured/special-issues/what-journalism-means/{slug}/
+    filter: primary_tag:sec_featured_special-issues_what-journalism-means
+    template: section
+    data: tag.sec_featured_special-issues_what-journalism-means
+  /featured/special-issues/year-in-retrospect-2018/:
+    permalink: /featured/special-issues/year-in-retrospect-2018/{slug}/
+    filter: primary_tag:sec_featured_special-issues_year-in-retrospect-2018
+    template: section
+    data: tag.sec_featured_special-issues_year-in-retrospect-2018
+  /featured/special-issues/year-in-retrospect-2023/:
+    permalink: /featured/special-issues/year-in-retrospect-2023/{slug}/
+    filter: primary_tag:sec_featured_special-issues_year-in-retrospect-2023
+    template: section
+    data: tag.sec_featured_special-issues_year-in-retrospect-2023
+  /featured/awards/:
+    permalink: /featured/awards/{slug}/
+    filter: primary_tag:sec_featured_awards
+    template: section
+    data: tag.sec_featured_awards
+  /featured/editors-picks/:
+    permalink: /featured/editors-picks/{slug}/
+    filter: primary_tag:sec_featured_editors-picks
+    template: section
+    data: tag.sec_featured_editors-picks
+  /_/lifestyle/:
+    permalink: /lifestyle/{slug}/
+    filter: primary_tag:sec_lifestyle
+    template: section
+    data: tag.sec_lifestyle
+  /lifestyle/how-to/:
+    permalink: /lifestyle/how-to/{slug}/
+    filter: primary_tag:sec_lifestyle_how-to
+    template: section
+    data: tag.sec_lifestyle_how-to
+  /lifestyle/strikeout/:
+    permalink: /lifestyle/strikeout/{slug}/
+    filter: primary_tag:sec_lifestyle_strikeout
+    template: section
+    data: tag.sec_lifestyle_strikeout
+  /lifestyle/local-guides/:
+    permalink: /lifestyle/local-guides/{slug}/
+    filter: primary_tag:sec_lifestyle_local-guides
+    template: section
+    data: tag.sec_lifestyle_local-guides
+  /lifestyle/quizzes/:
+    permalink: /lifestyle/quizzes/{slug}/
+    filter: primary_tag:sec_lifestyle_quizzes
+    template: section
+    data: tag.sec_lifestyle_quizzes
+  /lifestyle/grammar/:
+    permalink: /lifestyle/grammar/{slug}/
+    filter: primary_tag:sec_lifestyle_grammar
+    template: section
+    data: tag.sec_lifestyle_grammar
+  /cartoons/:
+    permalink: /cartoons/{slug}/
+    filter: primary_tag:sec_cartoons
+    template: section
+    data: tag.sec_cartoons
+  /puzzles/:
+    permalink: /puzzles/{slug}/
+    filter: primary_tag:sec_puzzles
+    template: section
+    data: tag.sec_puzzles
+  /archive/:
+    permalink: /archive/{slug}/
+    filter: primary_tag:sec_archive
+    template: section
+    data: tag.sec_archive
+  /best-of-berkeley/:
+    permalink: /best-of-berkeley/{slug}/
+    filter: primary_tag:sec_best-of-berkeley
+    template: section
+    data: tag.sec_best-of-berkeley
+  /data/:
+    permalink: /data/{slug}/
+    filter: primary_tag:sec_data
+    template: section
+    data: tag.sec_data
+  /stacks/:
+    permalink: /stacks/{slug}/
+    filter: primary_tag:sec_stacks
+    template: section
+    data: tag.sec_stacks
+  /article/:
+    permalink: /article/{slug}/
+    filter: primary_tag:-[sec_blogs,sec_blogs_clog,sec_blogs_food-blog,sec_blogs_earth-to-berkeley,sec_blogs_travel,sec_blogs_travel_stories-from-abroad,sec_blogs_grammar,sec_blogs_editors,sec_blogs_editors_divcom-blog,sec_blogs_editors_awards,sec_blogs_news-blog,sec_blogs_arts-blog,sec_blogs_satire,sec_news,sec_news_campus,sec_news_campus_research-and-ideas,sec_news_campus_student-life,sec_news_campus_asuc,sec_news_campus_asuc_asuc-elections-2024,sec_news_campus_asuc_asuc-elections-2025,sec_news_campus_asuc_asuc-elections-2023,sec_news_campus_asuc_asuc-elections-2022,sec_news_campus_administration,sec_news_campus_academics,sec_news_city,sec_news_city_local-businesses,sec_news_city_city-government,sec_news_city_law-and-justice,sec_news_city_communities,sec_news_city_housing,sec_news_city_crime-and-safety,sec_news_city_local-schools,sec_news_city_transit,sec_news_city_elections,sec_news_city_elections_elections-2024,sec_news_city_environment,sec_news_uc,sec_news_state,sec_news_obituary-news,sec_news_national,sec_news_alameda-county,sec_news_race-and-diversity,sec_news_investigations,sec_sports,sec_sports_msports,sec_sports_msports_football,sec_sports_msports_football_acc-character-profiles,sec_sports_msports_basketball,sec_sports_msports_tennis,sec_sports_msports_baseball,sec_sports_msports_golf,sec_sports_msports_rugby,sec_sports_msports_soccer,sec_sports_msports_swimming-and-diving,sec_sports_msports_water-polo,sec_sports_msports_gymnastics,sec_sports_msports_crew,sec_sports_wsports,sec_sports_wsports_basketball,sec_sports_wsports_softball,sec_sports_wsports_volleyball,sec_sports_wsports_tennis,sec_sports_wsports_gymnastics,sec_sports_wsports_water-polo,sec_sports_wsports_field-hockey,sec_sports_wsports_golf,sec_sports_wsports_beach-volleyball,sec_sports_wsports_lacrosse,sec_sports_wsports_soccer,sec_sports_wsports_swimming-and-diving,sec_sports_wsports_rowing,sec_sports_bearbytes,sec_sports_bearbytes_esports,sec_sports_sports-columns,sec_sports_sports-columns_our-brown-leather-couch,sec_sports_sports-columns_love-and-basketball,sec_sports_sports-columns_euros-on-tape,sec_sports_track-and-field,sec_sports_crew,sec_sports_cross-country,sec_sports_special-report,sec_sports_special-report_paris-olympics,sec_sports_special-report_winter-olympics-2026,sec_sports_gameday,sec_sports_boxing,sec_sports_national,sec_sports_world-cup,sec_arts,sec_arts_film-and-television,sec_arts_music,sec_arts_music_album-reviews,sec_arts_music_concerts,sec_arts_theater,sec_arts_visual-art,sec_arts_culture-shot,sec_arts_art-columns,sec_arts_art-columns_art-to-heart,sec_arts_art-columns_arts-away,sec_arts_dance,sec_arts_books,sec_arts_local-event,sec_arts_video-games,sec_arts_fashion-arts,sec_arts_arts-awards,sec_arts_comedy-arts,sec_arts_festivals,sec_weekender,sec_weekender_personal-essays,sec_weekender_poems,sec_weekender_commentary,sec_weekender_fiction,sec_weekender_features,sec_weekender_back-and-forth,sec_weekender_culture,sec_weekender_portfolio,sec_weekender_commentaries-and-features,sec_multimedia,sec_multimedia_photo-essays,sec_opinion,sec_opinion_the-soapbox,sec_opinion_opinion-columns,sec_opinion_opinion-columns_sex-on-tuesday,sec_opinion_opinion-columns_cal-in-color,sec_opinion_opinion-columns_off-the-beat,sec_opinion_opinion-columns_non-trad-undergrad,sec_opinion_opinion-columns_the-graduate,sec_opinion_opinion-columns_word,sec_opinion_opinion-columns_10-kinds-of-immortality,sec_opinion_opinion-columns_american-void,sec_opinion_opinion-columns_day-one-as-a-dictator,sec_opinion_opinion-columns_equivalent-exchange,sec_opinion_opinion-columns_on-being-kids,sec_opinion_opinion-columns_reflections-on-the-bay,sec_opinion_opinion-columns_soundtrack-of-a-letter,sec_opinion_opinion-columns_words-we-live-by,sec_opinion_opinion-columns_blood-and-water,sec_opinion_opinion-columns_on-god,sec_opinion_opinion-columns_time-and-place,sec_opinion_opinion-columns_time-and-place_10-kinds-of-immortality,sec_opinion_opinion-columns_between-the-world-and-me,sec_opinion_opinion-columns_broke-in-berkeley,sec_opinion_opinion-columns_californication,sec_opinion_opinion-columns_good-mythical-monday,sec_opinion_opinion-columns_ships-on-a-wine-dark-sea,sec_opinion_opinion-columns_stories-from-abroad,sec_opinion_opinion-columns_trail-mix,sec_opinion_opinion-columns_growing-up-again,sec_opinion_opinion-columns_where-i-was-from,sec_opinion_opinion-columns_intertext,sec_opinion_opinion-columns_traveler-s-guide-to-saying-yes,sec_opinion_opinion-columns_growing-into-myself,sec_opinion_opinion-columns_the-measured-medium,sec_opinion_opinion-columns_we-need-to-talk,sec_opinion_opinion-columns_apathetic-america,sec_opinion_opinion-columns_cis-to-sis,sec_opinion_opinion-columns_head-in-the-cloud,sec_opinion_opinion-columns_non-trade-undergrad,sec_opinion_opinion-columns_odes-to-art,sec_opinion_opinion-columns_organize-your-thoughts,sec_opinion_opinion-columns_points-west,sec_opinion_opinion-columns_reciprocity,sec_opinion_opinion-columns_scarlet-letter,sec_opinion_opinion-columns_sex,sec_opinion_opinion-columns_suggested-reply,sec_opinion_opinion-columns_the-greek-theater,sec_opinion_op-eds,sec_opinion_editorials,sec_opinion_our-voices,sec_opinion_letters-to-the-editor,sec_opinion_elections-2024,sec_featured,sec_featured_special-issues,sec_featured_special-issues_career-fair,sec_featured_special-issues_mental-health,sec_featured_special-issues_cal-day-2023,sec_featured_special-issues_free-speech-2023,sec_featured_special-issues_orientation,sec_featured_special-issues_cal-day,sec_featured_special-issues_elections,sec_featured_special-issues_new-year,sec_featured_special-issues_puzzles-2022,sec_featured_special-issues_sex-issue-2023,sec_featured_special-issues_black-history-month,sec_featured_special-issues_black-history-month-2023,sec_featured_special-issues_job-fair-issue-2023,sec_featured_special-issues_new-year-2023,sec_featured_special-issues_pride,sec_featured_special-issues_retrospective,sec_featured_special-issues_sex,sec_featured_special-issues_sex_sex-issue-2024,sec_featured_special-issues_best-of-berkeley-2023,sec_featured_special-issues_cal-day-2021,sec_featured_special-issues_california-primaries-2020,sec_featured_special-issues_california-primary-2016,sec_featured_special-issues_career-fair-2021,sec_featured_special-issues_criminal-justice-2018,sec_featured_special-issues_graduation,sec_featured_special-issues_graduation-2023,sec_featured_special-issues_graduation-issue-2022,sec_featured_special-issues_homecoming,sec_featured_special-issues_housing,sec_featured_special-issues_march-madness-2025,sec_featured_special-issues_mental-health-2019,sec_featured_special-issues_mental-health-2020,sec_featured_special-issues_mental-health-2021,sec_featured_special-issues_mental-health-issue-2024,sec_featured_special-issues_mentorship-2019,sec_featured_special-issues_summer-orientation-2021,sec_featured_special-issues_year-in-retrospect-2022,sec_featured_special-issues_year-in-retrospect-hindsight-is-2020,sec_featured_special-issues_year-in-retrospect-sunset-on-2021,sec_featured_special-issues_30-years-of-ada-2020,sec_featured_special-issues_admissions-2014,sec_featured_special-issues_admissions-2015,sec_featured_special-issues_around-the-world-2017-special,sec_featured_special-issues_back-to-school-2014,sec_featured_special-issues_berkeley-menu-guide-2015,sec_featured_special-issues_berkeley-menu-guide-2016,sec_featured_special-issues_berkeley-slipped-away,sec_featured_special-issues_black-history-month-2018,sec_featured_special-issues_black-history-month-2019,sec_featured_special-issues_black-history-month-2026,sec_featured_special-issues_bleed-blue-win-gold-tokyo-olympics-issue,sec_featured_special-issues_cal-day-2015,sec_featured_special-issues_cal-day-2016,sec_featured_special-issues_cal-day-2018,sec_featured_special-issues_cal-day-2019,sec_featured_special-issues_cal-day-2020,sec_featured_special-issues_cal-day-2022,sec_featured_special-issues_california-elections-2018,sec_featured_special-issues_calso-issue-2014,sec_featured_special-issues_calsoissue-2015,sec_featured_special-issues_calsoissue-2016,sec_featured_special-issues_career-fair-2017,sec_featured_special-issues_career-fair-2018,sec_featured_special-issues_career-fair-2019,sec_featured_special-issues_career-fair-2020,sec_featured_special-issues_career-fair-study-abroad-2022,sec_featured_special-issues_carol-christ-2017,sec_featured_special-issues_charter-day-2018,sec_featured_special-issues_daily-cal-150,sec_featured_special-issues_dead-week-2014,sec_featured_special-issues_dead-week-puzzles-2013,sec_featured_special-issues_dead-week-puzzles-2014,sec_featured_special-issues_dead-week-puzzles-2015,sec_featured_special-issues_dead-week-puzzles-2016,sec_featured_special-issues_dead-week-puzzles-2017,sec_featured_special-issues_dead-week-puzzles-in-retrospect-2019,sec_featured_special-issues_disability-awareness-2018,sec_featured_special-issues_earth-day-2018,sec_featured_special-issues_editors-note-fall-orientation-2021,sec_featured_special-issues_editors-note-semester-in-the-cloud,sec_featured_special-issues_election-2016-retrospective-issue,sec_featured_special-issues_fall-orientation-2013,sec_featured_special-issues_fall-orientation-2015-special,sec_featured_special-issues_fall-orientation-2016,sec_featured_special-issues_fall-orientation-2017,sec_featured_special-issues_fall-orientation-2018,sec_featured_special-issues_fall-orientation-2019,sec_featured_special-issues_fall-orientation-2022,sec_featured_special-issues_fall-orientation-2023,sec_featured_special-issues_food-cuisine-2013,sec_featured_special-issues_free-speech-movement-issue-2014,sec_featured_special-issues_freshman-orientation-2013,sec_featured_special-issues_freshman-orientation-2024,sec_featured_special-issues_get-counted-general-elections-2020,sec_featured_special-issues_grad-issue-2025,sec_featured_special-issues_grad-issue-2024,sec_featured_special-issues_graduation-2014,sec_featured_special-issues_graduation-2015,sec_featured_special-issues_graduation-2016,sec_featured_special-issues_graduation-2017,sec_featured_special-issues_graduation-2019,sec_featured_special-issues_graduation-issue-2018,sec_featured_special-issues_graduation-issue-2020,sec_featured_special-issues_graduation-2026,sec_featured_special-issues_holiday-buying-guide-2016,sec_featured_special-issues_holiday-buying-guide-2017,sec_featured_special-issues_holiday-guide-2015,sec_featured_special-issues_homecoming-2015,sec_featured_special-issues_homecoming-2017-special,sec_featured_special-issues_homecoming-2018,sec_featured_special-issues_homecoming-2019,sec_featured_special-issues_housing-2020,sec_featured_special-issues_housing-2022,sec_featured_special-issues_housing-issue-2014,sec_featured_special-issues_housing-issue-2015,sec_featured_special-issues_housing-issue-2016,sec_featured_special-issues_housing-issue-2017,sec_featured_special-issues_housing-issue-2018,sec_featured_special-issues_housing-survival-guide-2019,sec_featured_special-issues_indigenous-peoples-day-2017,sec_featured_special-issues_innovation-2017,sec_featured_special-issues_internships-2017,sec_featured_special-issues_march-madness,sec_featured_special-issues_march-madness-2014,sec_featured_special-issues_march-madness-2015,sec_featured_special-issues_march-madness-2016,sec_featured_special-issues_march-madness-2019,sec_featured_special-issues_mental-health-2018,sec_featured_special-issues_mental-health-2022,sec_featured_special-issues_mental-health-issue-2017,sec_featured_special-issues_mental-health-issue-2023,sec_featured_special-issues_metoo-2018,sec_featured_special-issues_midterm-elections-2022,sec_featured_special-issues_millenials-issue-generation-haters,sec_featured_special-issues_new-year-2019,sec_featured_special-issues_new-year-2020,sec_featured_special-issues_new-year-2021,sec_featured_special-issues_new-year-2022,sec_featured_special-issues_new-year-s-2024,sec_featured_special-issues_olympics,sec_featured_special-issues_olympics-2016,sec_featured_special-issues_outside-2021,sec_featured_special-issues_preparedness-2019,sec_featured_special-issues_pride-2018,sec_featured_special-issues_pride-2019,sec_featured_special-issues_pride-2021,sec_featured_special-issues_pride-2026,sec_featured_special-issues_primary-election-2018,sec_featured_special-issues_puzzles,sec_featured_special-issues_puzzles-2018,sec_featured_special-issues_puzzles-2020,sec_featured_special-issues_puzzles-2023,sec_featured_special-issues_rehabilitation-2019,sec_featured_special-issues_retrospective-2013,sec_featured_special-issues_retrospective-2014,sec_featured_special-issues_retrospective-2015,sec_featured_special-issues_retrospective-issue-2016,sec_featured_special-issues_retrospective-issue-2017,sec_featured_special-issues_rrr-week-rest-refresh-with-riddles,sec_featured_special-issues_sex-2019,sec_featured_special-issues_sex-2020,sec_featured_special-issues_sex-issue-2014,sec_featured_special-issues_sex-issue-2015,sec_featured_special-issues_sex-issue-2016,sec_featured_special-issues_sex-issue-2017,sec_featured_special-issues_sex-issue-2021,sec_featured_special-issues_sex-issue-2022,sec_featured_special-issues_special-sex-issue-2018,sec_featured_special-issues_spring-orientation-2014,sec_featured_special-issues_study-abroad-2013,sec_featured_special-issues_study-abroad-2014,sec_featured_special-issues_study-abroad-2015,sec_featured_special-issues_study-abroad-2016,sec_featured_special-issues_study-abroad-2017,sec_featured_special-issues_study-abroad-2018,sec_featured_special-issues_study-abroad-2019,sec_featured_special-issues_summer-in-berkeley-2015,sec_featured_special-issues_summer-issue-2014-special,sec_featured_special-issues_summer-orientation-2016,sec_featured_special-issues_summer-orientation-2018,sec_featured_special-issues_summer-orientation-2019,sec_featured_special-issues_tech-and-ideas-2013,sec_featured_special-issues_transfer-students-2018,sec_featured_special-issues_uc-labor-2019,sec_featured_special-issues_welcome-back-2016,sec_featured_special-issues_welcome-back-2018,sec_featured_special-issues_welcome-bears-2018,sec_featured_special-issues_welcome-bears-2019,sec_featured_special-issues_welcome-freshmen-2014,sec_featured_special-issues_welcome-new-students-2015,sec_featured_special-issues_welcome-new-students-2016,sec_featured_special-issues_welcome-new-students-2017,sec_featured_special-issues_what-journalism-means,sec_featured_special-issues_year-in-retrospect-2018,sec_featured_special-issues_year-in-retrospect-2023,sec_featured_awards,sec_featured_editors-picks,sec_lifestyle,sec_lifestyle_how-to,sec_lifestyle_strikeout,sec_lifestyle_local-guides,sec_lifestyle_quizzes,sec_lifestyle_grammar,sec_cartoons,sec_puzzles,sec_archive,sec_best-of-berkeley,sec_data,sec_stacks]
     template: index
-
 taxonomies:
-  tag: /tag/{slug}/
   author: /author/{slug}/

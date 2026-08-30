@@ -63,7 +63,7 @@
 
   &--large &__headline {
     @include mq.mq($from: desktop) {
-      @include mixins.font($scale: 8, $line-height: 9);
+      @include mixins.font($scale: 7, $line-height: 8);
     }
   }
 

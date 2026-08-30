@@ -1,17 +1,19 @@
-<div class='c-section c-section--{{slug}}'>
+<div class='c-section c-section--{{sectionSlug}}'>
   <div class='o-grid'>
     <div class='c-section-heading'>
-      <h2 class='c-section-heading__title'><a href='{{ url }}'>{{ name }}</a></h2>
+      <h2 class='c-section-heading__title'><a href='{{sectionUrl}}'>{{sectionName}}</a></h2>
 
-      <a href='{{ url }}' class='c-section-heading__all
-        {{#match count.posts ">" @custom.number_of_posts_for_tags_home_sections}}u-block{{else}}u-hidden{{/match}}'>
-        {{t 'See all'}}
-      </a>
+      {{#get 'posts' filter=postFilter limit='1' as |sectionPosts sectionPagination|}}
+        <a href='{{sectionUrl}}' class='c-section-heading__all
+          {{#match sectionPagination.total ">" @custom.number_of_posts_for_tags_home_sections}}u-block{{else}}u-hidden{{/match}}'>
+          {{t 'See all'}}
+        </a>
+      {{/get}}
     </div>
   </div>
 
   <div class='o-grid o-grid--4-columns'>
-    {{#get 'posts' filter='tags:{{slug}}' include='tags,authors' limit=@custom.number_of_posts_for_tags_home_sections as |posts|}}
+    {{#get 'posts' filter=postFilter include='tags,authors' limit=@custom.number_of_posts_for_tags_home_sections as |posts|}}
       {{#if posts}}
         {{#foreach posts}}
           {{> card showExcerpt=true }}
